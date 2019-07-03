@@ -1,0 +1,68 @@
+{
+	"contentManagement": [
+		{
+			"title": "Dota自走棋",
+			"icon": "&#xe630;",
+			"href": "",
+			"children": [
+				{
+					"title": "全部(Dota自走棋)",
+					"icon": "&#xe61c;",
+					"href": "page/main/main_autochess.html",
+					"spread": true
+				},
+				{
+					"title": "已通过(Dota自走棋)",
+					"icon": "&#xe609;",
+					"href": "page/adopt/adopt_autochess.html",
+					"spread": false
+				}
+				,
+				{
+					"title": "未处理(Dota自走棋)",
+					"icon": "&#xe609;",
+					"href": "page/Untreated/Untreated_autochess.html",
+					"spread": false
+					
+				},
+				{
+					"title": "替补(Dota自走棋)",
+					"icon": "&#xe609;",
+					"href": "page/Substitute/Substitute.html",
+					"spread": false
+					
+				}
+			]
+		},
+		{
+			"title": "青岛啤酒节",
+			"icon": "&#xe630;",
+			"href": "",
+			"spread": false,
+			"children": [
+				{
+					"title": "全部(青岛)",
+					"icon": "&#xe61c;",
+					"href": "page/main/main_PEC2019.html",
+					"spread": false
+				},
+				{
+					"title": "已通过(青岛)",
+					"icon": "&#xe609;",
+					"href": "page/adopt/adopt_PEC2019.html",
+					"spread": false
+				}
+				,
+				{
+					"title": "未处理(青岛)",
+					"icon": "&#xe609;",
+					"href": "page/Untreated/Untreated_PEC2019.html",
+					"spread": false
+					
+				}
+			]
+		}
+	]
+}
+
+
