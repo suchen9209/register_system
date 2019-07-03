@@ -21,7 +21,7 @@ class Login extends CI_Controller {
         if(isset($user_name) && isset($user_pass)){
             $res = $this->users->get_info_by_username($user_name);
             if ($res->password === password_md5($user_pass)) {
-                $this->session->ADMIN_SESSION_NAME  =   $res->id;
+                $this->session->set_userdata(ADMIN_SESSION_NAME,  $res->id);
                 $return['status'] = 'success';
                 $return['detail'] = '登录成功';
                 $return['name'] = $res->name;
