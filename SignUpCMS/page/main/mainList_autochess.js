@@ -7,27 +7,48 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         laytpl = layui.laytpl,
         table = layui.table;
         excel = layui.excel;
-        dataNS =  '';
-     $.ajax({
-            url: "http://apply.imbatv.cn/tool/init/list_header_json",
-            type: "GET",
-            dataType: 'json',
-            success(res) {
-               console.log(res);
-               var html = '';
-               console.log(res.length);
-               html += '[';
-               for (var i = 0; i < res.length; i++) {
-                   html += '{ field: "'+res[i].field+'", title: "'+res[i].title+'", align: "center"},';
-               }
-               html += ']';
-            dataNS = html ;
-            console.log(dataNS);
-            console.log(typeof dataNS);
-            },error() {
-                layer.alert('获取数据失败');
-            }
-        });
+        dataNS =  [
+                { field: 'id', title: 'ID222', align: 'center', width: 50 },
+                { field: 'name', title: '姓名22222', width: 150, align: "center" },
+                { field: 'nickname', title: '昵称', align: 'center' },
+                { field: 'qq', title: 'qq', align: 'center' },
+                { field: 'phone', title: '手机', align: 'center' },
+                { field: 'email', title: '邮箱', align: 'center' },
+                { field: 'game_id', title: '游戏ID', align: 'center' },
+                { field: 'idcard', title: '身份证号', align: 'center' },
+                {
+                    field: 'extra_filed1',
+                    title: '段位截图',
+                    width: 180,
+                    align: "center",
+                    templet: function(d) {
+                        return '<a href="' + d.extra_filed1 + '" target="_blank"><img src="' + d.extra_filed1 + '" height="26" /></a>';
+                    }
+                },
+                { field: 'extra_filed2', title: '分组', align: 'center' },
+                { title: '操作', width: 270, templet: '#newsListBar', fixed: "right", align: "center" }
+            ];
+             console.log(typeof dataNS);
+     // $.ajax({
+     //        url: "http://apply.imbatv.cn/tool/init/list_header_json",
+     //        type: "GET",
+     //        dataType: 'json',
+     //        success(res) {
+     //           console.log(res);
+     //           var html = '';
+     //           console.log(res.length);
+     //           html += '[';
+     //           for (var i = 0; i < res.length; i++) {
+     //               html += '{ field: "'+res[i].field+'", title: "'+res[i].title+'", align: "center"},';
+     //           }
+     //           html += ']';
+     //        dataNS = html ;
+     //        console.log(dataNS);
+     //        console.log(typeof dataNS);
+     //        },error() {
+     //            layer.alert('获取数据失败');
+     //        }
+     //    });
     var tableIns = table.render({
         elem: '#newsList',
         url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
