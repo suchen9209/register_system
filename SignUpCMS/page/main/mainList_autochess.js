@@ -18,6 +18,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                    html += '{ field: "'+res[i].field+'", title: "'+res[i].title+'", align: "center"},';
                }
             dataNS = html ;
+            dataNS = JSON.parse(dataNS);
             console.log(dataNS);
             console.log(typeof dataNS);
             },error() {
