@@ -16,11 +16,14 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                console.log(res);
                var html = '';
                console.log(res.length);
+               html += '[';
                for (var i = 0; i < res.length; i++) {
-                   html += '{ field: '+res[i].field+', title: '+res[i].title+', align: center}';
+                   html += '{ field: "'+res[i].field+'", title: "'+res[i].title+'", align: "center"},';
                }
+               html += ']';
             dataNS = html ;
             console.log(dataNS);
+            console.log(typeof dataNS);
             },error() {
                 layer.alert('获取数据失败');
             }
