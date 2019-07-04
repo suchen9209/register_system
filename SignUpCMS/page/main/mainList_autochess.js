@@ -22,11 +22,13 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                }
                html += ']';
             dataNS = html ;
-            // console.log(typeof dataNS);
-            // dataNS = JSON.parse(dataNS);
             console.log(dataNS);
             console.log(typeof dataNS);
-             var tableIns = table.render({
+            },error() {
+                layer.alert('获取数据失败');
+            }
+        });
+    var tableIns = table.render({
         elem: '#newsList',
         url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
         limit: 15,
@@ -39,11 +41,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             $(".layui-table-box").find("[data-field='id']").css("display", "none");
         }
     });
-            },error() {
-                layer.alert('获取数据失败');
-            }
-        });
-   
     // 搜索
     var $ = layui.$,
         active = {
