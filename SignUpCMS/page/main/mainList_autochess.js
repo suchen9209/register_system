@@ -9,7 +9,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         excel = layui.excel;
         dataNS =  [
                 { field: 'id', title: 'ID222', align: 'center', width: 50 },
-                { field: 'name', title: '姓名', width: 150, align: "center" },
+                { field: 'name', title: '姓名22222', width: 150, align: "center" },
                 { field: 'nickname', title: '昵称', align: 'center' },
                 { field: 'qq', title: 'qq', align: 'center' },
                 { field: 'phone', title: '手机', align: 'center' },
