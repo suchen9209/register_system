@@ -22,8 +22,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                }
                html += ']';
             dataNS = html ;
-            console.log(typeof dataNS);
-            dataNS = JSON.parse(dataNS);
+            // console.log(typeof dataNS);
+            // dataNS = JSON.parse(dataNS);
             console.log(dataNS);
             console.log(typeof dataNS);
             },error() {
