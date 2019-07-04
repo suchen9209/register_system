@@ -25,7 +25,7 @@ layui.use(['form','layer','jquery'],function(){
                 if (result.status == "fail") {
                     layer.alert(result.detail);
                 }else{
-                     window.location.href = "https://www.imbatv.cn/special/SignUpCMS/index.html";
+                     window.location.href = "/SignUpCMS/index.html";
                 };
             },
             error : function(result) {
@@ -33,9 +33,6 @@ layui.use(['form','layer','jquery'],function(){
             }
         });
     })
-  
-     
-
     //表单输入效果
     $(".loginBody .input-item").click(function(e){
         e.stopPropagation();
