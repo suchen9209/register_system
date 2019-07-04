@@ -35,7 +35,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 { field: 'extra_filed2', title: '分组', align: 'center' },
                 { title: '操作', width: 270, templet: '#newsListBar', fixed: "right", align: "center" }
             ];
-            console.log(dataNS);
+            console.log(typeof dataNS);
              var tableIns = table.render({
         elem: '#newsList',
         url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
