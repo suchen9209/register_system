@@ -16,17 +16,22 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                var html = '';
                html += '[';
                for (var i = 0; i < res.length; i++) {
+                if (i == 4) {
+                    html += '{ field: "'+res[i].field+'", title: "'+res[i].title+'"}'; 
+                }else{
                    html += '{ field: "'+res[i].field+'", title: "'+res[i].title+'"},';
+                }
                }
                html += ']';
             dataNS = html ;
             var jsonString = '[{"name":"天鸽"},{"name":"梅花"},{"name":"台风"}]';
            
             console.log(dataNS);
-            console.log(typeof dataNS);
-            console.log(typeof jsonString);
-             console.log(JSON.parse(dataNS));
+             console.log(typeof jsonString);
+           
              console.log(JSON.parse(jsonString));
+              console.log(typeof dataNS);
+             console.log(JSON.parse(dataNS));
             },error() {
                 layer.alert('获取数据失败');
             }
