@@ -7,18 +7,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         laytpl = layui.laytpl,
         table = layui.table;
         excel = layui.excel;
-
-    var tableIns = table.render({
-        elem: '#newsList',
-        url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
-        limit: 15,
-        limits: [15, 30, 45, 60],
-        page: true,
-        //,…… //其他参数
-        cols: [
-            [
-                { field: 'id', title: 'ID', align: 'center', width: 50 },
-                { field: 'name', title: '姓名', width: 150, align: "center" },
+        dataNS =  [
+                { field: 'id', title: 'ID222', align: 'center', width: 50 },
+                { field: 'name', title: '姓名22222', width: 150, align: "center" },
                 { field: 'nickname', title: '昵称', align: 'center' },
                 { field: 'qq', title: 'qq', align: 'center' },
                 { field: 'phone', title: '手机', align: 'center' },
@@ -36,8 +27,15 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 },
                 { field: 'extra_filed2', title: '分组', align: 'center' },
                 { title: '操作', width: 270, templet: '#newsListBar', fixed: "right", align: "center" }
-            ]
-        ],
+            ];
+    var tableIns = table.render({
+        elem: '#newsList',
+        url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
+        limit: 15,
+        limits: [15, 30, 45, 60],
+        page: true,
+        //,…… //其他参数
+        cols: [ dataNS ],
         done: function(res, curr, count) {
             console.log(res);
             $(".layui-table-box").find("[data-field='state']").css("display", "none");
