@@ -15,8 +15,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             success(res) {
                console.log(res);
                var html = '';
+               console.log(res.length);
                for (var i = 0; i <= res.length; i++) {
-                   html += { field: ''+res[i].field+'', title: ''+res[i].title+'', align: 'center'};
+                   html += '{ field: '''+res[i].field+''', title: '''+res[i].title+''', align: 'center'}';
                }
             dataNS = html ;
             console.log(dataNS);
@@ -33,7 +34,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         //,…… //其他参数
         cols: [ dataNS ],
         done: function(res, curr, count) {
-            console.log(res);
             $(".layui-table-box").find("[data-field='state']").css("display", "none");
             $(".layui-table-box").find("[data-field='id']").css("display", "none");
         }
