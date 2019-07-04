@@ -25,13 +25,12 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                html += ']';
             dataNS = html ;
             var jsonString = '[{"name":"天鸽"},{"name":"梅花"},{"name":"台风"}]';
-           
             console.log(dataNS);
-             console.log(typeof jsonString);
-           
-             console.log(JSON.parse(jsonString));
-              console.log(typeof dataNS);
-             console.log(JSON.parse(dataNS));
+            console.log(typeof jsonString);
+            console.log(JSON.parse(jsonString));
+            console.log(typeof jsonString);
+            console.log(typeof dataNS);
+            console.log(JSON.parse(dataNS));
             },error() {
                 layer.alert('获取数据失败');
             }
