@@ -17,11 +17,12 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                var html = "";
                html += "[";
                for (var i = 0; i < res.length; i++) {
-                if (i == (res.length-1)) {
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center"}'; 
+                if (res[i].type == "image") {
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center",templet: function(d){ return '"<a href="' + d.extra_filed1 + '" target='_blank'>""<img src="' + d.extra_filed1 + '" height='26' /></a>"'}}'; 
                 }else{
-                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'","align": "center"},';
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'","align": "center"},';
                 }
+               
                }
                 html += "]";
                 dataNS =JSON.parse(html) ;
@@ -33,15 +34,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 page: true,
                 //,…… //其他参数
                 cols: [ dataNS ],
-            done: function(res, curr, count) {
-                $(".layui-table-box").find("[data-field='state']").css("display", "none");
-                $(".layui-table-box").find("[data-field='id']").css("display", "none");
-            }
-        });
-            // console.log(JSON.parse(dataNS));
-            // console.log(typeof jsonString);
-            // console.log(typeof dataNS);
-            // console.log(JSON.parse(dataNS));
+                done: function(res, curr, count) {
+                    $(".layui-table-box").find("[data-field='state']").css("display", "none");
+                    $(".layui-table-box").find("[data-field='id']").css("display", "none");
+                }
+            });
             },error() {
                 layer.alert('获取数据失败');
             }
