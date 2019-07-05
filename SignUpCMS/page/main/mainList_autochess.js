@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         table = layui.table;
         excel = layui.excel;
         dataNS =  '';
-     $.ajax({
+        $.ajax({
             url: "http://apply.imbatv.cn/tool/init/list_header_json",
             type: "GET",
             dataType: 'json',
@@ -17,21 +17,21 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                html += "[";
                for (var i = 0; i < res.length; i++) {
                 if (i == 4) {
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'"}'; 
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+',align: 'center'"}'; 
                 }else{
-                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'"},';
+                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+',align: 'center'"},';
                 }
                }
-               html += "]";
-            dataNS =JSON.parse(html) ;
-            var tableIns = table.render({
-            elem: '#newsList',
-            url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
-            limit: 15,
-            limits: [15, 30, 45, 60],
-            page: true,
-            //,…… //其他参数
-            cols: [ dataNS ],
+                html += "]";
+                dataNS =JSON.parse(html) ;
+                var tableIns = table.render({
+                elem: '#newsList',
+                url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
+                limit: 15,
+                limits: [15, 30, 45, 60],
+                page: true,
+                //,…… //其他参数
+                cols: [ dataNS ],
             done: function(res, curr, count) {
                 $(".layui-table-box").find("[data-field='state']").css("display", "none");
                 $(".layui-table-box").find("[data-field='id']").css("display", "none");
