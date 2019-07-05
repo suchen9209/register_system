@@ -16,12 +16,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 console.log(res);
                 for (var i = 0; i < res.length; i++) {
                     if(res[i].type=="image"){
-                    //  templet: function(d) {
-                    //     return '<a href="' + d.extra_filed1 + '" target="_blank"><img src="' + d.extra_filed1 + '" height="26" /></a>';
-                    // }
-                    var json = {"title":res[i].title,"templet":"<div><a href='{{ d.extra_filed1}}' target='_blank'><img src='{{ d.extra_filed1}}'></a></div>"};
+                    var json = {"title":res[i].title,"templet":"<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>"};
                     console.log(json);
-                    // res.push(json);  
                     res[i]=json;
                     }
                 }
@@ -39,10 +35,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                     $(".layui-table-box").find("[data-field='id']").css("display", "none");
                 }
         });
-            // console.log(JSON.parse(dataNS));
-            // console.log(typeof jsonString);
-            // console.log(typeof dataNS);
-            // console.log(JSON.parse(dataNS));
             },error() {
                 layer.alert('获取数据失败');
             }
