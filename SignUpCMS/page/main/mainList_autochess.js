@@ -23,14 +23,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 }
                }
                html += "]";
-            dataNS = html ;
-            var jsonString = '[{"name":"天鸽"},{"name":"梅花"},{"name":"台风"}]';
-            var jsonString = [{ "field": "name", "title": "姓名"},{ "field": "nickname", "title": "昵称"},{ "field": "phone", "title": "手机号码"},{ "field": "qq", "title": "QQ"},{ "field": "extra_filed1", "title": "段位截图"}];
-            console.log(dataNS);
-            console.log(typeof jsonString);
-            console.log(typeof dataNS);
-            console.log(JSON.parse(dataNS));
-            console.log(typeof JSON.parse(dataNS));
+            dataNS =JSON.parse(html) ;
             var tableIns = table.render({
             elem: '#newsList',
             url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
@@ -38,7 +31,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             limits: [15, 30, 45, 60],
             page: true,
             //,…… //其他参数
-            cols: [ jsonString ],
+            cols: [ dataNS ],
             done: function(res, curr, count) {
                 $(".layui-table-box").find("[data-field='state']").css("display", "none");
                 $(".layui-table-box").find("[data-field='id']").css("display", "none");
