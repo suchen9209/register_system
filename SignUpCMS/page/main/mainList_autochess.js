@@ -14,25 +14,30 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             dataType: 'json',
             success(res) {
                console.log(res);
-               // var html = "";
-               // html += "[";
-               // for (var i = 0; i < res.length; i++) {
-               //  if (i == (res.length-1)) {
-               //      html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center"}'; 
-               //  }else{
-               //      html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'","align": "center"},';
-               //  }
-               // }
-               //  html += "]";
-                dataNS =res; 
-                console.log(dataNS);
-                console.log(typeof dataNS);
-                for (i = 0; i < dataNS.length; i++) {
-                    if (dataNS[i].type == "image") {
+               var html = "";
+               html += "[";
+               for (var i = 0; i < res.length; i++) {
+                if (res[i].type == "image") {
                        console.log("fuck");
                        // dataNS[i].append(templet:'<div><img src="{{ d.wx_headimg}}"');
+                       html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center","templet":"<div><img src="{{ d.extra_filed1 }}"></div>"}'; 
                     }
+                if (i == (res.length-1)) {
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center"}'; 
+                }else{
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'","align": "center"},';
                 }
+               }
+                html += "]";
+                // dataNS =res; 
+                // console.log(dataNS);
+                // console.log(typeof dataNS);
+                // for (i = 0; i < dataNS.length; i++) {
+                //     if (dataNS[i].type == "image") {
+                //        console.log("fuck");
+                //        // dataNS[i].append(templet:'<div><img src="{{ d.wx_headimg}}"');
+                //     }
+                // }
                 console.log(dataNS);
                 var tableIns = table.render({
                 elem: '#newsList',
