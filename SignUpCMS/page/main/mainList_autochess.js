@@ -39,6 +39,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 //     }
                 // }
                 console.log(html);
+                console.log(typeof html);
+                dataNS = JSON.stringify(html);
+                console.log(dataNS);
+                console.log(typeof dataNS);
                 var tableIns = table.render({
                 elem: '#newsList',
                 url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
