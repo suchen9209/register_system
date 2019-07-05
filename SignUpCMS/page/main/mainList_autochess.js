@@ -17,12 +17,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                var html = "";
                html += "[";
                for (var i = 0; i < res.length; i++) {
-                if (res[i].type == "image") {
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center",templet: function(d){ return '"<a href="' + d.extra_filed1 + '" target='_blank'>""<img src="' + d.extra_filed1 + '" height='26' /></a>"'}}'; 
+                if (i == (res.length-1)) {
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center"}'; 
                 }else{
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'","align": "center"},';
+                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'","align": "center"},';
                 }
-               
                }
                 html += "]";
                 dataNS =JSON.parse(html) ;
