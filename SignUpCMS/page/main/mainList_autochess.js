@@ -29,7 +29,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 console.log(typeof dataNS);
                 for (i = 0; i < dataNS.length; i++) {
                     if (dataNS[i].type == "image") {
-                        eval("fuck");
+                       console.log("fuck");
                     }
                 }
                 console.log(dataNS);
