@@ -14,17 +14,17 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             dataType: 'json',
             success(res) {
                console.log(res);
-               var html = "";
-               html += "[";
-               for (var i = 0; i < res.length; i++) {
-                if (i == (res.length-1)) {
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center"}'; 
-                }else{
-                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'","align": "center"},';
-                }
-               }
-                html += "]";
-                dataNS =JSON.parse(html) ;
+               // var html = "";
+               // html += "[";
+               // for (var i = 0; i < res.length; i++) {
+               //  if (i == (res.length-1)) {
+               //      html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center"}'; 
+               //  }else{
+               //     html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'","align": "center"},';
+               //  }
+               // }
+               //  html += "]";
+                dataNS =res;
                 var tableIns = table.render({
                 elem: '#newsList',
                 url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
