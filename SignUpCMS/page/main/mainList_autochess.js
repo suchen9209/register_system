@@ -15,32 +15,19 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             success(res) {
                console.log(res);
                var html = "";
-               html += "'[";
+               html += "[";
                for (var i = 0; i < res.length; i++) {
-                if (res[i].type == "image") {
-                       console.log("fuck");
-                       // dataNS[i].append(templet:'<div><img src="{{ d.wx_headimg}}"');
-                       html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center","templet":"<div><img src="{{ d.extra_filed1 }}"></div>"}'; 
-                    }
+                if(res[i].type == "image"){
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center","templet":"<div><img src="{{ d.extra_filed1 }}"></div>"}'; 
+                }
                 if (i == (res.length-1)) {
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center"}'; 
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" }'; 
                 }else{
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'","align": "center"},';
+                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'"},';
                 }
                }
-                html += "]'";
-                // dataNS =res; 
-                // console.log(dataNS);
-                // console.log(typeof dataNS);
-                // for (i = 0; i < dataNS.length; i++) {
-                //     if (dataNS[i].type == "image") {
-                //        console.log("fuck");
-                //        // dataNS[i].append(templet:'<div><img src="{{ d.wx_headimg}}"');
-                //     }
-                // }
-                console.log(html);
-                console.log(typeof html);
-                dataNS = JSON.stringify(html);
+                html += "]";
+                dataNS =JSON.parse(html);
                 console.log(dataNS);
                 console.log(typeof dataNS);
                 var tableIns = table.render({
@@ -51,11 +38,15 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 page: true,
                 //,…… //其他参数
                 cols: [ dataNS ],
-                done: function(res, curr, count) {
-                    $(".layui-table-box").find("[data-field='state']").css("display", "none");
-                    $(".layui-table-box").find("[data-field='id']").css("display", "none");
-                }
-            });
+            done: function(res, curr, count) {
+                $(".layui-table-box").find("[data-field='state']").css("display", "none");
+                $(".layui-table-box").find("[data-field='id']").css("display", "none");
+            }
+        });
+            // console.log(JSON.parse(dataNS));
+            // console.log(typeof jsonString);
+            // console.log(typeof dataNS);
+            // console.log(JSON.parse(dataNS));
             },error() {
                 layer.alert('获取数据失败');
             }
