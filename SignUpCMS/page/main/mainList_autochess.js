@@ -1,4 +1,4 @@
-layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], function() {
+layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], function() {
     var form = layui.form;
     var laypage = layui.laypage;
     layer = parent.layer === undefined ? layui.layer : top.layer,
@@ -7,39 +7,39 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         laytpl = layui.laytpl,
         table = layui.table;
         excel = layui.excel;
-        dataNS =  '';
-        $.ajax({
-            url: "http://apply.imbatv.cn/tool/init/list_header_json",
-            type: "GET",
-            dataType: 'json',
-            success(res) {
-                console.log(res);
-                for (var i = 0; i < res.length; i++) {
-                    if(res[i].type=="image"){
-                    var json = {"title":res[i].title,"align":"center","templet":"<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>"};
-                    console.log(json);
-                    res[i]=json;
-                    }
+    $.ajax({
+        url: "http://apply.imbatv.cn/tool/init/list_header_json",
+        type: "GET",
+        dataType: 'json',
+        success(res) {
+            console.log(res);
+            for (var i = 0; i < res.length; i++) {
+                if (res[i].type == "image") {
+                    var json = { "title": res[i].title, "align": "center", "templet": "<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>" };
+                    res[i] = json;
+                }else{
+                    res[i].newParam ='pre';
                 }
-                console.log(res);
-                var tableIns = table.render({
+            }
+            var tableIns = table.render({
                 elem: '#newsList',
                 url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
                 limit: 15,
                 limits: [15, 30, 45, 60],
                 page: true,
                 //,…… //其他参数
-                cols: [ res ],
+                cols: [res],
                 done: function(res, curr, count) {
                     $(".layui-table-box").find("[data-field='state']").css("display", "none");
                     $(".layui-table-box").find("[data-field='id']").css("display", "none");
                 }
-        });
-            },error() {
-                layer.alert('获取数据失败');
-            }
-        });
-    
+            });
+        },
+        error() {
+            layer.alert('获取数据失败');
+        }
+    });
+
     // 搜索
     var $ = layui.$,
         active = {
@@ -89,10 +89,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 var data = res.data;
                 // 重点！！！如果后端给的数据顺序和映射关系不对，请执行梳理函数后导出
                 data = excel.filterExportData(data, [
-                    'name', 'nickname', 'qq', 'phone', 'email', 'game_id','idcard', 'extra_filed1', 'extra_filed2'
+                    'name', 'nickname', 'qq', 'phone', 'email', 'game_id', 'idcard', 'extra_filed1', 'extra_filed2'
                 ]);
                 // 重点2！！！一般都需要加一个表头，表头的键名顺序需要与最终导出的数据一致
-                data.unshift({ name: "姓名", nickname: "昵称", qq: 'qq', phone: '手机', email: '邮箱', game_id: '游戏ID',idcard: '身份证号', extra_filed1: '段位截图',extra_filed2: '分组' });
+                data.unshift({ name: "姓名", nickname: "昵称", qq: 'qq', phone: '手机', email: '邮箱', game_id: '游戏ID', idcard: '身份证号', extra_filed1: '段位截图', extra_filed2: '分组' });
 
                 var timestart = Date.now();
                 excel.exportExcel(data, '导出接口数据.xlsx', 'xlsx');
@@ -163,7 +163,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 }
             });
             // 替补
-        }else if (layEvent === 'Substitute') {
+        } else if (layEvent === 'Substitute') {
             $.ajax({
                 url: "http://apply.imbatv.cn//tool/applicant/update/" + userid,
                 type: "POST",
