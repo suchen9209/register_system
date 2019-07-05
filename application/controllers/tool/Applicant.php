@@ -29,7 +29,7 @@ class Applicant extends Api_Controller {
         $this->response($return_arr);     
     }
 
-
+    
     public function update_all($tid=0){
         die;
     	$state = $this->input->get_post('state') ? $this->input->get_post('state') : 5;

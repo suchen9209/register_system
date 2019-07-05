@@ -15,6 +15,7 @@ class Init extends Api_Controller {
         $this->load->model('applicant_model','applicant');
         $this->load->model('tournament_model','tournament');
         $this->load->model('tournament_item_model','tournament_item');
+        $this->load->model('tournament_mail_model','tournament_mail');
 
         $this->load->library('session');
         $this->user_id = $this->session->userdata(ADMIN_SESSION_NAME);
@@ -46,16 +47,16 @@ class Init extends Api_Controller {
 
         $state_show_arr = explode(',', $this->tournament_info->show_state);
         if(in_array('-1', $state_show_arr)){
-            $menu['children'][]=array('title'=>'全部报名列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html','spread'=>true);   
+            $menu['children'][]=array('title'=>'全部报名列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=-1','spread'=>true);   
         }
         if(in_array('5', $state_show_arr)){
-            $menu['children'][]=array('title'=>'备选列表','icon'=>"&#xe61c;",'href'=>'page/main/alternative.html','spread'=>true);   
+            $menu['children'][]=array('title'=>'备选列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=5','spread'=>true);   
         }
         if(in_array('10', $state_show_arr)){
-            $menu['children'][]=array('title'=>'通过列表','icon'=>"&#xe61c;",'href'=>'page/main/pass.html','spread'=>true);   
+            $menu['children'][]=array('title'=>'通过列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=10','spread'=>true);   
         }
         if(in_array('0', $state_show_arr)){
-            $menu['children'][]=array('title'=>'未审核列表','icon'=>"&#xe61c;",'href'=>'page/main/init.html','spread'=>true);   
+            $menu['children'][]=array('title'=>'未审核列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=0','spread'=>true);   
         }
 
         $return_arr['contentManagement'][]=$menu;
@@ -140,6 +141,11 @@ class Init extends Api_Controller {
 
         }
         $this->response($return_arr);  
+    }
+
+    public function mail_json($tid,$state){
+        $mails = $this->tournament_mail->get_mail(array('tid'=>$tid,'applicant_state'=>$state));
+        $this->response($mails);  
     }
 
 
