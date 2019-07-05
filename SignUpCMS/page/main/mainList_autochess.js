@@ -25,14 +25,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                // }
                //  html += "]";
                 dataNS =res;
-                for (var i = 0; i < dataNS.length; i++) {
-                if (res[i].type == "image") {
-                    templet: function(d) {
-                        return '<a href="' + d.extra_filed1 + '" target="_blank"><img src="' + d.extra_filed1 + '" height="26" /></a>';
-                    }
-                    res[i].eval(templet);
-                    console.log(res[i]);
-                }
+             
+            
                 var tableIns = table.render({
                 elem: '#newsList',
                 url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
