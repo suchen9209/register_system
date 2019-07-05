@@ -27,10 +27,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 dataNS =res;
                 for (var i = 0; i < dataNS.length; i++) {
                 if (res[i].type == "image") {
-                    var obj =  templet: function(d) {
+                    templet: function(d) {
                         return '<a href="' + d.extra_filed1 + '" target="_blank"><img src="' + d.extra_filed1 + '" height="26" /></a>';
                     }
-                    res[i].eval(obj);
+                    res[i].eval(templet);
                     console.log(res[i]);
                 }
                 var tableIns = table.render({
