@@ -30,6 +30,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             console.log(typeof jsonString);
             console.log(typeof dataNS);
             console.log(JSON.parse(dataNS));
+            console.log(typeof JSON.parse(dataNS));
             var tableIns = table.render({
             elem: '#newsList',
             url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
