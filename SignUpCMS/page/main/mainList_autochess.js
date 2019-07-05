@@ -25,7 +25,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                html += ']';
             dataNS = html ;
             var jsonString = '[{"name":"天鸽"},{"name":"梅花"},{"name":"台风"}]';
-            var jsonString = '[{ field: "name", title: "姓名"},{ field: "nickname", title: "昵称"}]';
+            var jsonString = '[{ "field": "name", "title": "姓名"},{ "field": "nickname", "title": "昵称"}]';
 
             console.log(dataNS);
             console.log(typeof jsonString);
