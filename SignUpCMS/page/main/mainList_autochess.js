@@ -17,9 +17,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                html += "[";
                for (var i = 0; i < res.length; i++) {
                 if (i == 4) {
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+',align: 'center'"}'; 
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+',align: center"}'; 
                 }else{
-                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+',align: 'center'"},';
+                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+',align: center"},';
                 }
                }
                 html += "]";
