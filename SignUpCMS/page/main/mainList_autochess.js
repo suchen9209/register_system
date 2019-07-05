@@ -14,13 +14,13 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             dataType: 'json',
             success(res) {
                 console.log(res);
-                // for (var i = 0; i < res.length; i++) {
-                //     if(res[i].type=="image"){
-                //      templet: function(d) {
-                //         return '<a href="' + d.extra_filed1 + '" target="_blank"><img src="' + d.extra_filed1 + '" height="26" /></a>';
-       
-                //     }
-                // }
+                for (var i = 0; i < res.length; i++) {
+                    if(res[i].type=="image"){
+                     templet: function(d) {
+                        return '<a href="' + d.extra_filed1 + '" target="_blank"><img src="' + d.extra_filed1 + '" height="26" /></a>';
+                      res[i].push(templet());  
+                    }
+                }
                 console.log(res);
                 var tableIns = table.render({
                 elem: '#newsList',
