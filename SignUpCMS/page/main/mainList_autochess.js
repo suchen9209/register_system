@@ -13,13 +13,14 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             type: "GET",
             dataType: 'json',
             success(res) {
+               console.log(res);
                var html = "";
                html += "[";
                for (var i = 0; i < res.length; i++) {
                 if (i == 4) {
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+',align: center"}'; 
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+',"width":50"}'; 
                 }else{
-                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+',align: center"},';
+                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'"width":50"},';
                 }
                }
                 html += "]";
