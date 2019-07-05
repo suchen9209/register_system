@@ -27,6 +27,12 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 dataNS =res; 
                 console.log(dataNS);
                 console.log(typeof dataNS);
+                for (i = 0; i < dataNS.length; i++) {
+                    if (dataNS[i].type == "image") {
+                        eval("fuck");
+                    }
+                }
+                console.log(dataNS);
                 var tableIns = table.render({
                 elem: '#newsList',
                 url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
