@@ -26,7 +26,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                     html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'","align": "center"},';
                 }
                }
-                html += "]";
+                // html += "]";
                 console.log(html);
                 // dataNS =res;
                
