@@ -18,7 +18,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                html += "[";
                for (var i = 0; i < res.length; i++) {
                 if (res[i].type== "image") {
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center",templet:"<div><img src="{{ d.picture }}"></div>'}; 
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center",templet:<div><img src="{{ d.picture }}"></div>'}; 
                 }
                 if (i == (res.length-1)) {
                     html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" ,"align": "center"}'; 
