@@ -30,7 +30,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 for (i = 0; i < dataNS.length; i++) {
                     if (dataNS[i].type == "image") {
                        console.log("fuck");
-                       dataNS[i].append(templet:'<div><img src="{{ d.wx_headimg}}"');
+                       // dataNS[i].append(templet:'<div><img src="{{ d.wx_headimg}}"');
                     }
                 }
                 console.log(dataNS);
