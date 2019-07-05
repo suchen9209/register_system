@@ -18,7 +18,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                     if(res[i].type=="image"){
                      templet: function(d) {
                         return '<a href="' + d.extra_filed1 + '" target="_blank"><img src="' + d.extra_filed1 + '" height="26" /></a>';
-                      res[i].push(templet());  
+                    }
+                     res[i].push(templet());  
                     }
                 }
                 console.log(res);
