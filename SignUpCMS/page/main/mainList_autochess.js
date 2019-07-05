@@ -17,10 +17,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                var html = "";
                html += "[";
                for (var i = 0; i < res.length; i++) {
-                if (i == 4) {
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+',"width":50"}'; 
+                if (i == (res.length-1)) {
+                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'"}'; 
                 }else{
-                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'"width":50"},';
+                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'"},';
                 }
                }
                 html += "]";
