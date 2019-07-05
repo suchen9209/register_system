@@ -7,6 +7,25 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         laytpl = layui.laytpl,
         table = layui.table;
         excel = layui.excel;
+function getUrlParam(sUrl, sKey) {
+    var left= sUrl.indexOf("?") + 1
+    var right= sUrl.lastIndexOf("#")
+    var parasString = sUrl.slice(left, right)
+    var paras = parasString.split('&');
+    var parasjson = {}
+    paras.forEach(function (value, index, arr) {
+        var a = value.split('=');
+        parasjson[a[0]] !== undefined ? parasjson[a[0]] = [].concat(parasjson[a[0]], a[1]) : parasjson[a[0]] = a[1];
+    });
+ 
+    let result = arguments[2] !== void 0 ? (parasjson[arguments[2]] || '') : parasjson;
+    return result
+}
+let url =  window.location.href;
+let result = getUrlParam(url)
+let result2 = getUrlParam(url, 'state')
+console.log(result)
+console.log(result2)
     $.ajax({
         url: "http://apply.imbatv.cn/tool/init/list_header_json",
         type: "GET",
