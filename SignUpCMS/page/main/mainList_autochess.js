@@ -25,6 +25,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                // }
                //  html += "]";
                 dataNS =res; 
+                console.log(dataNS);
+                console.log(typeof dataNS);
                 var tableIns = table.render({
                 elem: '#newsList',
                 url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
