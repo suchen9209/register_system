@@ -21,7 +21,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                     // }
                     var json = {"templet":"<div><img src='{{ d.extra_filed1}}'></div>"};
                     console.log(json);
-                    res.push(json);
+                    res[i].push(json);
                     }
                 }
                 console.log(res);
