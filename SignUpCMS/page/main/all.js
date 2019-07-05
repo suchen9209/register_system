@@ -7,7 +7,16 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         laytpl = layui.laytpl,
         table = layui.table;
         excel = layui.excel;
-
+        function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if ( r != null ){
+       return unescape(r[2]);
+    }else{
+       return null;
+    } 
+ }
+ alert(GetQueryString("state")); 
     $.ajax({
         url: "http://apply.imbatv.cn/tool/init/list_header_json",
         type: "GET",
