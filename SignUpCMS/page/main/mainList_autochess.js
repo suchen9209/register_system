@@ -18,7 +18,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                     var json = { "title": res[i].title, "align": "center", "templet": "<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>" };
                     res[i] = json;
                 }else{
-                    res[i].newParam ='pre';
+                    res[i].align ='center';
                 }
             }
             var tableIns = table.render({
