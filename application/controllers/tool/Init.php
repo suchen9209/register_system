@@ -47,7 +47,7 @@ class Init extends Api_Controller {
 
         $state_show_arr = explode(',', $this->tournament_info->show_state);
         if(in_array('-1', $state_show_arr)){
-            $menu['children'][]=array('title'=>'全部报名列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=-1','spread'=>true);   
+            $menu['children'][]=array('title'=>'全部报名列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html','spread'=>true);   
         }
         if(in_array('5', $state_show_arr)){
             $menu['children'][]=array('title'=>'备选列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=5','spread'=>true);   
