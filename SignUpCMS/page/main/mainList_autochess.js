@@ -19,7 +19,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                     //  templet: function(d) {
                     //     return '<a href="' + d.extra_filed1 + '" target="_blank"><img src="' + d.extra_filed1 + '" height="26" /></a>';
                     // }
-                    var json = {"templet":"<div><img src='{{ d.extra_filed1}}'></div>"};
+                    var json = {"templet":"<div><a href='d.extra_filed1' target='_blank'><img src='{{ d.extra_filed1}}'></a></div>"};
                     console.log(json);
                     res.push(json);
                     }
