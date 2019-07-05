@@ -13,7 +13,18 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
 			openTabNum : "50",  //最大可打开窗口数量
 			url : "http://apply.imbatv.cn/tool/init/menu_json" //获取菜单json地址
 		});
-
+	 $.ajax({
+        url: "http://apply.imbatv.cn/tool/init/menu_json",
+        type: "GET",
+        dataType: 'json',
+        success(res) {
+            console.log(res);
+       		$(".iframe").attr("src",res.contentManagement.children[0].href);
+        },
+        error() {
+            layer.alert('获取数据失败');
+        }
+    });
 	//通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
 	function getData(json){
 		$.getJSON(tab.tabConfig.url,function(data){
