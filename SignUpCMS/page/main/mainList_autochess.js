@@ -14,19 +14,19 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             dataType: 'json',
             success(res) {
                console.log(res);
-               var html = "";
-               html += "[";
-               for (var i = 0; i < res.length; i++) {
-                if (i == (res.length-1)) {
-                    html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" }'; 
-                }else{
-                   html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'"},';
-                }
-               }
-                html += "]";
-                dataNS =JSON.parse(html);
-                console.log(dataNS);
-                console.log(typeof dataNS);
+               // var html = "";
+               // html += "[";
+               // for (var i = 0; i < res.length; i++) {
+               //  if (i == (res.length-1)) {
+               //      html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'" }'; 
+               //  }else{
+               //     html += '{ "field": "'+res[i].field+'", "title": "'+res[i].title+'"},';
+               //  }
+               // }
+               //  html += "]";
+               //  dataNS =JSON.parse(html);
+               //  console.log(dataNS);
+               //  console.log(typeof dataNS);
                 var tableIns = table.render({
                 elem: '#newsList',
                 url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
@@ -34,11 +34,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 limits: [15, 30, 45, 60],
                 page: true,
                 //,…… //其他参数
-                cols: [ dataNS ],
-            done: function(res, curr, count) {
-                $(".layui-table-box").find("[data-field='state']").css("display", "none");
-                $(".layui-table-box").find("[data-field='id']").css("display", "none");
-            }
+                cols: [ res ],
+                done: function(res, curr, count) {
+                    $(".layui-table-box").find("[data-field='state']").css("display", "none");
+                    $(".layui-table-box").find("[data-field='id']").css("display", "none");
+                }
         });
             // console.log(JSON.parse(dataNS));
             // console.log(typeof jsonString);
