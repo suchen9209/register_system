@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         table = layui.table;
         excel = layui.excel;
         state = '';
-        //获取url中的参数
+    //获取url中的参数
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
         var r = window.location.search.substr(1).match(reg);  //匹配目标参数
@@ -38,6 +38,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                 //,…… //其他参数
                 cols: [res],
                 done: function(res, curr, count) {
+                    console.log(res);
                     $(".layui-table-box").find("[data-field='state']").css("display", "none");
                     $(".layui-table-box").find("[data-field='id']").css("display", "none");
                 }
