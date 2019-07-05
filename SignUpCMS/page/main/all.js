@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         table = layui.table;
         excel = layui.excel;
 function getUrlParam(sUrl, sKey) {
-    var left= sUrl.indexOf("?") + 1
+    var left= sUrl.indexOf("?") + 2
     var right= sUrl.lastIndexOf("#")
     var parasString = sUrl.slice(left, right)
     var paras = parasString.split('&');
