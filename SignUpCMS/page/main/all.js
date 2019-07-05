@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         table = layui.table;
         excel = layui.excel;
 function getUrlParam(sUrl, sKey) {
-    var left= sUrl.indexOf("?") + 2
+    var left= sUrl.indexOf("?") + 1
     var right= sUrl.lastIndexOf("#")
     var parasString = sUrl.slice(left, right)
     var paras = parasString.split('&');
@@ -18,7 +18,7 @@ function getUrlParam(sUrl, sKey) {
         parasjson[a[0]] !== undefined ? parasjson[a[0]] = [].concat(parasjson[a[0]], a[1]) : parasjson[a[0]] = a[1];
     });
  
-    let result = arguments[1] !== void 0 ? (parasjson[arguments[1]] || '') : parasjson;
+    let result = arguments[2] !== void 0 ? (parasjson[arguments[2]] || '') : parasjson;
     return result
 }
 let url =  window.location.href;
