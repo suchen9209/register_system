@@ -30,7 +30,20 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             console.log(typeof jsonString);
             console.log(typeof dataNS);
             console.log(JSON.parse(jsonString));
-            console.log(JSON.parse(dataNS));
+            var tableIns = table.render({
+            elem: '#newsList',
+            url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
+            limit: 15,
+            limits: [15, 30, 45, 60],
+            page: true,
+            //,…… //其他参数
+            cols: [ jsonString ],
+            done: function(res, curr, count) {
+                $(".layui-table-box").find("[data-field='state']").css("display", "none");
+                $(".layui-table-box").find("[data-field='id']").css("display", "none");
+            }
+        });
+            // console.log(JSON.parse(dataNS));
             // console.log(typeof jsonString);
             // console.log(typeof dataNS);
             // console.log(JSON.parse(dataNS));
@@ -38,19 +51,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                 layer.alert('获取数据失败');
             }
         });
-    var tableIns = table.render({
-        elem: '#newsList',
-        url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state=-1',
-        limit: 15,
-        limits: [15, 30, 45, 60],
-        page: true,
-        //,…… //其他参数
-        cols: [ dataNS ],
-        done: function(res, curr, count) {
-            $(".layui-table-box").find("[data-field='state']").css("display", "none");
-            $(".layui-table-box").find("[data-field='id']").css("display", "none");
-        }
-    });
+    
     // 搜索
     var $ = layui.$,
         active = {
