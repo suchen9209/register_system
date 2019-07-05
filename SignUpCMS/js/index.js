@@ -19,6 +19,7 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
         dataType: 'json',
         success(res) {
             console.log(res);
+            console.log(res.contentManagement.children[0].href);
        		$(".iframe").attr("src",res.contentManagement.children[0].href);
         },
         error() {
