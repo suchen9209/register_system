@@ -49,6 +49,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             if (localTest >= 50 ) {
                 console.log(1);
                res.push(json1);  
+            }else{
+                console.log(1);
             }
             var tableIns = table.render({
                 elem: '#newsList',
