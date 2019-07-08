@@ -28,7 +28,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                     res[i].align ='center';
                 }
             }
-            var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right"};
+            var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right","align": "center"};
             res.push(json1); 
             console.log(res);
             var tableIns = table.render({
