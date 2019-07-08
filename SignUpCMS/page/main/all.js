@@ -46,7 +46,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             }
             var localTest = layui.data('weight');
             var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right","align": "center"};
-            console.log(localTest);
+            console.log(localTest.weight);
             if (localTest == 50 ) {
                 console.log(1);
                res.push(json1);  
