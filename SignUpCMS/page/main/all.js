@@ -47,6 +47,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             var localTest = layui.data('weight');
             var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right","align": "center"};
             if (localTest >= 50 ) {
+                console.log(1);
                res.push(json1);  
             }
             var tableIns = table.render({
