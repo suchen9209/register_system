@@ -7,8 +7,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         laytpl = layui.laytpl,
         table = layui.table;
         excel = layui.excel;
-        state = '';
-        Substitutes = '';
+        state = ''; //状态
+        Substitutes = ''; //替补
+        show=''; //  替补按钮是否显示      
     // 设置本地储存
      $.ajax({
         url: "http://apply.imbatv.cn/tool/init",
@@ -20,7 +21,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
               ,value: res.user_info.weight
             });
             Substitutes = res.tournament_info.show_state;
-            console.log(Substitutes.indexOf("8") != -1 );  // true
+            if (Substitutes.indexOf("5") != -1) {
+                show = 1;
+            }
         },
         error() {
             layer.alert('获取数据失败');
@@ -34,6 +37,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         if (r != null) return unescape(r[2]); return null; //返回参数值
     }
     state = getUrlParam('state');
+    console.log(state);
     $.ajax({
         url: "http://apply.imbatv.cn/tool/init/list_header_json",
         type: "GET",
