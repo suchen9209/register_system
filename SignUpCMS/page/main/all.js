@@ -36,7 +36,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         type: "GET",
         dataType: 'json',
         success(res) {
-            var json0 = {"checkbox": true, "fixed": true};
+            var json0 = {"checkbox": true, "fixed": left};
             res.push(json0);  
             for (var i = 0; i < res.length; i++) {
                 if (res[i].type == "image") {
