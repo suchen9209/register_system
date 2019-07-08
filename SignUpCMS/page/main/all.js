@@ -20,7 +20,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
               ,value: res.user_info.weight
             });
             Substitutes = res.tournament_info.show_state;
-            console.log(Substitutes.indexOf("5") != -1 );  // true
+            console.log(Substitutes.indexOf("8") != -1 );  // true
         },
         error() {
             layer.alert('获取数据失败');
