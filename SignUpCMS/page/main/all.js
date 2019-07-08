@@ -9,7 +9,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         excel = layui.excel;
         state = ''; //状态
         // Substitutes = ''; //替补
-        // show=''; //  替补按钮是否显示      
+        // show=''; //  替补按钮是否显示   
+        tid = '';   
     // 设置本地储存
      $.ajax({
         url: "http://apply.imbatv.cn/tool/init",
@@ -24,12 +25,34 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             // if (Substitutes.indexOf("5") != -1) {
             //     show = 1;
             // }
+            tid = res.user_info.tid;
         },
         error() {
             layer.alert('获取数据失败');
         }
     });
+     // 搜索
+    var $ = layui.$,
+        active = {
+            reload: function() {
+                var name = $("#searchVal").val();
+                table.reload('newsList', {
+                    url: 'http://apply.imbatv.cn/tool/applicant/find',
+                    where: {
+                        tid: tid,
+                        name: name,
+                    },
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                });
+            }
+        };
 
+    $('.search_btn').on('click', function() {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
     //获取url中的参数
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -62,7 +85,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             }
             var tableIns = table.render({
                 elem: '#newsList',
-                url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state='+state,
+                url: 'http://apply.imbatv.cn//tool/applicant?tid='+tid+'&state='+state,
                 limit: 15,
                 limits: [15, 30, 45, 60],
                 page: true,
