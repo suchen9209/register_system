@@ -21,17 +21,17 @@
 <body class="childrenBody">
 <form class="layui-form">
 	<blockquote class="layui-elem-quote quoteBox">
-		<div class="demoTable" style="float: left;">
+		<div class="demoTable" style="float: left;margin-right: 30px;">
 		  搜索姓名：
-		  <div class="layui-inline">
+		  <div class="layui-inline" style="margin: 0;">
 		    <input class="layui-input" name="id" id="demoReload" autocomplete="off">
 		  </div>
 		  <button class="layui-btn" data-type="reload">搜索</button>
 		</div>
 		<form class="layui-form" style="text-align: right;float: left;">
 			  <button class="layui-btn search_btn" data-type="getCheckData">导出数据表格</button>
-			  <button class="layui-btn" data-type="getCheckLength">批量操作</button>
-			  <button class="layui-btn" data-type="isAll">批量分组</button>
+			  <button class="layui-btn layui-btn-danger" data-type="getCheckLength">批量操作</button>
+			  <button class="layui-btn layui-btn-warm" data-type="isAll">批量分组</button>
 		</form>
 	</blockquote>
 	<table id="newsList" lay-filter="newsList">
