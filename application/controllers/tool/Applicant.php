@@ -29,6 +29,22 @@ class Applicant extends Api_Controller {
         $this->response($return_arr);     
     }
 
+    public function find(){
+        $page = $this->input->get_post('page') ? $this->input->get_post('page') : 1;
+        $num = $this->input->get_post('limit') ? $this->input->get_post('limit') : 20;
+        $tid = $this->input->get_post('tid')? $this->input->get_post('tid') : 1;
+        $name = $this->input->get_post('name')? $this->input->get_post('name') : 0;
+
+        $offset = ($page - 1)*$num;        
+
+        $option = array('tid'=>$tid,'name'=>$name);
+
+        $list = $this->applicant->get_list($offset,$num,$option);
+        $count = $this->applicant->get_num($option);
+        $return_arr = $this->getLayuiList(0,'报名列表',$count,$list);
+        $this->response($return_arr);     
+    }
+
     
     public function update_all($tid=0){
         die;
@@ -76,6 +92,7 @@ class Applicant extends Api_Controller {
 
 
     public function update($id=0){
+        die;
         $state = $this->input->get_post('state') ? $this->input->get_post('state') : 0;
         if($id > 0 && $state > 0){
             $update_data = array(
@@ -157,6 +174,31 @@ class Applicant extends Api_Controller {
 
         }else{
             $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '不能传空值'), parent::HTTP_OK);
+        }
+    }
+
+    public function set_group(){
+        $uids = $this->input->get_post('uids') ? $this->input->get_post('uids') : 0;
+        $group = $this->input->get_post('group') ? $this->input->get_post('group') : 0;
+        $group_order = $this->input->get_post('group_order') ? $this->input->get_post('group_order') : '';
+    }
+
+    public function update_and_mail(){
+        $state = $this->input->get_post('state') ? $this->input->get_post('state') : 0;
+        $aids = $this->input->get_post('aids') ? $this->input->get_post('aids') : 0;
+        $mail_id = $this->input->get_post('mail_id') ? $this->input->get_post('mail_id') : 0;
+
+        $aid_arr = explode(',', $aids);
+        $update_data = array(
+            'state' => $state,
+            'dealtime' => time()
+        );
+        foreach ($aid_arr as $key => $value) {
+            if($this->applicant->update($value,$update_data)){
+
+            }else{
+                $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '更改'.$value.'失败'), parent::HTTP_OK);
+            }
         }
     }
 
