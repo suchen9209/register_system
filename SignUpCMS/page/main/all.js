@@ -28,7 +28,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                 }else{
                     var json1 = { "title": "fuck",};
                     res[i].align ='center';
-                    res.[i] =json1; 
+                    res[i+1].push =json1; 
                 }
             }
             console.log(res);
