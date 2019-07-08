@@ -29,6 +29,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                     res[i].align ='center';
                 }
             }
+            console.log(res);
             var tableIns = table.render({
                 elem: '#newsList',
                 url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state='+state,
