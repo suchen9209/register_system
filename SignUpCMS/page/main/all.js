@@ -20,7 +20,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         type: "GET",
         dataType: 'json',
         success(res) {
-            // console.log(res);
             for (var i = 0; i < res.length; i++) {
                 if (res[i].type == "image") {
                     var json = { "title": res[i].title, "align": "center", "templet": "<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>" };
@@ -30,7 +29,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                     res[i].align ='center';
                 }
             }
-            console.log(typeof res);
+            console.log(res);
             var tableIns = table.render({
                 elem: '#newsList',
                 url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state='+state,
