@@ -45,10 +45,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                 }
             }
             var localTest = layui.data('weight');
-            console.log(localTest.weight); //获得“贤心”
             var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right","align": "center"};
-            res.push(json1); 
-            console.log(res);
+            if (localTest < 50 ) {
+               res.push(json1);  
+            }
             var tableIns = table.render({
                 elem: '#newsList',
                 url: 'http://apply.imbatv.cn//tool/applicant?tid=3&state='+state,
