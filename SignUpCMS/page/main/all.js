@@ -8,6 +8,22 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         table = layui.table;
         excel = layui.excel;
         state = '';
+    // 设置本地储存
+     $.ajax({
+        url: "http://apply.imbatv.cn/tool/init",
+        type: "GET",
+        dataType: 'json',
+        success(res) {
+            layui.data('weight', {
+              key: 'weight'
+              ,value: res.user_info.weight
+            });
+        },
+        error() {
+            layer.alert('获取数据失败');
+        }
+    });
+
     //获取url中的参数
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -28,6 +44,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                     res[i].align ='center';
                 }
             }
+            var localTest = layui.data('weight');
+            console.log(localTest.weight); //获得“贤心”
             var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right","align": "center"};
             res.push(json1); 
             console.log(res);
