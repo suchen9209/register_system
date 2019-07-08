@@ -18,8 +18,8 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
         type: "GET",
         dataType: 'json',
         success(res) {
-            console.log(res);
-            console.log(res.contentManagement[0].children[0].href);
+            // console.log(res);
+            // console.log(res.contentManagement[0].children[0].href);
        		$(".iframe").attr("src",res.contentManagement[0].children[0].href);
         },
         error() {
