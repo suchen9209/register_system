@@ -23,6 +23,9 @@
 	<blockquote class="layui-elem-quote quoteBox">
 		<form class="layui-form" style="text-align: right;">
 			<a class="layui-btn search_btn">导出数据表格</a>
+			  <button class="layui-btn search_btn" data-type="getCheckData">导出数据表格</button>
+			  <button class="layui-btn" data-type="getCheckLength">批量操作</button>
+			  <button class="layui-btn" data-type="isAll">批量分组</button>
 		</form>
 	</blockquote>
 	<table id="newsList" lay-filter="newsList">
@@ -36,6 +39,7 @@
 			<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="adopt">通过</a>
 			<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="Substitute">替补</a>
 			<a class="layui-btn layui-btn-xs " lay-event="no-pass">不通过</a>
+			<a class="layui-btn fly-zanzhu " lay-event="Grouping">分组</a>
 			{{# } else if(d.state =="2"){ }}  
 				<a class="layui-btn layui-btn-xs layui-btn-disabled" >未通过</a>
 			{{# } else if(d.state =="10"){ }}  

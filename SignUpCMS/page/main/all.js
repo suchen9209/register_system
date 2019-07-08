@@ -36,6 +36,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         type: "GET",
         dataType: 'json',
         success(res) {
+            var json0 = {"checkbox": true, "fixed": true};
+            res.push(json0);  
             for (var i = 0; i < res.length; i++) {
                 if (res[i].type == "image") {
                     var json = { "title": res[i].title, "align": "center", "templet": "<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>" };
@@ -46,6 +48,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             }
             var localTest = layui.data('weight');
             var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right","align": "center"};
+            
             console.log(localTest.weight);
             console.log(typeof localTest.weight);
             if (localTest.weight >= 50 ) {
