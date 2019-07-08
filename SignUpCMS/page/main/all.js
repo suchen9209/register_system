@@ -31,28 +31,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             layer.alert('获取数据失败');
         }
     });
-     // 搜索
-    var $ = layui.$,
-        active = {
-            reload: function() {
-                var name = $("#searchVal").val();
-                table.reload('newsList', {
-                    url: 'http://apply.imbatv.cn/tool/applicant/find',
-                    where: {
-                        tid: tid,
-                        name: name,
-                    },
-                    page: {
-                        curr: 1 //重新从第 1 页开始
-                    }
-                });
-            }
-        };
-
-    $('.search_btn').on('click', function() {
-        var type = $(this).data('type');
-        active[type] ? active[type].call(this) : '';
-    });
+    
     //获取url中的参数
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -107,25 +86,12 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
     var $ = layui.$,
         active = {
             reload: function() {
-                var searchVal = $(".searchVal").val();
-                if (isPhoneNo(searchVal)) {
-                    username = '';
-                    phone = searchVal;
-                    name = '';
-                    idcard = '';
-                } else {
-                    username = searchVal;
-                    phone = '';
-                    name = '';
-                    idcard = '';
-                }
+                var name = $("#searchVal").val();
                 table.reload('newsList', {
-                    url: 'https://pay.imbatv.cn/api/user/get_user_list',
+                    url: 'http://apply.imbatv.cn/tool/applicant/find',
                     where: {
-                        username: username,
-                        phone: phone,
+                        tid: tid,
                         name: name,
-                        idcard: idcard
                     },
                     page: {
                         curr: 1 //重新从第 1 页开始
@@ -135,7 +101,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         };
 
     $('.search_btn').on('click', function() {
-        exportApiDemo();
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
     });
     // 验证手机号
     function isPhoneNo(phone) {
