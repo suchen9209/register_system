@@ -8,6 +8,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         table = layui.table;
         excel = layui.excel;
         state = '';
+        Substitutes = '';
     // 设置本地储存
      $.ajax({
         url: "http://apply.imbatv.cn/tool/init",
@@ -18,6 +19,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
               key: 'weight'
               ,value: res.user_info.weight
             });
+            Substitutes = res.tournament_info.show_state;
+            console.log(Substitutes.indexOf("5") != -1 );  // true
         },
         error() {
             layer.alert('获取数据失败');
