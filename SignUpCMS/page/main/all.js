@@ -96,9 +96,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                         tid: tid,
                         name: name,
                     },
-                    page: {
-                        curr: 1 //重新从第 1 页开始
-                    }
+                    // page: {
+                    //     curr: 1 //重新从第 1 页开始
+                    // }
                 });
             }
         };
