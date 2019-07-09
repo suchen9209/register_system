@@ -69,7 +69,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             var json0 = {"checkbox": true, "fixed": true};
             res.unshift(json0);  
             console.log(res);
-            if (localTest.weight >= 50 ) {
+            if (localTest.weight >= 50 && state == 0) {
                res.push(json1);  
             }
             var tableIns = table.render({
