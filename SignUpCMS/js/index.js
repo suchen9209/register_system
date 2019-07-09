@@ -11,10 +11,10 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
     	layer = parent.layer === undefined ? layui.layer : top.layer;
 		tab = layui.bodyTab({
 			openTabNum : "50",  //最大可打开窗口数量
-			url : "http://apply.imbatv.cn/tool/init/menu_json" //获取菜单json地址
+			url : "/tool/init/menu_json" //获取菜单json地址
 		});
 	 $.ajax({
-        url: "http://apply.imbatv.cn/tool/init/menu_json",
+        url: "/tool/init/menu_json",
         type: "GET",
         dataType: 'json',
         success(res) {
