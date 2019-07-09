@@ -49,6 +49,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         type: "GET",
         dataType: 'json',
         success(res) {
+           
             for (var i = 0; i < res.length; i++) {
                 if (res[i].type == "image") {
                     var json = { "title": res[i].title, "align": "center", "templet": "<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>" };
@@ -67,7 +68,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             }
             var tableIns = table.render({
                 elem: '#newsList',
-                url: 'http://apply.imbatv.cn//tool/applicant?tid='+tid+'&state=-1',
+                url: 'http://apply.imbatv.cn//tool/applicant?tid='+tid+'&state='+state,
                 limit: 15,
                 limits: [15, 30, 45, 60],
                 page: true,
@@ -96,9 +97,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                         tid: tid,
                         name: name,
                     },
-                    // page: {
-                    //     curr: 1 //重新从第 1 页开始
-                    // }
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
                 });
             }
         };
@@ -106,7 +107,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
     $('.search_btn').on('click', function() {
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
-       console.log(type);
     });
     // 验证手机号
     function isPhoneNo(phone) {
