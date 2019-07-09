@@ -97,6 +97,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         active = {
             reload: function() {
                 var name = $("#searchVal").val();
+                console.log(name);
                 table.reload('newsList', {
                     // url: 'http://apply.imbatv.cn//tool/applicant?tid='+tid+'&state=-1',
                     where: {
