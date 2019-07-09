@@ -5,7 +5,7 @@ class Init extends Api_Controller {
 
     private $tid;
     private $user_id;
-    private $usr_info;
+    private $user_info;
     private $tournament_info = NULL;
 
     public function __construct(){
