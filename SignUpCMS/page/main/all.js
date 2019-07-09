@@ -74,7 +74,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             }
             var tableIns = table.render({
                 elem: '#newsList',
-                url: '//tool/applicant?tid='+tid+'&state='+state,
+                url: '/tool/applicant?tid='+tid+'&state='+state,
                 limit: 15,
                 limits: [15, 30, 45, 60],
                 page: true,
@@ -119,7 +119,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
     // 导出数据
     function exportApiDemo() {
         $.ajax({
-            url: "//tool/applicant?tid=3&state=-1&limit=2000",
+            url: "/tool/applicant?tid=3&state=-1&limit=2000",
             type: "GET",
             dataType: 'json',
             success(res) {
@@ -152,7 +152,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         console.log(userid);
         if (layEvent === 'adopt') { //上机
             $.ajax({
-                url: "//tool/applicant/update/" + userid,
+                url: "/tool/applicant/update/" + userid,
                 type: "POST",
                 data: {
                     state: 10
@@ -177,7 +177,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             // 未通过
         } else if (layEvent === 'no-pass') {
             $.ajax({
-                url: "//tool/applicant/update/" + userid,
+                url: "/tool/applicant/update/" + userid,
                 type: "POST",
                 data: {
                     state: 2
@@ -202,7 +202,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             // 替补
         } else if (layEvent === 'Substitute') {
             $.ajax({
-                url: "//tool/applicant/update/" + userid,
+                url: "/tool/applicant/update/" + userid,
                 type: "POST",
                 data: {
                     state: 5
