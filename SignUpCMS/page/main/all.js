@@ -107,6 +107,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
     $('.search_btn').on('click', function() {
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
+        state = getUrlParam('state');
+        console.log(state);
     });
     // 验证手机号
     function isPhoneNo(phone) {
