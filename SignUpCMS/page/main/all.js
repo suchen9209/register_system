@@ -81,13 +81,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                     $(".layui-table-box").find("[data-field='id']").css("display", "none");
                 }
             });
-        },
-        error() {
-            layer.alert('获取数据失败');
-        }
-    });
 
-    // 搜索
+
+
+              // 搜索
     var $ = layui.$,
         active = {
             reload: function() {
@@ -109,6 +106,13 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : ''; 
     });
+        },
+        error() {
+            layer.alert('获取数据失败');
+        }
+    });
+
+  
     // 验证手机号
     function isPhoneNo(phone) {
         var pattern = /^1[34578]\d{9}$/;
