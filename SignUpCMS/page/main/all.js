@@ -58,8 +58,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             console.log('fuck2');
             for (var i = 0; i < res.length; i++) {
                 if (res[i].type == "image") {
-                    var json = { "title": res[i].title, "align": "center", "templet": "<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>" };
-                    res[i] = json;
+                    res[i].title = res[i].title;
+                    res[i].align = 'center';
+                    res[i].templet = "<div><a href='{{ d."+res[i].field+"}}' target='_blank'><img height='26' src='{{ d."+res[i].field+"}}'></a></div>";
+                    //var json = { "title": res[i].title, "align": "center", "templet": "<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>" };
+                    //res[i] = json;
                 }else{
                     res[i].align ='center';
                 }
