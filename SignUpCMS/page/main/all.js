@@ -43,13 +43,14 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
               key: 'state'
               ,value: state
      });
-    console.log(state);
+    var localTest = layui.data('state');
+// console.log(localTest.nickname); //获得“贤心”
+    console.log(localTest.state);
     $.ajax({
         url: "http://apply.imbatv.cn/tool/init/list_header_json",
         type: "GET",
         dataType: 'json',
         success(res) {
-           
             for (var i = 0; i < res.length; i++) {
                 if (res[i].type == "image") {
                     var json = { "title": res[i].title, "align": "center", "templet": "<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>" };
