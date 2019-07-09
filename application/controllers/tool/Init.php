@@ -144,8 +144,8 @@ class Init extends Api_Controller {
         $this->response($return_arr);  
     }
 
-    public function mail_json($tid,$state){
-        $mails = $this->tournament_mail->get_mail(array('tid'=>$tid,'applicant_state'=>$state));
+    public function mail_json(){
+        $mails = $this->tournament_mail->get_mail(array('tid'=>$this->user_info->tid));
         $this->response($mails);  
     }
 
