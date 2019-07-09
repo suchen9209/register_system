@@ -15,6 +15,7 @@ class Applicant extends Api_Controller {
         $num = $this->input->get_post('limit') ? $this->input->get_post('limit') : 20;
         $tid = $this->input->get_post('tid')? $this->input->get_post('tid') : 1;
         $state = $this->input->get_post('state')? $this->input->get_post('state') : 0;
+        $name = $this->input->get_post('name')? $this->input->get_post('name') : 0;
 
         $offset = ($page - 1)*$num;        
 
@@ -22,6 +23,9 @@ class Applicant extends Api_Controller {
             $option = array('tid'=>$tid);
         }else{
             $option = array('tid'=>$tid,'state'=>$state);
+        }
+        if($name!=0){
+            $option['name'] = $name;
         }
         $list = $this->applicant->get_list($offset,$num,$option);
         $count = $this->applicant->get_num($option);
@@ -178,9 +182,21 @@ class Applicant extends Api_Controller {
     }
 
     public function set_group(){
-        $uids = $this->input->get_post('uids') ? $this->input->get_post('uids') : 0;
+        $aids = $this->input->get_post('aids') ? $this->input->get_post('aids') : 0;
         $group = $this->input->get_post('group') ? $this->input->get_post('group') : 0;
-        $group_order = $this->input->get_post('group_order') ? $this->input->get_post('group_order') : '';
+        //$group_order = $this->input->get_post('group_order') ? $this->input->get_post('group_order') : '';
+        $aid_arr = explode(',', $aids);
+        $update_data = array(
+            'group_num' => $group
+        );
+        foreach ($aid_arr as $key => $value) {
+            if($this->applicant->update($value,$update_data)){
+                $success_arr []=$value;
+            }else{
+                $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '更改'.$value.'失败'), parent::HTTP_OK);
+            }
+        }
+        $this->response($this->getResponseData(parent::HTTP_OK, '更改成功',$success_arr), parent::HTTP_OK);
     }
 
     public function update_and_mail(){
