@@ -38,14 +38,14 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         var r = window.location.search.substr(1).match(reg);  //匹配目标参数
         if (r != null) return unescape(r[2]); return null; //返回参数值
     }
-    state = getUrlParam('state');
-    layui.data('state', {
-              key: 'state'
-              ,value: state
-     });
-    var localTest = layui.data('state');
-// console.log(localTest.nickname); //获得“贤心”
-    console.log(localTest.state);
+//     state = getUrlParam('state');
+//     layui.data('state', {
+//               key: 'state'
+//               ,value: state
+//      });
+//     var localTest = layui.data('state');
+// // console.log(localTest.nickname); //获得“贤心”
+//     console.log(localTest.state);
     $.ajax({
         url: "http://apply.imbatv.cn/tool/init/list_header_json",
         type: "GET",
@@ -69,7 +69,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             }
             var tableIns = table.render({
                 elem: '#newsList',
-                url: 'http://apply.imbatv.cn//tool/applicant?tid='+tid+'&state='+state,
+                url: 'http://apply.imbatv.cn//tool/applicant?tid='+tid+'&state=-1',
                 limit: 15,
                 limits: [15, 30, 45, 60],
                 page: true,
