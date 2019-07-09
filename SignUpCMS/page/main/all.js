@@ -68,7 +68,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right","align": "center"};
             var json0 = {"checkbox": true, "fixed": true};
             res.unshift(json0);  
-            console.log(res);
+            console.log(state);
             if (localTest.weight >= 50 && state == 0) {
                res.push(json1);  
             }
