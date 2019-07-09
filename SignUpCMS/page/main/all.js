@@ -90,10 +90,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             reload: function() {
                 var name = $("#searchVal").val();
                 table.reload('newsList', {
-                    url: 'http://apply.imbatv.cn/tool/applicant/find',
+                    // url: 'http://apply.imbatv.cn//tool/applicant?tid='+tid+'&state=-1',
                     where: {
-                        tid: tid,
                         name: name,
+                        tid: tid,
+                        state:-1
                     },
                     page: {
                         curr: 1 //重新从第 1 页开始
