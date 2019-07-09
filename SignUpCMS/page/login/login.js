@@ -11,7 +11,7 @@ layui.use(['form','layer','jquery'],function(){
         $.ajax({
             type: "POST",                  //提交方式
             dataType: "json",              //预期服务器返回的数据类型
-            url: "http://apply.imbatv.cn/tool/login",          //目标url
+            url: "/tool/login",          //目标url
             data: {
                 username: username,
                 password: password
