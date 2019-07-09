@@ -15,7 +15,7 @@ class Applicant extends Api_Controller {
         $num = $this->input->get_post('limit') ? $this->input->get_post('limit') : 20;
         $tid = $this->input->get_post('tid')? $this->input->get_post('tid') : 1;
         $state = $this->input->get_post('state')? $this->input->get_post('state') : 0;
-        $name = $this->input->get_post('name')? $this->input->get_post('name') : 0;
+        $name = $this->input->get_post('name')? $this->input->get_post('name') : '';
 
         $offset = ($page - 1)*$num;        
 
@@ -24,7 +24,7 @@ class Applicant extends Api_Controller {
         }else{
             $option = array('tid'=>$tid,'state'=>$state);
         }
-        if($name!=0){
+        if($name != ''){
             $option['name'] = $name;
         }
         $list = $this->applicant->get_list($offset,$num,$option);
