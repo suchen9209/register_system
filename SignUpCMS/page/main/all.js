@@ -103,9 +103,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                         name: name,
                         tid: tid,
                         state:-1
-                    },
-                    page: {
-                        curr: 1 //重新从第 1 页开始
                     }
                 });
             }
