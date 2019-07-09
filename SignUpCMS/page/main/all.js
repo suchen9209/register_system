@@ -38,14 +38,19 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         var r = window.location.search.substr(1).match(reg);  //匹配目标参数
         if (r != null) return unescape(r[2]); return null; //返回参数值
     }
-    state = getUrlParam('state');
-    console.log(state);
+//     state = getUrlParam('state');
+//     layui.data('state', {
+//               key: 'state'
+//               ,value: state
+//      });
+//     var localTest = layui.data('state');
+// // console.log(localTest.nickname); //获得“贤心”
+//     console.log(localTest.state);
     $.ajax({
         url: "http://apply.imbatv.cn/tool/init/list_header_json",
         type: "GET",
         dataType: 'json',
         success(res) {
-           
             for (var i = 0; i < res.length; i++) {
                 if (res[i].type == "image") {
                     var json = { "title": res[i].title, "align": "center", "templet": "<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>" };
@@ -64,7 +69,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             }
             var tableIns = table.render({
                 elem: '#newsList',
-                url: 'http://apply.imbatv.cn//tool/applicant?tid='+tid+'&state='+state,
+                url: 'http://apply.imbatv.cn//tool/applicant?tid='+tid+'&state=-1',
                 limit: 15,
                 limits: [15, 30, 45, 60],
                 page: true,
@@ -76,13 +81,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                     $(".layui-table-box").find("[data-field='id']").css("display", "none");
                 }
             });
-        },
-        error() {
-            layer.alert('获取数据失败');
-        }
-    });
 
-    // 搜索
+
+
+              // 搜索
     var $ = layui.$,
         active = {
             reload: function() {
@@ -102,8 +104,15 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
 
     $('.search_btn').on('click', function() {
         var type = $(this).data('type');
-        active[type] ? active[type].call(this) : '';
+        active[type] ? active[type].call(this) : ''; 
     });
+        },
+        error() {
+            layer.alert('获取数据失败');
+        }
+    });
+
+  
     // 验证手机号
     function isPhoneNo(phone) {
         var pattern = /^1[34578]\d{9}$/;
