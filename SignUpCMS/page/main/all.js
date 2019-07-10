@@ -82,20 +82,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         }
     });
 
-    // 搜索
-    var $ = layui.$,
-        active = {
-            reload: function() {
-                var name = $("#searchVal").val();
-                console.log(name);
-                table.reload('newsList', {
-                    // url: '//tool/applicant?tid='+tid+'&state=-1',
-                    where: {
-                        name: name
-                    }
-                });
-            }
-        };
+   
 
     $('.search_btn').on('click', function() {
         console.log("fuck");
@@ -217,8 +204,20 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
     //         });
     //     }
     // });
+
+     // 搜索and批量操作
     var $ = layui.$,
         active = {
+            reload: function() {
+                var name = $("#searchVal").val();
+                console.log(name);
+                table.reload('newsList', {
+                    // url: '//tool/applicant?tid='+tid+'&state=-1',
+                    where: {
+                        name: name
+                    }
+                });
+            }
             getCheckData: function() { //获取选中数据
                 var checkStatus = table.checkStatus('newsList'),
                     data = checkStatus.data;
