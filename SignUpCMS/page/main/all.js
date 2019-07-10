@@ -6,19 +6,19 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         laydate = layui.laydate,
         laytpl = layui.laytpl,
         table = layui.table;
-        excel = layui.excel;
-        state = ''; //状态
-        tid = '';   
+    excel = layui.excel;
+    state = ''; //状态
+    tid = '';
     // 设置本地储存
-     $.ajax({
+    $.ajax({
         url: "/tool/init",
         type: "GET",
         async: false,
         dataType: 'json',
         success(res) {
             layui.data('weight', {
-              key: 'weight'
-              ,value: res.user_info.weight
+                key: 'weight',
+                value: res.user_info.weight
             });
             tid = res.user_info.tid;
         },
@@ -26,12 +26,13 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             layer.alert('获取数据失败');
         }
     });
-    
+
     //获取url中的参数
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-        if (r != null) return unescape(r[2]); return null; //返回参数值
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
     }
     state = getUrlParam('state');
     $.ajax({
@@ -44,23 +45,23 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                 if (res[i].type == "image") {
                     res[i].title = res[i].title;
                     res[i].align = 'center';
-                    res[i].templet = "<div><a href='{{ d."+res[i].field+"}}' target='_blank'><img height='26' src='{{ d."+res[i].field+"}}'></a></div>";
+                    res[i].templet = "<div><a href='{{ d." + res[i].field + "}}' target='_blank'><img height='26' src='{{ d." + res[i].field + "}}'></a></div>";
                     //var json = { "title": res[i].title, "align": "center", "templet": "<div><a href='{{ d.extra_filed1}}' target='_blank'><img height='26' src='{{ d.extra_filed1}}'></a></div>" };
                     //res[i] = json;
-                }else{
-                    res[i].align ='center';
+                } else {
+                    res[i].align = 'center';
                 }
             }
             var localTest = layui.data('weight');
-            var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right","align": "center"};
-            var json0 = {"checkbox": true, "fixed": true};
+            var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right", "align": "center" };
+            var json0 = { "checkbox": true, "fixed": true };
             if (localTest.weight >= 50 && state == 0) {
-               res.unshift(json0);  
-               res.push(json1);  
+                res.unshift(json0);
+                res.push(json1);
             }
             var tableIns = table.render({
                 elem: '#newsList',
-                url: '/tool/applicant?tid='+tid+'&state='+state,
+                url: '/tool/applicant?tid=' + tid + '&state=' + state,
                 limit: 15,
                 limits: [15, 30, 45, 60],
                 page: true,
@@ -95,8 +96,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
 
     $('.search_btn').on('click', function() {
         var type = $(this).data('type');
-        active[type] ? active[type].call(this) : ''; 
+        active[type] ? active[type].call(this) : '';
     });
+
+
+
     // 验证手机号
     function isPhoneNo(phone) {
         var pattern = /^1[34578]\d{9}$/;
@@ -212,5 +216,73 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             });
         }
     });
+    var $ = layui.$,
+        active = {
+            getCheckData: function() { //获取选中数据
+                var checkStatus = table.checkStatus('newsList'),
+                    data = checkStatus.data;
+                console.log(data);
+                console.log(data.length);
+                if (data.length == 0) {
+                    layer.msg('请选中之后再操作！！！', { icon: 5 });
+                } else {
+                    var str = "";
+                    console.log(str);
+                    for (var i = 0; i < data.length; i++) {
+                        str += data[i].id + ",";
+                    }
+                    if (str.length > 0) {
+                        str = str.substr(0, str.length - 1);
+                    }
+                    layer.open({
+                        type: 2,
+                        title: '',
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['600px', '400px'],
+                        content: 'page/operate/index.html', //iframe的url
+                        success: function(layero, index) {
+                            var body = layer.getChildFrame('body', index);
+                            var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                            body.find('.cz').attr('aids', str);
+                        },
+                        // end: function() {
+                        //     var searchVal = $(".searchVal").val();
+                        //     if (searchVal != '') {
+                        //         if (isPhoneNo(searchVal)) {
+                        //             username = '';
+                        //             phone = searchVal;
+                        //             name = '';
+                        //             idcard = '';
+                        //         } else {
+                        //             username = searchVal;
+                        //             phone = '';
+                        //             name = '';
+                        //             idcard = '';
+                        //         }
+                        //         tableIns.reload({
+                        //             url: 'https://pay.imbatv.cn/api/user/get_user_list',
+                        //             where: {
+                        //                 username: username,
+                        //                 phone: phone,
+                        //                 name: name,
+                        //                 idcard: idcard
+                        //             },
+                        //             page: {
+                        //                 curr: 1 //重新从第 1 页开始
+                        //             }
+                        //         });
+                        //     } else {
+                        //         tableIns.reload({});
+                        //     }
+                        // }
+                    });
+                }
+            }
+        };
 
+    $('.operate').on('click', function() {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : ''; 
+    });
 })
