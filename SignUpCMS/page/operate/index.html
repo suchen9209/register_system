@@ -21,7 +21,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">请输入分组:</label>
                 <div class="layui-input-block group">
-                    <input name="group" class="layui-input name" type="text" placeholder="请输入分组" autocomplete="off" onkeyup="this.value=this.value.replace(/[^a-zA-Z]/g,'')">
+                    <input name="group" class="layui-input name" type="text" placeholder="请输入分组,英文" style="text-transform:uppercase" autocomplete="off" onkeyup="this.value=this.value.replace(/[^a-zA-Z]/g,'')">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -79,7 +79,7 @@ layui.use('form', function() {
                 form.render();
             },
         });
-    //监听提交
+    //监听提交 
     form.on('submit(formDemo)', function(data) {
         var choose = $('.choose input:radio:checked').val();
         if (choose != null) {
