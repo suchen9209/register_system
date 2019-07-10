@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<title>首页--imba电竞馆后台管理模板 1.0</title>
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="../../css/public.css" media="all" />
-	
+    <meta charset="utf-8">
+    <title>首页--imba电竞馆后台管理模板 1.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="../../css/public.css" media="all" />
 </head>
 <style type="text/css">
-.layui-table-view .layui-table{
-	width: 100%!important;
+.layui-table-view .layui-table {
+    width: 100% !important;
 }
 </style>
+
 <body class="childrenBody">
-<div class="layui-form">
-	<blockquote class="layui-elem-quote quoteBox" style="overflow: hidden;">
-		<div class="demoTable" style="float: left;margin-right: 60px;">
-		  搜索姓名：
-		  <div class="layui-inline" style="margin: 0;">
-		    <input class="layui-input" name="id" id="searchVal" autocomplete="off">
-		  </div>
-		  <button class="layui-btn search_btn" data-type="reload">搜索</button>
-		</div>
-		<div class="layui-form" style="text-align: right;float: left;">
-			  <button class="layui-btn " >导出数据表格</button>
-			  <button class="layui-btn layui-btn-danger operate" data-type="getCheckData">批量操作</button>
-		</div>
-	</blockquote>
-	</div>
-	<table id="newsList" lay-filter="newsList">
-		<table id="page" ></table>
-	</table>
-	
-	<!--操作-->
-	<script type="text/html" id="newsListBar">
-		<div class="userid">
+    <div class="layui-form">
+        <blockquote class="layui-elem-quote quoteBox" style="overflow: hidden;">
+            <div class="demoTable" style="float: left;margin-right: 60px;">
+                搜索姓名：
+                <div class="layui-inline" style="margin: 0;">
+                    <input class="layui-input" name="id" id="searchVal" autocomplete="off">
+                </div>
+                <button class="layui-btn search_btn" data-type="reload">搜索</button>
+            </div>
+            <div class="layui-form" style="text-align: right;float: left;">
+                <button class="layui-btn ">导出数据表格</button>
+                <button class="layui-btn layui-btn-danger operate" data-type="getCheckData">批量操作</button>
+            </div>
+        </blockquote>
+    </div>
+    <table id="newsList" lay-filter="newsList">
+        <table id="page"></table>
+    </table>
+    <!--操作-->
+    <script type="text/html" id="newsListBar">
+        <div class="userid">
 			{{# if (d.state =="0"){}}
 			<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="adopt">通过</a>
 			<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="Substitute">替补</a>
@@ -58,81 +58,95 @@
 		</div>
 		
 	</script>
-<script type="text/javascript" src="../../layui/layui.js"></script>
-<script type="text/javascript" src="all.js"></script>
+    <script type="text/javascript" src="../../layui/layui.js"></script>
+    <script type="text/javascript" src="all.js"></script>
 </body>
 <script type="text/javascript">
-	layui.config({
-		base: '../../layui_exts/',
-	}).extend({
-		excel: 'excel',
-	});
+layui.config({
+    base: '../../layui_exts/',
+}).extend({
+    excel: 'excel',
+});
 
-layui.use('table', function(){
-  var table = layui.table;
-  //监听表格复选框选择
-  table.on('checkbox(newsList)', function(obj){
-    console.log(obj)
-  });
- 
-  var $ = layui.$, active = {
-    getCheckData: function(){ //获取选中数据
-      var checkStatus = table.checkStatus('newsList')
-      ,data = checkStatus.data;
-      // layer.alert(JSON.stringify(data));
-               layer.open({
-                type: 2,
-                title: '',
-                shadeClose: true,
-                shade: 0.8,
-                area: ['600px', '400px'],
-                content: 'page/operate/index.html', //iframe的url
-                success: function(layero, index) {
-                    var body = layer.getChildFrame('body', index);
-                    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
-                    body.find('input.name').val(name);
-                    body.find('input.phone').val(phone);
-                    body.find('input.idcard').val(idcard);
-                    body.find('.cz').attr('userid', userid);
-                },
-                // end: function() {
-                //     var searchVal = $(".searchVal").val();
-                //     if (searchVal != '') {
-                //         if (isPhoneNo(searchVal)) {
-                //             username = '';
-                //             phone = searchVal;
-                //             name = '';
-                //             idcard = '';
-                //         } else {
-                //             username = searchVal;
-                //             phone = '';
-                //             name = '';
-                //             idcard = '';
-                //         }
-                //         tableIns.reload({
-                //             url: 'https://pay.imbatv.cn/api/user/get_user_list',
-                //             where: {
-                //                 username: username,
-                //                 phone: phone,
-                //                 name: name,
-                //                 idcard: idcard
-                //             },
-                //             page: {
-                //                 curr: 1 //重新从第 1 页开始
-                //             }
-                //         });
-                //     } else {
-                //         tableIns.reload({});
-                //     }
-                // }
-            });
-    }
-  };
-  
-  $('.operate').on('click', function(){
-    var type = $(this).data('type');
-    active[type] ? active[type].call(this) : '';
-  });
+layui.use('table', function() {
+    var table = layui.table;
+    //监听表格复选框选择
+    // table.on('checkbox(newsList)', function(obj){
+    //   console.log(obj)
+    // });
+
+    var $ = layui.$,
+        active = {
+            getCheckData: function() { //获取选中数据
+                var checkStatus = table.checkStatus('newsList'),
+                    data = checkStatus.data;
+                console.log(data);
+                console.log(data.length);
+                if (data.length == 0) {
+                    layer.alert("请选中之后再操作！");
+                } else {
+
+
+                    var str = "";
+                    console.log(str);
+                    for (var i = 0; i < data.length; i++) {
+                        str += data[i].id + ",";
+                    }
+                    console.log(str);
+
+                    // layer.alert(JSON.stringify(data));
+                    layer.open({
+                        type: 2,
+                        title: '',
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['600px', '400px'],
+                        content: 'page/operate/index.html', //iframe的url
+                        success: function(layero, index) {
+                            var body = layer.getChildFrame('body', index);
+                            var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                            body.find('.cz').attr('aids', str);
+                        },
+                        // end: function() {
+                        //     var searchVal = $(".searchVal").val();
+                        //     if (searchVal != '') {
+                        //         if (isPhoneNo(searchVal)) {
+                        //             username = '';
+                        //             phone = searchVal;
+                        //             name = '';
+                        //             idcard = '';
+                        //         } else {
+                        //             username = searchVal;
+                        //             phone = '';
+                        //             name = '';
+                        //             idcard = '';
+                        //         }
+                        //         tableIns.reload({
+                        //             url: 'https://pay.imbatv.cn/api/user/get_user_list',
+                        //             where: {
+                        //                 username: username,
+                        //                 phone: phone,
+                        //                 name: name,
+                        //                 idcard: idcard
+                        //             },
+                        //             page: {
+                        //                 curr: 1 //重新从第 1 页开始
+                        //             }
+                        //         });
+                        //     } else {
+                        //         tableIns.reload({});
+                        //     }
+                        // }
+                    });
+                }
+            }
+        };
+
+    $('.operate').on('click', function() {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
 });
 </script>
+
 </html>
