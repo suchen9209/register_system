@@ -125,26 +125,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             }
         });
     }
-    // 弹出层
-    layer.open({
-                content: $("#type-content")
-                ,btn: ['确定', '取消']
-                ,yes: function(index, layero){
-                    //按钮【按钮一】的回调
-                    alert(1);
-                }
-                ,btn2: function(index, layero){
-                    //按钮【按钮二】的回调
-                    alert(2); 
-                    //return false 开启该代码可禁止点击该按钮关闭
-                }
-                ,cancel: function(){
-                    //右上角关闭回调
- 
-                    //return false 开启该代码可禁止点击该按钮关闭
-                }
-            });
-
     //列表操作
     table.on('tool(newsList)', function(obj) {
         var layEvent = obj.event,
