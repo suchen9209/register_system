@@ -217,7 +217,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                         name: name
                     }
                 });
-            }
+            },
             getCheckData: function() { //获取选中数据
                 var checkStatus = table.checkStatus('newsList'),
                     data = checkStatus.data;
