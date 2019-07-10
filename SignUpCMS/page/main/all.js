@@ -8,8 +8,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         table = layui.table;
         excel = layui.excel;
         state = ''; //状态
-        // Substitutes = ''; //替补
-        // show=''; //  替补按钮是否显示   
         tid = '';   
     // 设置本地储存
      $.ajax({
@@ -22,10 +20,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
               key: 'weight'
               ,value: res.user_info.weight
             });
-            // Substitutes = res.tournament_info.show_state;
-            // if (Substitutes.indexOf("5") != -1) {
-            //     show = 1;
-            // }
             tid = res.user_info.tid;
         },
         error() {
@@ -40,22 +34,12 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         if (r != null) return unescape(r[2]); return null; //返回参数值
     }
     state = getUrlParam('state');
-//     layui.data('state', {
-//               key: 'state'
-//               ,value: state
-//      });
-//     var localTest = layui.data('state');
-// // console.log(localTest.nickname); //获得“贤心”
-//     console.log(localTest.state);
     $.ajax({
         url: "/tool/init/list_header_json",
         type: "GET",
         async: false,
         dataType: 'json',
         success(res) {
-            console.log('fuck1');
-            console.log(res);
-            console.log('fuck2');
             for (var i = 0; i < res.length; i++) {
                 if (res[i].type == "image") {
                     res[i].title = res[i].title;
@@ -70,9 +54,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             var localTest = layui.data('weight');
             var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right","align": "center"};
             var json0 = {"checkbox": true, "fixed": true};
-            res.unshift(json0);  
-            console.log(state);
             if (localTest.weight >= 50 && state == 0) {
+               res.unshift(json0);  
                res.push(json1);  
             }
             var tableIns = table.render({
