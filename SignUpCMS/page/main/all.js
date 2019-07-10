@@ -53,10 +53,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                 }
             }
             var localTest = layui.data('weight');
-            var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right", "align": "center" };
-            // var json0 = { "checkbox": true, "fixed": true }; 右侧操作菜单
+            // var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right", "align": "center" };
+            var json0 = { "checkbox": true, "fixed": true }; 
             if (localTest.weight >= 50 && state == 0) {
                 res.unshift(json0);
+                $(".operate").show();
                 // res.push(json1);
             }else{
                 $(".operate").hide();
