@@ -82,15 +82,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         }
     });
 
-   
-
+    // 搜索
     $('.search_btn').on('click', function() {
-        console.log("fuck");
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
-
-
 
     // 验证手机号
     function isPhoneNo(phone) {
@@ -210,7 +206,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         active = {
             reload: function() {
                 var name = $("#searchVal").val();
-                console.log(name);
                 table.reload('newsList', {
                     // url: '//tool/applicant?tid='+tid+'&state=-1',
                     where: {
