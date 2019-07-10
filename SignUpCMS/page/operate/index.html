@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>充值--Imba电竞馆管理后台</title>
+    <title>Imba赛事报名系统</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -36,10 +36,6 @@
             <label class="layui-form-label">请选择邮件:</label>
             <div class="layui-input-block">
               <select name="interest" lay-filter="aihao" class="cc">
-                <option value=""></option>
-                <option value="0">写作</option>
-                <option value="1" selected="">阅读</option>
-                <option value="2">游戏</option>
               </select>
             </div>
           </div>
@@ -71,7 +67,6 @@ layui.use('form', function() {
             success: function(res) {
                 // console.log(res);
                 var html = '';
-                // var datatype = $(".item3").attr("type");
                 html = '<option value=""></option>';
                 for (var i = 0; i < res.length; i++) {
                         if (i == 0) {
@@ -93,28 +88,25 @@ layui.use('form', function() {
             var state = data.field.state;   //操作
             var mail_id = data.field.interest;  // 邮箱
             var aids = $(".cz").attr("aids");
-            console.log(aids);
-            // $.ajax({
-            //     url: "https://pay.imbatv.cn/api/user/bind_info",
-            //     type: "POST",
-            //     data: {
-            //         user_id: user_id,
-            //         idcard: idcard,
-            //         name: name,
-            //         phone: phone
-            //     },
-            //     dataType: 'json',
-            //     success: function(data) {
-            //         console.log(data);
-            //         layer.msg(data.message);
-            //         layer.close(index);
-            //         // var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-            //         // parent.layer.close(index); //再执行关闭  
-
-
-            //     },
-            //     error: function(err) {}
-            // });
+            $.ajax({
+                url: "/tool/applicant/update_batch",
+                type: "POST",
+                data: {
+                    group: group,
+                    state: state,
+                    mail_id: mail_id,
+                    aids: aids
+                },
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                    layer.msg(data.message);
+                    // layer.close(index);
+                    // var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    // parent.layer.close(index); //再执行关闭  
+                },
+                error: function(err) {}
+            });
         }else{
             layer.msg("请选择操作！！！");
         }
