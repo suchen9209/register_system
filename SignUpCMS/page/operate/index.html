@@ -26,7 +26,7 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">请选择操作:</label>
-                <div class="layui-input-block">
+                <div class="layui-input-block choose">
                   <input type="radio" name="state" value="10" title="通过">
                   <input type="radio" name="state" value="2" title="不通过">
                   <input type="radio" name="state" value="5" title="替补">
@@ -60,7 +60,6 @@ layui.use('form', function() {
         laydate = layui.laydate,
         laytpl = layui.laytpl,
         table = layui.table;
-        state1 = '';
     // // 获取userid
     // function getQueryString(name) {
     //     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -78,10 +77,6 @@ layui.use('form', function() {
      //         }
      //    }
      // });
-
-      form.on('radio(state)', function(data){
-            console.log(data.value);
-      });
      $.ajax({
             type: "GET",
             catch: true,
@@ -108,7 +103,8 @@ layui.use('form', function() {
         });
     //监听提交
     form.on('submit(formDemo)', function(data) {
-        if (state1 != '') {
+        var choose = $('.choose input:radio:checked').val();
+        if (choose != null) {
             var index = parent.layer.getFrameIndex(window.name);
             var group = $('.group input').val(); // 组别
             var state = data.field.state;   //操作
