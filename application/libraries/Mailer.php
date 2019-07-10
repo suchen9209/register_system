@@ -26,8 +26,8 @@ class Mailer {
         $this->mail->Port       = 465;                   // set the SMTP port for the GMAIL server
         $this->mail->Username   = "suchen@imbatv.cn";// GMAIL username
         $this->mail->Password   = "Su_4309209";       // GMAIL password
-        $this->mail->AddReplyTo('ileague01@imbatv.cn', 'i-league');
-        $this->mail->SetFrom('ileague01@imbatv.cn', 'i-league');
+        $this->mail->AddReplyTo('suchen@imbatv.cn', 'i-league');
+        $this->mail->SetFrom('suchen@imbatv.cn', 'i-league');
     }
  
     public function sendmail($to, $to_name, $subject, $body){
@@ -38,7 +38,7 @@ class Mailer {
             $this->mail->Body    = $body;
  
             $this->mail->Send();
-            return "Message Sent OK</p>\n";
+            return "success";
  
         } catch (phpmailerException $e) {
             return $e->errorMessage(); //Pretty error messages from PHPMailer
