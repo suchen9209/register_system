@@ -107,9 +107,13 @@ class Applicant extends Api_Controller {
             if(empty($return_data['更新失败']) && empty($return_data['发送邮件失败'])){
                 $this->response($this->getResponseData(parent::HTTP_OK, '更改成功',''), parent::HTTP_OK);    
             }else{
-
-                $return_str = '更新失败：'.$return_data['更新失败'].';';
-                $return_str .= '发送邮件失败:'.$return_data['发送邮件失败'].'!';
+                if(!empty($return_data['更新失败']){
+                    $return_str = '更新失败：'.$return_data['更新失败'].';';   
+                }
+                if(!empty($return_data['发送邮件失败']){
+                    $return_str .= '发送邮件失败:'.$return_data['发送邮件失败'].'!';    
+                }                
+                
                 $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, $return_str), parent::HTTP_OK);
             } 
         }else{
