@@ -60,6 +60,7 @@ layui.use('form', function() {
         laydate = layui.laydate,
         laytpl = layui.laytpl,
         table = layui.table;
+        state1 = '';
     // // 获取userid
     // function getQueryString(name) {
     //     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -77,6 +78,15 @@ layui.use('form', function() {
      //         }
      //    }
      // });
+
+      form.on('radio(state)', function (data) {
+        // console.log(data.elem);
+        // alert(data.value);//判断单选框的选中值
+        //alert(data.othis);
+        // layer.tips('开关checked：' + (this.checked ? 'true' : 'false'), data.othis);
+        console.log(data.value);
+        state1 =  data.value;
+    });
      $.ajax({
             type: "GET",
             catch: true,
@@ -103,36 +113,38 @@ layui.use('form', function() {
         });
     //监听提交
     form.on('submit(formDemo)', function(data) {
-        var index = parent.layer.getFrameIndex(window.name);
-        var group = $('.group input').val(); // 组别
-        var state = data.field.state;   //操作
-        var mail_id = data.field.interest;  // 邮箱
-        console.log(state);
-        console.log(mail_id);
-        console.log(group);
-        // $.ajax({
-        //     url: "https://pay.imbatv.cn/api/user/bind_info",
-        //     type: "POST",
-        //     data: {
-        //         user_id: user_id,
-        //         idcard: idcard,
-        //         name: name,
-        //         phone: phone
-        //     },
-        //     dataType: 'json',
-        //     success: function(data) {
-        //         console.log(data);
-        //         layer.msg(data.message);
-        //         layer.close(index);
-        //         // var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-        //         // parent.layer.close(index); //再执行关闭  
+        if (state1 != '') {
+            var index = parent.layer.getFrameIndex(window.name);
+            var group = $('.group input').val(); // 组别
+            var state = data.field.state;   //操作
+            var mail_id = data.field.interest;  // 邮箱
+            console.log(state);
+            console.log(mail_id);
+            console.log(group);
+            // $.ajax({
+            //     url: "https://pay.imbatv.cn/api/user/bind_info",
+            //     type: "POST",
+            //     data: {
+            //         user_id: user_id,
+            //         idcard: idcard,
+            //         name: name,
+            //         phone: phone
+            //     },
+            //     dataType: 'json',
+            //     success: function(data) {
+            //         console.log(data);
+            //         layer.msg(data.message);
+            //         layer.close(index);
+            //         // var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            //         // parent.layer.close(index); //再执行关闭  
 
 
-        //     },
-        //     error: function(err) {}
-        // });
-
-
+            //     },
+            //     error: function(err) {}
+            // });
+        }else{
+            layer.alert("请选择操作！！！");
+        }
     });
 });
 </script>
