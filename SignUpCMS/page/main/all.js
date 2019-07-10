@@ -57,6 +57,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             var json0 = { "checkbox": true, "fixed": true }; 
             if (localTest.weight >= 50 && state == 0) {
                 res.unshift(json0);
+                $(".operate").show();
                 // res.push(json1);
             }else{
                 $(".operate").hide();
