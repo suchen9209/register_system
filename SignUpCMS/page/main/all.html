@@ -90,12 +90,9 @@ layui.use('table', function() {
                     for (var i = 0; i < data.length; i++) {
                         str += data[i].id + ",";
                     }
-                    console.log(str.length);
                     if (str.length > 0) {
-                    	console.log("fuck");
        					str = str.substr(0, str.length - 1);
    					}
-                    console.log(str);
                     layer.open({
                         type: 2,
                         title: '',
