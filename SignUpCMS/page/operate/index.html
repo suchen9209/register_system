@@ -109,9 +109,6 @@ layui.use('form', function() {
             var group = $('.group input').val(); // 组别
             var state = data.field.state;   //操作
             var mail_id = data.field.interest;  // 邮箱
-            console.log(state);
-            console.log(mail_id);
-            console.log(group);
             // $.ajax({
             //     url: "https://pay.imbatv.cn/api/user/bind_info",
             //     type: "POST",
@@ -134,7 +131,7 @@ layui.use('form', function() {
             //     error: function(err) {}
             // });
         }else{
-            layer.alert("请选择操作！！！");
+            layer.msg("请选择操作！！！");
         }
     });
 });

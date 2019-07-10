@@ -79,6 +79,8 @@ layui.use('table', function(){
     getCheckData: function(){ //获取选中数据
       var checkStatus = table.checkStatus('newsList')
       ,data = checkStatus.data;
+      var obj = JSON.stringify(data);
+      console.log(obj);
       // layer.alert(JSON.stringify(data));
                layer.open({
                 type: 2,
