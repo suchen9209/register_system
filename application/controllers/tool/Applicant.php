@@ -7,6 +7,8 @@ class Applicant extends Api_Controller {
         parent::__construct();
 
         $this->load->model('applicant_model','applicant');
+        $this->load->model('tournament_mail_model','tournament_mail');
+        $this->load->model('fail_mail_model','fail_mail');
 
     }
 
@@ -50,44 +52,66 @@ class Applicant extends Api_Controller {
     }
 
     
-    public function update_all($tid=0){
-        die;
-    	$state = $this->input->get_post('state') ? $this->input->get_post('state') : 5;
+    public function update_batch(){
+        $group = $this->input->get_post('group') ? $this->input->get_post('group') : '';
+        $state = $this->input->get_post('state') ? $this->input->get_post('state') : 0;
+        $aids = $this->input->get_post('aids') ? $this->input->get_post('aids') : '';
+        $mail_id = $this->input->get_post('mail_id') ? $this->input->get_post('mail_id') : 0;
+
+        if($mail_id != 0){
+            $mail_info = $this->tournament_mail->get_info($mail_id);
+        }
+
     	$this->load->library('mailer');
-    	if($tid > 0 && $state > 0){
-    		$return_arr = array();
+    	if($state > 0 && $aids != ''){
+    		$return_data = array();
+            $update_err_arr = array();
+            $mail_err_arr = array();
+
             $update_data = array(
                 'state' => $state,
-                'dealtime' => time()
+                'dealtime' => time(),
+                'group' => $group
             );
 
-            $option = array('tid'=>$tid,'state'=>0);
-            $list = $this->applicant->get_list(0,25,$option);
-            foreach ($list as $key => $value) {
-            	if($this->applicant->update($value['id'],$update_data)){
-            		$return_arr[] = $value;
-            		$to = $value['email'];
-                    $to_name = $value['name'];
-                    $subject = 'IMBA自走棋公开赛报名结果';
-                    $body = '<!DOCTYPE html>
-                        <html>
-                        <head>
-                         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            $applicant_id_list = explode(',', $aids);
+            foreach ($applicant_id_list as $key => $value) {                
+                if($this->applicant->update($value,$update_data)){
+                    $applicant_info = $this->applicant->get_info($value);
+                    if($mail_id !=0){
+                        $tmp_content = $mail_info->content;
+                        $subject = $mail_info->title;
+                        $to = $applicant_info->email;
+                        $to_name = $applicant_info->name;
+                        $applicant_arr = json_decode(json_encode($applicant_info),true);
+                        preg_match_all('/\{.*?\}/', $tmp_content, $matches, PREG_OFFSET_CAPTURE);
+                        foreach ($matches[0] as $key => $value) {
+                            $vname = substr($value[0],1,-1);
+                            $tmp_content = str_replace($value, $applicant_arr[$vname], $tmp_content);
+                        }
 
-                        <title>替补通过</title>
-                        </head>
-                        <body>
-                        <P>亲爱的刀塔自走棋玩家'.$value['name'].'，您好！</P>
-                        <P>　　很遗憾您的报名顺序在1024人之外，但您可加入赛事替补选手群，替补名额将在比赛当天由裁判通知，先到先得。</p>
-                        <p>    请在3月23日18:00之前加入赛事替补选手QQ群，群号：<span>724081523</span>（验证信息为：Dota2数字ID）。</P>
-                        <P>　　感谢您对本次赛事的支持并预祝您能收获理想的成绩。</P>
-                        </body>
-                        </html>';
-                    $msg = $this->mailer->sendmail($to, $to_name, $subject, $body);
-            	}
+                        $msg = $this->mailer->sendmail($to, $to_name, $subject, $tmp_content);
+                        if($msg != "success"){
+                            $mail_err_arr []= $applicant_info->name;    
+                            $this->fail_mail->insert(array('applicant_id'=>$applicant_info->id,'tid'=>$applicant_info->tid,'tournament_mail_id'=>$mail_id,'state'=>$state));                        
+                        }
+                    }
+                }else{
+                    $applicant_info = $this->applicant->get_info($value);
+                    $update_err_arr []= $applicant_info->name;
+                }
             }
-            $this->response($this->getResponseData(parent::HTTP_OK, '更改成功',$return_arr), parent::HTTP_OK);
+            $return_data['更新失败'] = implode(',', $update_err_arr);
+            $return_data['发送邮件失败'] = implode(',', $mail_err_arr);
 
+            if(empty($return_data['更新失败']) && empty($return_data['发送邮件失败'])){
+                $this->response($this->getResponseData(parent::HTTP_OK, '更改成功',''), parent::HTTP_OK);    
+            }else{
+
+                $return_str = '更新失败：'.$return_data['更新失败'].';';
+                $return_str .= '发送邮件失败:'.$return_data['发送邮件失败'].'!';
+                $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, $return_str), parent::HTTP_OK);
+            } 
         }else{
             $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '不能传空值'), parent::HTTP_OK);
         }
@@ -181,42 +205,6 @@ class Applicant extends Api_Controller {
         }
     }
 
-    public function set_group(){
-        $aids = $this->input->get_post('aids') ? $this->input->get_post('aids') : 0;
-        $group = $this->input->get_post('group') ? $this->input->get_post('group') : 0;
-        //$group_order = $this->input->get_post('group_order') ? $this->input->get_post('group_order') : '';
-        $aid_arr = explode(',', $aids);
-        $update_data = array(
-            'group_num' => $group
-        );
-        foreach ($aid_arr as $key => $value) {
-            if($this->applicant->update($value,$update_data)){
-                $success_arr []=$value;
-            }else{
-                $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '更改'.$value.'失败'), parent::HTTP_OK);
-            }
-        }
-        $this->response($this->getResponseData(parent::HTTP_OK, '更改成功',$success_arr), parent::HTTP_OK);
-    }
-
-    public function update_and_mail(){
-        $state = $this->input->get_post('state') ? $this->input->get_post('state') : 0;
-        $aids = $this->input->get_post('aids') ? $this->input->get_post('aids') : 0;
-        $mail_id = $this->input->get_post('mail_id') ? $this->input->get_post('mail_id') : 0;
-
-        $aid_arr = explode(',', $aids);
-        $update_data = array(
-            'state' => $state,
-            'dealtime' => time()
-        );
-        foreach ($aid_arr as $key => $value) {
-            if($this->applicant->update($value,$update_data)){
-
-            }else{
-                $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '更改'.$value.'失败'), parent::HTTP_OK);
-            }
-        }
-    }
 
 
 }
