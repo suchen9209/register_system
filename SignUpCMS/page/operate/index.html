@@ -43,7 +43,7 @@
               </select>
             </div>
           </div>
-            <div class="layui-form-item">
+            <div class="layui-form-item" style="margin-top: 62px;">
                 <div class="layui-input-block">
                     <button class="layui-btn cz" lay-submit lay-filter="formDemo">立即提交</button>
                 </div>
@@ -60,23 +60,6 @@ layui.use('form', function() {
         laydate = layui.laydate,
         laytpl = layui.laytpl,
         table = layui.table;
-    // // 获取userid
-    // function getQueryString(name) {
-    //     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-    //     var r = window.location.search.substr(1).match(reg);
-    //     if (r != null) {
-    //         return unescape(r[2]);
-    //     }
-    //     return null;
-    // }
-    // 邮箱选择
-     // form.verify({
-     //    group: function(value){
-     //         if(value.length < 5){
-     //          return '标题至少得5个字符啊';
-     //         }
-     //    }
-     // });
      $.ajax({
             type: "GET",
             catch: true,
