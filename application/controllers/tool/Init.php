@@ -146,6 +146,7 @@ class Init extends Api_Controller {
 
     public function mail_json(){
         $mails = $this->tournament_mail->get_mail(array('tid'=>$this->user_info->tid));
+        array_unshift($mails,array('id'=>'0','tid'=>'0','applicant_state'=>'0','content'=>'','title'=>'不发送邮件'));
         $this->response($mails);  
     }
 
