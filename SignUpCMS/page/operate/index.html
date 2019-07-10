@@ -45,7 +45,7 @@
           </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button class="layui-btn cz" lay-submit lay-filter="formDemo">立即提交</button>
                 </div>
             </div>
         </div>
@@ -60,11 +60,6 @@ layui.use('form', function() {
         laydate = layui.laydate,
         laytpl = layui.laytpl,
         table = layui.table;
-     //获取父界面的传值
-    function child(str){
-    console.log(str);
-    }
-    child();
     // // 获取userid
     // function getQueryString(name) {
     //     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
@@ -114,6 +109,8 @@ layui.use('form', function() {
             var group = $('.group input').val(); // 组别
             var state = data.field.state;   //操作
             var mail_id = data.field.interest;  // 邮箱
+            var aids = $(".cz").attr("aids");
+            console.log(aids);
             // $.ajax({
             //     url: "https://pay.imbatv.cn/api/user/bind_info",
             //     type: "POST",
