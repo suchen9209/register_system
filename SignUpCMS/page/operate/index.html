@@ -79,7 +79,7 @@ layui.use('form', function() {
                 form.render();
             },
         });
-    //监听提交
+    //监听提交 
     form.on('submit(formDemo)', function(data) {
         var choose = $('.choose input:radio:checked').val();
         if (choose != null) {
