@@ -30,7 +30,7 @@
 		</div>
 		<div class="layui-form" style="text-align: right;float: left;">
 			  <button class="layui-btn " >导出数据表格</button>
-			  <button class="layui-btn layui-btn-danger" data-type="getCheckData">批量操作</button>
+			  <button class="layui-btn layui-btn-danger operate" data-type="getCheckData">批量操作</button>
 		</div>
 	</blockquote>
 	</div>
@@ -71,19 +71,19 @@
 layui.use('table', function(){
   var table = layui.table;
   //监听表格复选框选择
-  table.on('checkbox(demo)', function(obj){
+  table.on('checkbox(newsList)', function(obj){
     console.log(obj)
   });
  
   var $ = layui.$, active = {
     getCheckData: function(){ //获取选中数据
-      var checkStatus = table.checkStatus('idTest')
+      var checkStatus = table.checkStatus('newsList')
       ,data = checkStatus.data;
       layer.alert(JSON.stringify(data));
     }
   };
   
-  $('.demoTable .layui-btn').on('click', function(){
+  $('.operate').on('click', function(){
     var type = $(this).data('type');
     active[type] ? active[type].call(this) : '';
   });
