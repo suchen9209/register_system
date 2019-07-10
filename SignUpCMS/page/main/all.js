@@ -98,6 +98,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         };
 
     $('.search_btn').on('click', function() {
+        console.log("fuck");
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
