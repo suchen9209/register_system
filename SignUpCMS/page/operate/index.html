@@ -79,14 +79,9 @@ layui.use('form', function() {
      //    }
      // });
 
-      form.on('radio(state)', function (data) {
-        // console.log(data.elem);
-        // alert(data.value);//判断单选框的选中值
-        //alert(data.othis);
-        // layer.tips('开关checked：' + (this.checked ? 'true' : 'false'), data.othis);
-        console.log(data.value);
-        state1 =  data.value;
-    });
+      form.on('radio(state)', function(data){
+            console.log(data.value);
+      });
      $.ajax({
             type: "GET",
             catch: true,
