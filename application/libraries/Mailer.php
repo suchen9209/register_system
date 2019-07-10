@@ -26,8 +26,8 @@ class Mailer {
         $this->mail->Port       = 465;                   // set the SMTP port for the GMAIL server
         $this->mail->Username   = "suchen@imbatv.cn";// GMAIL username
         $this->mail->Password   = "Su_4309209";       // GMAIL password
-        $this->mail->AddReplyTo('suchen@imbatv.cn', 'suchot');
-        $this->mail->SetFrom('suchen@imbatv.cn', 'suchot');
+        $this->mail->AddReplyTo('ileague01@imbatv.cn', 'i-league');
+        $this->mail->SetFrom('ileague01@imbatv.cn', 'i-league');
     }
  
     public function sendmail($to, $to_name, $subject, $body){
