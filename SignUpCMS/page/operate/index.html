@@ -88,27 +88,27 @@ layui.use('form', function() {
             var state = data.field.state;   //操作
             var mail_id = data.field.interest;  // 邮箱
             var aids = $(".cz").attr("aids");
-            $.ajax({
-                url: "/tool/applicant/update_batch",
-                type: "POST",
-                data: {
-                    group: group,
-                    state: state,
-                    mail_id: mail_id,
-                    aids: aids
-                },
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    layer.msg(data.message);
-                    // layer.close(index);
-                    // var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                    // parent.layer.close(index); //再执行关闭  
-                },
-                error: function(err) {}
-            });
+            // $.ajax({
+            //     url: "/tool/applicant/update_batch",
+            //     type: "POST",
+            //     data: {
+            //         group: group,
+            //         state: state,
+            //         mail_id: mail_id,
+            //         aids: aids
+            //     },
+            //     dataType: 'json',
+            //     success: function(data) {
+            //         console.log(data);
+            //         layer.msg(data.message);
+            //         // layer.close(index);
+            //         // var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            //         // parent.layer.close(index); //再执行关闭  
+            //     },
+            //     error: function(err) {}
+            // });
         }else{
-            layer.msg("请选择操作！！！");
+            layer.msg('请选择操作！', {icon: 5});
         }
     });
 });

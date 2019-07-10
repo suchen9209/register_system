@@ -83,18 +83,15 @@ layui.use('table', function() {
                 console.log(data);
                 console.log(data.length);
                 if (data.length == 0) {
-                    layer.alert("请选中之后再操作！");
+                    layer.msg('请选中之后再操作！！！', {icon: 5});
                 } else {
-
-
                     var str = "";
                     console.log(str);
                     for (var i = 0; i < data.length; i++) {
                         str += data[i].id + ",";
                     }
+                    console.log(str.length);
                     console.log(str);
-
-                    // layer.alert(JSON.stringify(data));
                     layer.open({
                         type: 2,
                         title: '',
