@@ -6,9 +6,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         laydate = layui.laydate,
         laytpl = layui.laytpl,
         table = layui.table;
-    excel = layui.excel;
-    state = ''; //状态
-    tid = '';
+        excel = layui.excel;
+        state = ''; //状态
+        tid = '';
     // 设置本地储存
     $.ajax({
         url: "/tool/init",
@@ -54,10 +54,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             }
             var localTest = layui.data('weight');
             var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right", "align": "center" };
-            var json0 = { "checkbox": true, "fixed": true };
+            // var json0 = { "checkbox": true, "fixed": true }; 右侧操作菜单
             if (localTest.weight >= 50 && state == 0) {
                 res.unshift(json0);
-                res.push(json1);
+                // res.push(json1);
             }
             var tableIns = table.render({
                 elem: '#newsList',
@@ -130,104 +130,98 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         });
     }
     //列表操作
-    table.on('tool(newsList)', function(obj) {
-        var layEvent = obj.event,
-            data = obj.data;
+    // table.on('tool(newsList)', function(obj) {
+    //     var layEvent = obj.event,
+    //         data = obj.data;
 
-        var userid = obj.data.id;
-        var username = obj.data.username;
-        var name = data.name;
-        var phone = data.phone;
-        var idcard = data.idcard;
-        console.log(userid);
-        if (layEvent === 'adopt') { //上机
-            $.ajax({
-                url: "/tool/applicant/update/" + userid,
-                type: "POST",
-                data: {
-                    state: 10
-                },
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    if (data.code == 200) {
-                        layer.msg(data.message, { time: 1000 }, function() {
-                            //回调
-                            window.location.reload();
-                        })
-                    } else {
-                        layer.msg(data.message);
-                    }
+    //     var userid = obj.data.id;
+    //     var username = obj.data.username;
+    //     var name = data.name;
+    //     var phone = data.phone;
+    //     var idcard = data.idcard;
+    //     console.log(userid);
+    //     if (layEvent === 'adopt') { //上机
+    //         $.ajax({
+    //             url: "/tool/applicant/update/" + userid,
+    //             type: "POST",
+    //             data: {
+    //                 state: 10
+    //             },
+    //             dataType: 'json',
+    //             success: function(data) {
+    //                 if (data.code == 200) {
+    //                     layer.msg(data.message, { time: 1000 }, function() {
+    //                         //回调
+    //                         window.location.reload();
+    //                     })
+    //                 } else {
+    //                     layer.msg(data.message);
+    //                 }
 
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-            // 未通过
-        } else if (layEvent === 'no-pass') {
-            $.ajax({
-                url: "/tool/applicant/update/" + userid,
-                type: "POST",
-                data: {
-                    state: 2
-                },
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    if (data.code == 200) {
-                        layer.msg(data.message, { time: 1000 }, function() {
-                            //回调
-                            window.location.reload();
-                        })
-                    } else {
-                        layer.msg(data.message);
-                    }
+    //             },
+    //             error: function(err) {
+    //                 console.log(err);
+    //             }
+    //         });
+    //         // 未通过
+    //     } else if (layEvent === 'no-pass') {
+    //         $.ajax({
+    //             url: "/tool/applicant/update/" + userid,
+    //             type: "POST",
+    //             data: {
+    //                 state: 2
+    //             },
+    //             dataType: 'json',
+    //             success: function(data) {
+    //                 if (data.code == 200) {
+    //                     layer.msg(data.message, { time: 1000 }, function() {
+    //                         //回调
+    //                         window.location.reload();
+    //                     })
+    //                 } else {
+    //                     layer.msg(data.message);
+    //                 }
 
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-            // 替补
-        } else if (layEvent === 'Substitute') {
-            $.ajax({
-                url: "/tool/applicant/update/" + userid,
-                type: "POST",
-                data: {
-                    state: 5
-                },
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    if (data.code == 200) {
-                        layer.msg(data.message, { time: 1000 }, function() {
-                            //回调
-                            window.location.reload();
-                        })
-                    } else {
-                        layer.msg(data.message);
-                    }
+    //             },
+    //             error: function(err) {
+    //                 console.log(err);
+    //             }
+    //         });
+    //         // 替补
+    //     } else if (layEvent === 'Substitute') {
+    //         $.ajax({
+    //             url: "/tool/applicant/update/" + userid,
+    //             type: "POST",
+    //             data: {
+    //                 state: 5
+    //             },
+    //             dataType: 'json',
+    //             success: function(data) {
+    //                 if (data.code == 200) {
+    //                     layer.msg(data.message, { time: 1000 }, function() {
+    //                         //回调
+    //                         window.location.reload();
+    //                     })
+    //                 } else {
+    //                     layer.msg(data.message);
+    //                 }
 
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-        }
-    });
+    //             },
+    //             error: function(err) {
+    //                 console.log(err);
+    //             }
+    //         });
+    //     }
+    // });
     var $ = layui.$,
         active = {
             getCheckData: function() { //获取选中数据
                 var checkStatus = table.checkStatus('newsList'),
                     data = checkStatus.data;
-                console.log(data);
-                console.log(data.length);
                 if (data.length == 0) {
                     layer.msg('请选中之后再操作！！！', { icon: 5 });
                 } else {
                     var str = "";
-                    console.log(str);
                     for (var i = 0; i < data.length; i++) {
                         str += data[i].id + ",";
                     }
