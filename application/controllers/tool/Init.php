@@ -78,7 +78,7 @@ class Init extends Api_Controller {
             'avator'    =>  '头像',
             'idcard'    =>  '身份证',
             'game_id'   =>  '游戏ID',
-            'group_num' =>  '组名',
+            'group' =>  '组名',
             'group_order'   =>  '组内编号',
             'createtime'    =>  '创建时间',
             'extra_filed1'    =>  '备用字段1',
