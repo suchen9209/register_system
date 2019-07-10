@@ -93,7 +93,7 @@ class Applicant extends Api_Controller {
                         $msg = $this->mailer->sendmail($to, $to_name, $subject, $tmp_content);
                         if($msg != "success"){
                             $mail_err_arr []= $applicant_info->name;    
-                            $this->fail_mail->insert(array('applicant_id'=>$applicant_info->id,'tid'=>$applicant_info->tid,'tournament_mail_id'=>$mail_id,'state'=>$state));                        
+                            $this->fail_mail->insert(array('applicant_id'=>$applicant_info->id,'tid'=>$applicant_info->tid,'tournament_mail_id'=>$mail_id,'state'=>$state,'detail'=>$msg));                        
                         }
                     }
                 }else{
