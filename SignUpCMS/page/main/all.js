@@ -33,11 +33,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         var r = window.location.search.substr(1).match(reg);  //匹配目标参数
         if (r != null) return unescape(r[2]); return null; //返回参数值
     }
-    //获取父界面的传值
-    function child(obj){
-    console.log(obj);
-    }
-    child();
     state = getUrlParam('state');
     $.ajax({
         url: "/tool/init/list_header_json",
