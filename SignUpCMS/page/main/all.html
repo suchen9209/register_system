@@ -77,13 +77,18 @@ layui.use('table', function(){
  
   var $ = layui.$, active = {
     getCheckData: function(){ //获取选中数据
-      var checkStatus = table.checkStatus('newsList')
-      ,data = checkStatus.data;
-      var obj = JSON.stringify(data);
-      console.log(data);
-      console.log(obj);
-      console.log(typeof obj);
-      console.log(typeof data);
+      var checkStatus = table.checkStatus('newsList'),
+      data = checkStatus.data;
+	     var str = "";
+	     for (var i = 0; i < data.length; i++) {
+	         str += data[i].id+ ",";
+	     }
+	     //去掉最后一个逗号(如果不需要去掉，就不用写)
+	     if (str.length > 0) {
+	         str = str.substr(0, str.length - 1);
+	     }
+	     return str;
+
       // layer.alert(JSON.stringify(data));
                layer.open({
                 type: 2,
@@ -95,6 +100,8 @@ layui.use('table', function(){
                 success: function(layero, index) {
                     var body = layer.getChildFrame('body', index);
                     var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                    var iframe = window['layui-layer-iframe' + index];
+                    iframe.child(str);
                 },
                 // end: function() {
                 //     var searchVal = $(".searchVal").val();
