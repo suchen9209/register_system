@@ -26,7 +26,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             tid = res.user_info.tid;
         },
         error() {
-            layer.alert('获取数据失败');
+            layer.alert('登录信息已过期，请重新登录', function() {
+                   window.location.href = '/login/login.html';
+            });
         }
     });
 
@@ -84,7 +86,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             });
         },
         error() {
-            layer.alert('获取数据失败');
+            layer.alert('登录信息已过期，请重新登录', function() {
+                   window.location.href = '/login/login.html';
+            });
         }
     });
 
@@ -121,7 +125,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                 excel.exportExcel(data, '导出接口数据.xlsx', 'xlsx');
             },
             error() {
-                layer.alert('获取数据失败，请检查是否部署在本地服务器环境下');
+                layer.alert('登录信息已过期，请重新登录', function() {
+                   window.location.href = '/login/login.html';
+                });
             }
         });
     }
