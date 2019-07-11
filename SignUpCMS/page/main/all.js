@@ -102,7 +102,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
     // 导出数据
     function exportApiDemo() {
         $.ajax({
-            url: "/tool/applicant?tid=1&state=10&limit=2000",
+            url: "/tool/applicant?tid="+tid+'&state='+state+'limit=2000',
             type: "GET",
             dataType: 'json',
             success(res) {
