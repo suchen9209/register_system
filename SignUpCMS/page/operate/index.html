@@ -88,7 +88,8 @@ layui.use('form', function() {
             var state = data.field.state;   //操作
             var mail_id = data.field.interest;  // 邮箱
             var aids = $(".cz").attr("aids");
-            $.ajax({
+            layer.msg("正在处理中", {icon: 16,time: 4000,shade : [0.5 , '#000' , true]},function(){
+                $.ajax({
                 url: "/tool/applicant/update_batch",
                 type: "POST",
                 data: {
@@ -110,6 +111,8 @@ layui.use('form', function() {
                 },
                 error: function(err) {}
             });
+                    }); 
+
         }else{
             layer.msg('请选择操作！', {icon: 5});
         }
