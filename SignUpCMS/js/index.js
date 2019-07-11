@@ -72,7 +72,7 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
                 window.location.href ='/login/login.html';
             },
             error(err) {
-               console.log(err);
+              window.location.href ='/login/login.html';
             }
         });
 	})
