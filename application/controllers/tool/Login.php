@@ -40,6 +40,12 @@ class Login extends CI_Controller {
         
     }
 
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+    }
+
     public function get_info(){
         $return['username'] =  $_SESSION['username'];
         echo json_encode($return);
