@@ -62,7 +62,20 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
 		//渲染顶部窗口
 		tab.tabMove();
 	})
-
+	//退出
+	$(".signOut").click(function(){
+		$.ajax({
+            url: '/tool/login/logout',
+            type: "GET",
+            dataType: 'json',
+            success(res) {
+                window.location.href ='/login/login.html';
+            },
+            error(err) {
+               console.log(err);
+            }
+        });
+	})
 	//隐藏左侧导航
 	$(".hideMenu").click(function(){
 		if($(".topLevelMenus li.layui-this a").data("url")){
