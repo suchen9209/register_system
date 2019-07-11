@@ -125,6 +125,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             }
         });
     }
+
+    $('.export_data').on('click', function() {
+        exportApiDemo();
+    });
     //列表操作
     // table.on('tool(newsList)', function(obj) {
     //     var layEvent = obj.event,
