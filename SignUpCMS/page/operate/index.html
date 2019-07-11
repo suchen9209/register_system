@@ -100,11 +100,12 @@ layui.use('form', function() {
                 },
                 dataType: 'json',
                 success: function(data) {
+                    var index = parent.layer.getFrameIndex(window.name);
                     console.log(1);
                     parent.layer.close(index);
                     console.log(2);
                     layer.msg(data.message, {icon: 16,time: 4000,shade : [0.5 , '#000' , true]},function(){
-                          parent.location.reload();
+                        parent.location.reload();
                     }); 
                    
                    
