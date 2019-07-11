@@ -9,6 +9,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         excel = layui.excel;
         state = ''; //状态
         tid = '';
+    var show_data = new Array();
+    var show_field = new Array();
+    var show_obj = {};
     // 设置本地储存
     $.ajax({
         url: "/tool/init",
@@ -41,9 +44,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         async: false,
         dataType: 'json',
         success(res) {
-            var fuck = res;
-            console.log(fuck);
+
             for (var i = 0; i < res.length; i++) {
+                show_data.push(res[i]);
                 if (res[i].type == "image") {
                     res[i].title = res[i].title;
                     res[i].align = 'center';
@@ -54,6 +57,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
                     res[i].align = 'center';
                 }
             }
+
             var localTest = layui.data('weight');
             // var json1 = { "title": '操作', "templet": "#newsListBar", "fixed": "right", "align": "center" };
             var json0 = { "checkbox": true, "fixed": true }; 
@@ -98,17 +102,20 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
     // 导出数据
     function exportApiDemo() {
         $.ajax({
-            url: "/tool/applicant?tid=3&state=-1&limit=2000",
+            url: "/tool/applicant?tid=1&state=10&limit=2000",
             type: "GET",
             dataType: 'json',
             success(res) {
+                for(var i in show_data){
+                    show_field.push(show_data[i].field);
+                    show_obj[show_data[i].field] = show_data[i].title;
+                }
                 var data = res.data;
+
                 // 重点！！！如果后端给的数据顺序和映射关系不对，请执行梳理函数后导出
-                data = excel.filterExportData(data, [
-                    'name', 'nickname', 'qq', 'phone', 'email', 'game_id', 'idcard', 'extra_filed1', 'extra_filed2'
-                ]);
+                data = excel.filterExportData(data, show_field);
                 // 重点2！！！一般都需要加一个表头，表头的键名顺序需要与最终导出的数据一致
-                data.unshift({ name: "姓名", nickname: "昵称", qq: 'qq', phone: '手机', email: '邮箱', game_id: '游戏ID', idcard: '身份证号', extra_filed1: '段位截图', extra_filed2: '分组' });
+                data.unshift(show_obj);
 
                 var timestart = Date.now();
                 excel.exportExcel(data, '导出接口数据.xlsx', 'xlsx');
