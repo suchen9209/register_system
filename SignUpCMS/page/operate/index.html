@@ -100,10 +100,13 @@ layui.use('form', function() {
                 dataType: 'json',
                 success: function(data) {
                     console.log(data);
-                    layer.msg(data.message, {icon: 16,time: 100000,shade : [0.5 , '#000' , true]});
-                    // layer.close(index);
-                    // var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                    // parent.layer.close(index); //再执行关闭  
+                    layer.close(index);
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    layer.msg(data.message, {icon: 16,time: 4000,shade : [0.5 , '#000' , true]},function(){
+                         parent.layer.close(index); //再执行关闭  
+                    }); 
+                   
+                   
                 },
                 error: function(err) {}
             });
