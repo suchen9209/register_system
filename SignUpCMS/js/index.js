@@ -24,7 +24,7 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
         },
         error() {
             layer.alert('登录信息已过期，请重新登录', function() {
-                   window.location.href = '/login/login.html';
+                   window.location.href = '/SignUpCMS/page/login/login.html';
                 });
         }
     });
@@ -71,10 +71,10 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
             type: "GET",
             dataType: 'json',
             success(res) {
-                window.location.href ='/login/login.html';
+                window.location.href ='/SignUpCMS/page/login/login.html';
             },
             error(err) {
-              window.location.href ='/login/login.html';
+              window.location.href ='/SignUpCMS/page/login/login.html';
             }
         });
 	})

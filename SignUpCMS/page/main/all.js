@@ -27,7 +27,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         },
         error() {
             layer.alert('登录信息已过期，请重新登录', function() {
-                   window.location.href = '/login/login.html';
+                   window.location.href = '/SignUpCMS/page/login/login.html';
             });
         }
     });
@@ -87,7 +87,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         },
         error() {
             layer.alert('登录信息已过期，请重新登录', function() {
-                   window.location.href = '/login/login.html';
+                   window.location.href = '/SignUpCMS/page/login/login.html';
             });
         }
     });
@@ -126,7 +126,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
             },
             error() {
                 layer.alert('登录信息已过期，请重新登录', function() {
-                   window.location.href = '/login/login.html';
+                   window.location.href = '/SignUpCMS/page/login/login.html';
                 });
             }
         });
