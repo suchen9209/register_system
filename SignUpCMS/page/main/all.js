@@ -41,7 +41,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel', 'jquery'], fu
         async: false,
         dataType: 'json',
         success(res) {
-            console.log(res);
+            var fuck = res;
+            console.log(fuck);
             for (var i = 0; i < res.length; i++) {
                 if (res[i].type == "image") {
                     res[i].title = res[i].title;
