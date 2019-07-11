@@ -27,18 +27,18 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">请选择操作:</label>
                 <div class="layui-input-block choose">
-                  <input type="radio" name="state" value="10" title="通过">
-                  <input type="radio" name="state" value="2" title="不通过">
-                  <input type="radio" name="state" value="5" title="替补">
+                    <input type="radio" name="state" value="10" title="通过">
+                    <input type="radio" name="state" value="2" title="不通过">
+                    <input type="radio" name="state" value="5" title="替补">
                 </div>
             </div>
             <div class="layui-form-item">
-            <label class="layui-form-label">请选择邮件:</label>
-            <div class="layui-input-block">
-              <select name="interest" lay-filter="aihao" class="cc">
-              </select>
+                <label class="layui-form-label">请选择邮件:</label>
+                <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao" class="cc">
+                    </select>
+                </div>
             </div>
-          </div>
             <div class="layui-form-item" style="margin-top: 62px;">
                 <div class="layui-input-block">
                     <button class="layui-btn cz" lay-submit lay-filter="formDemo">立即提交</button>
@@ -56,39 +56,39 @@ layui.use('form', function() {
         laydate = layui.laydate,
         laytpl = layui.laytpl,
         table = layui.table;
-     $.ajax({
-            type: "GET",
-            catch: true,
-            dataType: "jsonp",
-            url: "/tool/init/mail_json/",
-            error: function(request) {
-                console.log(request);
-            },
-            success: function(res) {
-                // console.log(res);
-                var html = '';
-                html = '<option value=""></option>';
-                for (var i = 0; i < res.length; i++) {
-                        if (i == 0) {
-                            html += "<option selected='' value=" + res[i].id + ">" + res[i].title + "</option>";
-                        } else {
-                            html += "<option value=" + res[i].id + ">" + res[i].title + "</option>";
-                        }    
-                };
-                $(".cc").html(html);
-                form.render();
-            },
-        });
+    $.ajax({
+        type: "GET",
+        catch: true,
+        dataType: "jsonp",
+        url: "/tool/init/mail_json/",
+        error: function(request) {
+            console.log(request);
+        },
+        success: function(res) {
+            // console.log(res);
+            var html = '';
+            html = '<option value=""></option>';
+            for (var i = 0; i < res.length; i++) {
+                if (i == 0) {
+                    html += "<option selected='' value=" + res[i].id + ">" + res[i].title + "</option>";
+                } else {
+                    html += "<option value=" + res[i].id + ">" + res[i].title + "</option>";
+                }
+            };
+            $(".cc").html(html);
+            form.render();
+        },
+    });
     //监听提交 
     form.on('submit(formDemo)', function(data) {
         var choose = $('.choose input:radio:checked').val();
         if (choose != null) {
             var index = parent.layer.getFrameIndex(window.name);
             var group = $('.group input').val(); // 组别
-            var state = data.field.state;   //操作
-            var mail_id = data.field.interest;  // 邮箱
+            var state = data.field.state; //操作
+            var mail_id = data.field.interest; // 邮箱
             var aids = $(".cz").attr("aids");
-            layer.msg("正在处理中", {icon: 16,time: 0,shade : [0.5 , '#000' , true]});
+            layer.msg("正在处理中", { icon: 16, time: 0, shade: [0.5, '#000', true] });
             $.ajax({
                 url: "/tool/applicant/update_batch",
                 type: "POST",
@@ -100,19 +100,14 @@ layui.use('form', function() {
                 },
                 dataType: 'json',
                 success: function(data) {
-                    // parent.layer.close(index);
-                    layer.msg(data.message, {icon: 16,time: 4000,shade : [0.5 , '#000' , true]},function(){
+                    layer.msg(data.message, { icon: 16, time: 4000, shade: [0.5, '#000', true] }, function() {
                         parent.location.reload();
-                    }); 
-                   
-                   
+                    });
                 },
                 error: function(err) {}
             });
-                   
-
-        }else{
-            layer.msg('请选择操作！', {icon: 5});
+        } else {
+            layer.msg('请选择操作！', { icon: 5 });
         }
     });
 });
