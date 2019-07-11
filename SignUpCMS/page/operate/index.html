@@ -88,7 +88,7 @@ layui.use('form', function() {
             var state = data.field.state;   //操作
             var mail_id = data.field.interest;  // 邮箱
             var aids = $(".cz").attr("aids");
-            layer.msg("正在处理中", {icon: 16,time:-1,shade : [0.5 , '#000' , true]},function(){
+            layer.msg("正在处理中", {icon: 16,shade : [0.5 , '#000' , true]},function(){
                 $.ajax({
                 url: "/tool/applicant/update_batch",
                 type: "POST",
