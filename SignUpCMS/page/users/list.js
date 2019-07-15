@@ -19,22 +19,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             [
                 { field: 'id', title: 'ID', align: 'center', width: 50 },
                 { field: 'name', title: '姓名', width: 150, align: "center" },
-                { field: 'nickname', title: '昵称', align: 'center' },
-                { field: 'qq', title: 'qq', align: 'center' },
-                { field: 'phone', title: '手机', align: 'center' },
-                { field: 'email', title: '邮箱', align: 'center' },
-                { field: 'game_id', title: '游戏ID', align: 'center' },
-                { field: 'idcard', title: '身份证号', align: 'center' },
-                {
-                    field: 'extra_filed1',
-                    title: '段位截图',
-                    width: 180,
-                    align: "center",
-                    templet: function(d) {
-                        return '<a href="' + d.extra_filed1 + '" target="_blank"><img src="' + d.extra_filed1 + '" height="26" /></a>';
-                    }
-                },
-                { field: 'extra_filed2', title: '分组', align: 'center' },
+                { field: 'username', title: '用户名', align: 'center' },
+                { field: 'weight', title: '权限', align: 'center' },
+                { field: 'createtime', title: '创建时间', align: 'center' },
+                { field: 'tournament', title: '赛事', align: 'center' },
                 { title: '操作', width: 270, templet: '#newsListBar', fixed: "right", align: "center" }
             ]
         ],

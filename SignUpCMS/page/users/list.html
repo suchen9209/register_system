@@ -32,18 +32,7 @@
 	<!--操作-->
 	<script type="text/html" id="newsListBar">
 		<div class="userid">
-			 {{# if (d.state =="0"){}}
-			<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="adopt">通过</a>
-			<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="Substitute">替补</a>
-			<a class="layui-btn layui-btn-xs " lay-event="no-pass">不通过</a>
-			{{# } else if(d.state =="2"){ }}  
-				<a class="layui-btn layui-btn-xs layui-btn-disabled" >未通过</a>
-			{{# } else if(d.state =="10"){ }}  
-				<a class="layui-btn layui-btn-xs layui-btn-disabled" >已通过</a>
-			{{# } else if(d.state =="5"){ }}  
-				<a class="layui-btn layui-btn-xs layui-btn-disabled" >替补</a>
-			{{# } }}  
-			
+			<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="modify">修改</a>
 		</div>
 		</div>
 		
