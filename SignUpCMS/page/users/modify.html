@@ -50,7 +50,7 @@
         <div class="layui-form-item item5">
             <label class="layui-form-label">密码</label>
             <div class="layui-input-block">
-                <input type="password" name="password" lay-verify="number" autocomplete="off" placeholder="密码" class="layui-input">
+                <input type="password" name="password" lay-verify="pass" autocomplete="off" placeholder="密码" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item item6">
@@ -100,28 +100,16 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     //创建一个编辑器
     var editIndex = layedit.build('LAY_demo_editor');
 
-    //自定义验证规则
-    form.verify({
-        desc: function(value) {
-            if (value.length < 1) {
-                return '名称不能为空';
-            }
-        },
-        type: function(value) {
-            if (value.length < 1) {
-                return '类型不能为空';
-            }
-        },
-        img: function(value) {
-            if (value.length < 1) {
-                return '商品价图片不能为空';
-            }
-        },
-
-        content: function(value) {
-            layedit.sync(editIndex);
-        }
-    });
+   //自定义验证规则
+  form.verify({
+    pass: [
+      /^[\S]{6,12}$/
+      ,'密码必须6到12位，且不能出现空格'
+    ]
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
 
     //监听提交
     form.on('submit(demo1)', function(data) {
