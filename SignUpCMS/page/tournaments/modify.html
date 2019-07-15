@@ -22,36 +22,35 @@
 <body>
     <div action='' method="" class="layui-form">
         <div class="layui-form-item item1" style="margin-top: 40px;">
-            <label class="layui-form-label">姓名</label>
+            <label class="layui-form-label">赛事名称</label>
             <div class="layui-input-block">
                 <input type="text" name="name" lay-verify="desc" autocomplete="off" placeholder="姓名" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item item2">
-            <label class="layui-form-label">用户名</label>
+       <!--  <div class="layui-form-item item2">
+            <label class="layui-form-label">当前报名人数</label>
             <div class="layui-input-block">
-                <input type="text" name="username" lay-verify="desc" autocomplete="off" placeholder="用户名" class="layui-input">
+                <input type="text" name="now_num" lay-verify="number" autocomplete="off" placeholder="用户名" class="layui-input">
             </div>
-        </div>
+        </div> -->
          <div class="layui-form-item item3">
-            <label class="layui-form-label">权限</label>
+            <label class="layui-form-label">报名人数上限</label>
             <div class="layui-input-block">
-                <input type="text" name="weight" lay-verify="number" autocomplete="off" placeholder="权限" class="layui-input">
+                <input type="text" name="need_num" lay-verify="number" autocomplete="off" placeholder="权限" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item item4" type="1">
-            <label class="layui-form-label">赛事类型</label>
-            <div class="layui-input-block">
-                <select name="tid" lay-filter="type" class='cc' type="select">
-                </select>
-            </div>
+              <label class="layui-form-label">开始时间</label>
+              <div class="layui-input-block">
+                <input type="text" name="starttime" id="date1" autocomplete="off" class="layui-input">
+              </div>
         </div>
        
         <div class="layui-form-item item5">
-            <label class="layui-form-label">密码</label>
-            <div class="layui-input-block">
-                <input type="password" name="password" lay-verify="pass" autocomplete="off" placeholder="密码" class="layui-input">
-            </div>
+            <label class="layui-form-label">结束时间</label>
+              <div class="layui-input-block">
+                <input type="text" name="endtime" id="date2" autocomplete="off" class="layui-input">
+              </div>
         </div>
         <div class="layui-form-item item6">
             <div class="layui-input-block">
@@ -68,34 +67,14 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         layedit = layui.layedit,
         laydate = layui.laydate;
     $ = layui.jquery;
-
-    function fuck() {
-        $.ajax({
-            type: "GET",
-            catch: true,
-            dataType: "jsonp",
-            url: "/tool/init/tour_list",
-            error: function(request) {
-                console.log(request);
-            },
-            success: function(res) {
-                console.log(res);
-                var html = '';
-                // 判断赛事类型
-                var datatype = $(".item4").attr("type");
-                html = '<option value=""></option>';
-                for (var i = 0; i < res.length; i++) {
-                    if (res[i].id == datatype) {
-                        html += "<option selected=''  value=" + res[i].id + ">" + res[i].name + "</option>";
-                    } else {
-                        html += "<option value=" + res[i].id + ">" + res[i].name + "</option>";
-                    }
-                };
-                $(".cc").html(html);
-                form.render();
-            },
-        });
-    }
+    //日期
+  laydate.render({
+    elem: '#date1'
+  });
+  laydate.render({
+    elem: '#date2'
+  });
+  
 
     //创建一个编辑器
     var editIndex = layedit.build('LAY_demo_editor');
@@ -114,7 +93,7 @@ layui.use(['form', 'layedit', 'laydate'], function() {
                 data: data,
             },
             dataType: "json",
-            url: "/tool/user/update/"+id,
+            url: "/tool/tournament/update/"+id,
             success: function(res) {
                 console.log(res);
                 setTimeout(function() {
@@ -132,7 +111,7 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         });
     });
     //以下两种方式都行：
-    setTimeout(function() { fuck(); }, 500);
+    // setTimeout(function() { fuck(); }, 500);
     setTimeout(function() { form.render(); }, 500);
 
 });
