@@ -24,26 +24,26 @@
         <div class="layui-form-item item1" style="margin-top: 40px;">
             <label class="layui-form-label">赛事名称</label>
             <div class="layui-input-block">
-                <input type="text" name="name" lay-verify="desc" autocomplete="off" placeholder="姓名" class="layui-input">
+                <input type="text" name="name" lay-verify="desc" autocomplete="off" placeholder="赛事名称" class="layui-input">
             </div>
         </div>
          <div class="layui-form-item item3">
             <label class="layui-form-label">报名人数上限</label>
             <div class="layui-input-block">
-                <input type="text" name="need_num" lay-verify="number" autocomplete="off" placeholder="权限" class="layui-input">
+                <input type="text" name="need_num" lay-verify="number" autocomplete="off" placeholder="报名人数上限" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item item4" type="1">
               <label class="layui-form-label">开始时间</label>
               <div class="layui-input-block">
-                <input type="text" name="starttime" id="date1" lay-verify="desc" autocomplete="off" class="layui-input">
+                <input type="text" name="starttime" id="date1" lay-verify="desc" autocomplete="off"  placeholder="开始时间" class="layui-input">
               </div>
         </div>
        
         <div class="layui-form-item item5">
             <label class="layui-form-label">结束时间</label>
               <div class="layui-input-block">
-                <input type="text" name="endtime" id="date2" lay-verify="desc" autocomplete="off" class="layui-input">
+                <input type="text" name="endtime" id="date2" lay-verify="desc" autocomplete="off" placeholder="结束时间" class="layui-input">
               </div>
         </div>
         <div class="layui-form-item item6">
@@ -62,11 +62,17 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         laydate = layui.laydate;
     $ = layui.jquery;
     //日期
+    //日期
   laydate.render({
     elem: '#date1'
+    ,type: 'datetime'
+    ,format: 'yyyy-MM-dd HH:mm:ss'
   });
   laydate.render({
-    elem: '#date2'
+    elem: '#date2'  
+    ,type: 'datetime'
+    ,format: 'yyyy-MM-dd HH:mm:ss'
+
   });
   
 
