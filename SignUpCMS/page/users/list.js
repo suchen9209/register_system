@@ -34,6 +34,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
     });
     //修改用户列表信息
     function modify(edit){
+        console.log(edit);
         var index = layui.layer.open({
             title : "修改用户列表信息",
             type : 2,
