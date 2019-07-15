@@ -87,25 +87,15 @@ layui.use(['form', 'layedit', 'laydate'], function() {
                 // html = '<option value=""></option>';
                 for (var i = 0; i < res.length; i++) {
                     if (i == 0) {
-                        html += "<option value=" + data[i].id + ">" + data[i].name + "</option>";
+                        html += "<option value=" + res[i].id + ">" + res[i].name + "</option>";
                     } else {
-                        html += "<option selected=''  value=" + data[i].id + ">" + data[i].name + "</option>";
+                        html += "<option selected=''  value=" + res[i].id + ">" + res[i].name + "</option>";
                     }
                     $(".item4").show();
                 };
                 $(".cc").html(html);
                 $(".dd").html(html1);
-                
-
                 form.render();
-                form.on("select", function(data) {
-                    console.log(data);
-                    if (data.value == 1) {
-                        $(".item4").hide();
-                    } else {
-                        $(".item4").show();
-                    }
-                });
             },
         });
     }
