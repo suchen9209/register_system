@@ -43,11 +43,8 @@ class Tournament extends Api_Controller {
     public function update($id=0){
         $data_json = $this->input->post_get('data');
         $data = json_decode($data_json,true);
-        if(isset($data['password'])){
-            $data['password'] = password_md5($data['password']);
-        }
         if($data && $id > 0){
-            if($this->goods->update($id,$data)){
+            if($this->tournament->update($id,$data)){
                 $this->response($this->getResponseData(parent::HTTP_OK, '更改成功'), parent::HTTP_OK);
             }else{
                 $this->response($this->getResponseData(parent::HTTP_OK, '更改失败'), parent::HTTP_OK);
