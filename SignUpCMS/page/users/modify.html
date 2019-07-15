@@ -100,17 +100,6 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     //创建一个编辑器
     var editIndex = layedit.build('LAY_demo_editor');
 
-   //自定义验证规则
-  // form.verify({
-  //   pass: [
-  //     /^[\S]{6,12}$/
-  //     ,'密码必须6到12位，且不能出现空格'
-  //   ]
-  //   ,content: function(value){
-  //     layedit.sync(editIndex);
-  //   }
-  // });
-
     //监听提交
     form.on('submit(demo1)', function(data) {
         console.log(data);
@@ -134,7 +123,7 @@ layui.use(['form', 'layedit', 'laydate'], function() {
                     layer.closeAll("iframe");
                     //刷新父页面
                     parent.location.reload();
-                }, 500);
+                }, 2000);
                 return false;
             },
             error: function(request) {
