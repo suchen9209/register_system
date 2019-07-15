@@ -28,6 +28,23 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
                 });
         }
     });
+
+     // 获取用户名
+      $.ajax({
+        url: "/tool/init",
+        type: "GET",
+        async: false,
+        dataType: 'json',
+        success(res) {
+            $(".adminName").html(res.user_info.username);
+            $(".userName").html(res.user_info.username);
+        },
+        error() {
+            layer.alert('登录信息已过期，请重新登录', function() {
+                   window.location.href = '/SignUpCMS/page/login/login.html';
+            });
+        }
+    });
 	//通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
 	function getData(json){
 		$.getJSON(tab.tabConfig.url,function(data){
