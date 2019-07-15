@@ -46,6 +46,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                     body.find(".item2 input").val(edit.username);
                     body.find(".item3 input").val(edit.weight);
                     body.find(".item4").attr("type",edit.tid);
+                    body.find(".item6").attr("data-id",edit.id);
                 }
                 setTimeout(function(){
                     layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
