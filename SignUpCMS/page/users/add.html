@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>增加用户</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="../../css/public.css" media="all" />
+    <!-- <script type="text/javascript" src="https://pay.imbatv.cn/style/js/jquery-3.3.1.js"></script> -->
+</head>
+<style type="text/css">
+.layui-form-label {
+    width: 110px;
+}
+
+.layui-input-block {
+    width: 600px;
+    margin-left: 142px;
+}
+</style>
+
+<body>
+    <div action='' method="" class="layui-form">
+        <div class="layui-form-item item1" style="margin-top: 40px;">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" lay-verify="desc" autocomplete="off" placeholder="姓名" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item item2">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" lay-verify="desc" autocomplete="off" placeholder="用户名" class="layui-input">
+            </div>
+        </div>
+         <div class="layui-form-item item3">
+            <label class="layui-form-label">权限</label>
+            <div class="layui-input-block">
+                <input type="text" name="weight" lay-verify="number" autocomplete="off" placeholder="权限" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item item4" type="1">
+            <label class="layui-form-label">赛事类型</label>
+            <div class="layui-input-block">
+                <select name="tid" lay-filter="type" class='cc' type="select">
+                </select>
+            </div>
+        </div>
+       
+        <div class="layui-form-item item5">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                <input type="password" name="password" lay-verify="pass" autocomplete="off" placeholder="密码" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item item6">
+            <div class="layui-input-block">
+                <button class="layui-btn btn1" lay-submit="" lay-filter="demo1">立即提交</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../layui/layui.all.js"></script>
+<script>
+layui.use(['form', 'layedit', 'laydate'], function() {
+    var form = layui.form,
+        layer = layui.layer,
+        layedit = layui.layedit,
+        laydate = layui.laydate;
+    $ = layui.jquery;
+
+    function fuck() {
+        $.ajax({
+            type: "GET",
+            catch: true,
+            dataType: "jsonp",
+            url: "/tool/init/tour_list",
+            error: function(request) {
+                console.log(request);
+            },
+            success: function(res) {
+                console.log(res);
+                var html = '';
+                // 判断赛事类型
+                html = '<option value=""></option>';
+                for (var i = 0; i < res.length; i++) {
+                    if (i == 0) {
+                        html += "<option selected=''  value=" + res[i].id + ">" + res[i].name + "</option>";
+                    } else {
+                        html += "<option value=" + res[i].id + ">" + res[i].name + "</option>";
+                    }
+                };
+                $(".cc").html(html);
+                form.render();
+            },
+        });
+    }
+
+    //创建一个编辑器
+    var editIndex = layedit.build('LAY_demo_editor');
+
+    //监听提交
+    form.on('submit(demo1)', function(data) {
+        console.log(data);
+        var data = JSON.stringify(data.field);
+        console.log(data);
+        var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
+        $.ajax({
+            type: "POST",
+            catch: true,
+            data: {
+                data: data,
+            },
+            dataType: "json",
+            url: "/tool/user/insert",
+            success: function(res) {
+                console.log(res);
+                setTimeout(function() {
+                    top.layer.close(index);
+                    top.layer.msg(res.message);
+                    layer.closeAll("iframe");
+                    //刷新父页面
+                    parent.location.reload();
+                }, 2000);
+                return false;
+            },
+            error: function(request) {
+                console.log(request);
+            },
+        });
+    });
+    //以下两种方式都行：
+    setTimeout(function() { fuck(); }, 500);
+    setTimeout(function() { form.render(); }, 500);
+
+});
+</script>
+
+</html>
