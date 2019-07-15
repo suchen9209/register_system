@@ -90,15 +90,102 @@ class Tournament extends Api_Controller {
         }
     }
 
-    public function save_setting($id=0){
+    public function update_tour_show_state($id=0){
         if($id>0){
-            $return_data['tournament'] = $this->tournament->get_info($id);
-            $return_data['tournament_item'] = $this->tournament_item->get_info($id);
-            $this->response($this->getResponseData(parent::HTTP_OK, '赛事详细配置信息',$return_data), parent::HTTP_OK);
+            $state = $this->input->post_get('state');
+            $tournament = $this->tournament->get_info($id);
+            $show_state = $tournament->show_state;
+            $show_state_arr = explode(',', $show_state);
+            if(in_array($state, $show_state_arr)){
+                foreach ($show_state_arr as $key=>$value)
+                {
+                    if ($value === $state)
+                        unset($show_state_arr[$key]);
+                }
+            }else{
+                $show_state_arr[]=$state;
+            }
+            $data['show_state'] = implode(',', $show_state_arr);
+
+            if($this->tournament->update($id,$data)){
+                $this->response($this->getResponseData(parent::HTTP_OK, '更改成功'), parent::HTTP_OK);
+            }else{
+                $this->response($this->getResponseData(parent::HTTP_OK, '更改失败'), parent::HTTP_OK);
+            } 
         }else{
             $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '不能传空值'), parent::HTTP_OK);
         }
     }
+
+    public function update_tour_item_list($id=0){
+        if($id>0){
+            $item_name = $this->input->post_get('item_name');
+            $tournament_item = $this->tournament_item->get_info($id);
+            $item_list = $tournament_item->item_list;
+            $item_list_arr = explode(',', $item_list);
+            if(in_array($item_name, $item_list_arr)){
+                foreach ($item_list_arr as $key=>$value)
+                {
+                    if ($value === $item_name)
+                        unset($item_list_arr[$key]);
+                }
+            }else{
+                $item_list_arr[]=$item_name;
+            }
+            $data['item_list'] = implode(',', $item_list_arr);
+
+            if($this->tournament_item->update($id,$data)){
+                $this->response($this->getResponseData(parent::HTTP_OK, '更改成功'), parent::HTTP_OK);
+            }else{
+                $this->response($this->getResponseData(parent::HTTP_OK, '更改失败'), parent::HTTP_OK);
+            } 
+        }else{
+            $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '不能传空值'), parent::HTTP_OK);
+        }
+    }
+
+    public function update_tour_show_dict($id=0){
+        if($id>0){
+            $item = $this->input->post_get('item');
+            $position = $this->input->post_get('position');
+            $value = $this->input->post_get('value');
+
+            $tournament_item = $this->tournament_item->get_info($id);
+            $show_dict = $tournament_item->show_dict;
+            $show_dict_arr = json_decode($show_dict,true);
+
+            $tmp_arr = $show_dict_arr;
+            foreach ($show_dict_arr as $key => $value) {
+                $tmp_arr[$value['field']] = $value;
+            }
+
+            if(!isset($tmp_arr[$item])){
+                $tmp_arr[$item]['field'] = $item;
+            }
+            if($position == 1){
+                $tmp_arr[$item]['show'] = $value;
+            }else if($position == 2){
+                $tmp_arr[$item]['width'] = $value;
+            }else if($position == 3){
+                if($value == true){
+                    $tmp_arr[$item]['type'] = 'image';   
+                }else{
+                    $tmp_arr[$item]['type'] = 'text';   
+                }                
+            }
+
+            if($this->tournament_item->update($id,$data)){
+                $this->response($this->getResponseData(parent::HTTP_OK, '更改成功'), parent::HTTP_OK);
+            }else{
+                $this->response($this->getResponseData(parent::HTTP_OK, '更改失败'), parent::HTTP_OK);
+            } 
+        }else{
+            $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '不能传空值'), parent::HTTP_OK);
+        }
+    }
+
+
+
 
 
 }
