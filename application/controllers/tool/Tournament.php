@@ -38,6 +38,22 @@ class Tournament extends Api_Controller {
         
         if($data){
             if($this->tournament->insert($data)){
+
+                $save_arr = array();
+                $tmp_item = array();
+                $tmp_item['field'] = 'id';
+                $tmp_item['show'] = 'ID';
+                $save_arr[]=$tmp_item;
+                $tmp_item = array();
+                $tmp_item['field'] = 'name,phone,qq,extra_filed1';
+                $tmp_item['show'] = '姓名';
+                $save_arr[]=$tmp_item;
+
+                $data2 = array(
+                    'item_list' => 'id,name,phone,qq,email',
+                    'show_dict' => json_encode($save_arr)
+                );
+                $this->tournament_item->insert($data2);
                 $this->response($this->getResponseData(parent::HTTP_OK, '增加成功'), parent::HTTP_OK);
             }else{
                 $this->response($this->getResponseData(parent::HTTP_OK, '增加失败'), parent::HTTP_OK);
