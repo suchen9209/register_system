@@ -27,12 +27,12 @@
                 <input type="text" name="name" lay-verify="desc" autocomplete="off" placeholder="姓名" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item item2">
+       <!--  <div class="layui-form-item item2">
             <label class="layui-form-label">当前报名人数</label>
             <div class="layui-input-block">
                 <input type="text" name="now_num" lay-verify="number" autocomplete="off" placeholder="用户名" class="layui-input">
             </div>
-        </div>
+        </div> -->
          <div class="layui-form-item item3">
             <label class="layui-form-label">报名人数上限</label>
             <div class="layui-input-block">
@@ -85,30 +85,30 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         var id = $(".item6").attr("data-id");
         var data = JSON.stringify(data.field);
         console.log(data);
-        // var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
-        // $.ajax({
-        //     type: "POST",
-        //     catch: true,
-        //     data: {
-        //         data: data,
-        //     },
-        //     dataType: "json",
-        //     url: "/tool/user/update/"+id,
-        //     success: function(res) {
-        //         console.log(res);
-        //         setTimeout(function() {
-        //             top.layer.close(index);
-        //             top.layer.msg(res.message);
-        //             layer.closeAll("iframe");
-        //             //刷新父页面
-        //             parent.location.reload();
-        //         }, 2000);
-        //         return false;
-        //     },
-        //     error: function(request) {
-        //         console.log(request);
-        //     },
-        // });
+        var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
+        $.ajax({
+            type: "POST",
+            catch: true,
+            data: {
+                data: data,
+            },
+            dataType: "json",
+            url: "/tool/tournament/update/"+id,
+            success: function(res) {
+                console.log(res);
+                setTimeout(function() {
+                    top.layer.close(index);
+                    top.layer.msg(res.message);
+                    layer.closeAll("iframe");
+                    //刷新父页面
+                    parent.location.reload();
+                }, 2000);
+                return false;
+            },
+            error: function(request) {
+                console.log(request);
+            },
+        });
     });
     //以下两种方式都行：
     // setTimeout(function() { fuck(); }, 500);
