@@ -81,7 +81,7 @@ laydate.render({
 
     //监听提交
     form.on('submit(demo1)', function(data) {
-        console.log(data);
+        console.log(data.field);
         var id = $(".item6").attr("data-id");
         var data = JSON.stringify(data.field);
         console.log(data);
