@@ -44,10 +44,10 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                     body.find(".item1 input").val(edit.name);
                     body.find(".item2 input").val(edit.username);
                     body.find(".item3 input").val(edit.weight);
-                    body.find(".item4").attr("type",edit.type);
+                    body.find(".item4").attr("type",edit.tid);
                 }
                 setTimeout(function(){
-                    layui.layer.tips('点击此处返回商品列表', '.layui-layer-setwin .layui-layer-close', {
+                    layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
                 },2000)
