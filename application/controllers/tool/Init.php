@@ -39,28 +39,57 @@ class Init extends Api_Controller {
         $return_arr = array();
         $return_arr['contentManagement'] = array();
 
-        $menu = array();
-        $menu['title'] = $this->tournament_info->name;
-        $menu['icon'] = "&#xe61c;";
-        $menu['href'] = '';
-        $menu['children'] = array();
+        if($this->user_info->weight != 100){
 
-        $state_show_arr = explode(',', $this->tournament_info->show_state);
-        if(in_array('0', $state_show_arr)){
-            $menu['children'][]=array('title'=>'未审核列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=0','spread'=>true);   
-        } 
-        if(in_array('10', $state_show_arr)){
-            $menu['children'][]=array('title'=>'通过列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=10','spread'=>true);   
-        }      
-        if(in_array('5', $state_show_arr)){
-            $menu['children'][]=array('title'=>'备选列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=5','spread'=>true);   
-        }        
-         if(in_array('-1', $state_show_arr)){
-            $menu['children'][]=array('title'=>'全部报名列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=-1','spread'=>true);   
+            $menu = array();
+            $menu['title'] = $this->tournament_info->name;
+            $menu['icon'] = "&#xe61c;";
+            $menu['href'] = '';
+            $menu['children'] = array();
+
+            $state_show_arr = explode(',', $this->tournament_info->show_state);
+            if(in_array('0', $state_show_arr)){
+                $menu['children'][]=array('title'=>'未审核列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=0','spread'=>true);   
+            } 
+            if(in_array('10', $state_show_arr)){
+                $menu['children'][]=array('title'=>'通过列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=10','spread'=>true);   
+            }      
+            if(in_array('5', $state_show_arr)){
+                $menu['children'][]=array('title'=>'备选列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=5','spread'=>true);   
+            }        
+             if(in_array('-1', $state_show_arr)){
+                $menu['children'][]=array('title'=>'全部报名列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=-1','spread'=>true);   
+            }        
+
+            $return_arr['contentManagement'][]=$menu;
+        }else{
+            $menu = array();
+            $menu['title'] = '审核账户管理';
+            $menu['icon'] = "&#xe61c;";
+            $menu['href'] = '';
+            $menu['children'] = array();
+            $menu['children'][] = array('title'=>'账户列表','icon'=>"&#xe61c;",'href'=>'page/users/list.html','spread'=>true); 
+            $menu['children'][] = array('title'=>'新增账户','icon'=>"&#xe61c;",'href'=>'page/users/add.html','spread'=>true);
+            $return_arr['contentManagement'][]=$menu;
+
+            $menu = array();
+            $menu['title'] = '报名赛事管理';
+            $menu['icon'] = "&#xe61c;";
+            $menu['href'] = '';
+            $menu['children'] = array();
+            $menu['children'][] = array('title'=>'赛事列表','icon'=>"&#xe61c;",'href'=>'page/tournaments/list.html','spread'=>true); 
+            $menu['children'][] = array('title'=>'新增赛事','icon'=>"&#xe61c;",'href'=>'page/tournaments/add.html','spread'=>true);
+            $return_arr['contentManagement'][]=$menu;
+
+            $menu = array();
+            $menu['title'] = '邮件管理';
+            $menu['icon'] = "&#xe61c;";
+            $menu['href'] = '';
+            $menu['children'] = array();
+            $menu['children'][] = array('title'=>'邮件列表','icon'=>"&#xe61c;",'href'=>'page/mails/list.html','spread'=>true); 
+            $menu['children'][] = array('title'=>'新增邮件','icon'=>"&#xe61c;",'href'=>'page/mails/add.html','spread'=>true);
+            $return_arr['contentManagement'][]=$menu;
         }
-        
-
-        $return_arr['contentManagement'][]=$menu;
         
         $this->response($return_arr);  
     }
