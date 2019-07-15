@@ -76,6 +76,7 @@ class Init extends Api_Controller {
             $menu['title'] = '报名赛事管理';
             $menu['icon'] = "&#xe61c;";
             $menu['href'] = '';
+            $menu['spread'] = false;
             $menu['children'] = array();
             $menu['children'][] = array('title'=>'赛事列表','icon'=>"&#xe61c;",'href'=>'page/tournaments/list.html','spread'=>true); 
             $menu['children'][] = array('title'=>'新增赛事','icon'=>"&#xe61c;",'href'=>'page/tournaments/add.html','spread'=>true);
@@ -85,6 +86,7 @@ class Init extends Api_Controller {
             $menu['title'] = '邮件管理';
             $menu['icon'] = "&#xe61c;";
             $menu['href'] = '';
+            $menu['spread'] = false;
             $menu['children'] = array();
             $menu['children'][] = array('title'=>'邮件列表','icon'=>"&#xe61c;",'href'=>'page/mails/list.html','spread'=>true); 
             $menu['children'][] = array('title'=>'新增邮件','icon'=>"&#xe61c;",'href'=>'page/mails/add.html','spread'=>true);
