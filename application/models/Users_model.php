@@ -15,7 +15,7 @@ class Users_model extends CI_Model {
     }
 
     public function get_list($offset,$num,$parm=array()){
-        $this->db->select('users.*,t.name');
+        $this->db->select('users.*,t.name as tournament');
         $this->db->limit($num,$offset);
         foreach ($parm as $key => $value) {
             $this->db->where($key,$value);
