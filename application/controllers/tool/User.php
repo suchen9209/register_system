@@ -27,7 +27,7 @@ class User extends Api_Controller {
             $num = $this->input->get_post('limit') ? $this->input->get_post('limit') : 20;
 
             $offset = ($page - 1)*$num;      
-            $option =  array('state'=>1);
+            $option =  array('users.state'=>1);
 
             $list = $this->users->get_list($offset,$num,$option);
             $count = $this->users->get_num($option);
