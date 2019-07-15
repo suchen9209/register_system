@@ -42,16 +42,16 @@
         <div class="layui-form-item item4" type="1">
               <label class="layui-form-label">开始时间</label>
               <div class="layui-input-block">
-                <input type="text" name="starttime" id="date1" autocomplete="off" class="layui-input">
+                <input type="text" class="layui-input" id="date" placeholder="开始 到 结束" lay-key="17">
               </div>
         </div>
        
-        <div class="layui-form-item item5">
+       <!--  <div class="layui-form-item item5">
             <label class="layui-form-label">结束时间</label>
               <div class="layui-input-block">
                 <input type="text" name="endtime" id="date2" autocomplete="off" class="layui-input">
               </div>
-        </div>
+        </div> -->
         <div class="layui-form-item item6">
             <div class="layui-input-block">
                 <button class="layui-btn btn1" lay-submit="" lay-filter="demo1">立即提交</button>
@@ -68,12 +68,12 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         laydate = layui.laydate;
     $ = layui.jquery;
     //日期
-  laydate.render({
-    elem: '#date1'
-  });
-  laydate.render({
-    elem: '#date2'
-  });
+laydate.render({
+  elem: '#date'
+  ,type: 'datetime'
+  ,range: '到'
+  ,format: 'yyyy年M月d日H时'
+}); 
   
 
     //创建一个编辑器
@@ -81,7 +81,7 @@ layui.use(['form', 'layedit', 'laydate'], function() {
 
     //监听提交
     form.on('submit(demo1)', function(data) {
-        console.log(data);
+        console.log(data.field);
         var id = $(".item6").attr("data-id");
         var data = JSON.stringify(data.field);
         console.log(data);
