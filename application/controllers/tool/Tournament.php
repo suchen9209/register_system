@@ -58,6 +58,17 @@ class Tournament extends Api_Controller {
         if($id>0){
             $return_data['tournament'] = $this->tournament->get_info($id);
             $return_data['tournament_item'] = $this->tournament_item->get_info($id);
+            $return_data['tournament_item']->show_dict=json_decode($return_data['tournament_item']->show_dict);
+            $this->response($this->getResponseData(parent::HTTP_OK, '赛事详细配置信息',$return_data), parent::HTTP_OK);
+        }else{
+            $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '不能传空值'), parent::HTTP_OK);
+        }
+    }
+
+    public function save_setting($id=0){
+        if($id>0){
+            $return_data['tournament'] = $this->tournament->get_info($id);
+            $return_data['tournament_item'] = $this->tournament_item->get_info($id);
             $this->response($this->getResponseData(parent::HTTP_OK, '赛事详细配置信息',$return_data), parent::HTTP_OK);
         }else{
             $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '不能传空值'), parent::HTTP_OK);
