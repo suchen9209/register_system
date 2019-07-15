@@ -30,13 +30,13 @@
         <div class="layui-form-item item2">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
-                <input type="text" name="show_name" lay-verify="desc" autocomplete="off" placeholder="用户名" class="layui-input">
+                <input type="text" name="username" lay-verify="desc" autocomplete="off" placeholder="用户名" class="layui-input">
             </div>
         </div>
          <div class="layui-form-item item3">
             <label class="layui-form-label">权限</label>
             <div class="layui-input-block">
-                <input type="text" name="validity" lay-verify="number" autocomplete="off" placeholder="权限" class="layui-input">
+                <input type="text" name="weight" lay-verify="number" autocomplete="off" placeholder="权限" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item item4" type="1">
@@ -50,7 +50,7 @@
         <div class="layui-form-item item5">
             <label class="layui-form-label">密码</label>
             <div class="layui-input-block">
-                <input type="password" name="num" lay-verify="number" autocomplete="off" placeholder="密码" class="layui-input">
+                <input type="password" name="password" lay-verify="number" autocomplete="off" placeholder="密码" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item item6">
@@ -126,44 +126,8 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     //监听提交
     form.on('submit(demo1)', function(data) {
         console.log(data);
-        // var display = $('.item4').css('display');
-        // var arr = new Array();
-        // $('.layui-form-checked span').each(function() {
-        //     arr.push($(this).attr("data-id"));
-        // });
-        // arr = arr.join(',');
-        // console.log(arr);
-        // var state = 1;
-        // if (data.field.state == 1) {
-        //     state = 1;
-        // } else {
-        //     state = 0;
-        // }
-        // if (display == 'none') {
-        //     var json = {
-        //         "name": data.field.name,
-        //         "num": data.field.num,
-        //         "show_name": data.field.show_name,
-        //         "validity": data.field.validity,
-        //         "discount": data.field.discount,
-        //         "type": data.field.type,
-        //         "state": state,
-        //         "good_ids": 0,
-        //     };
-        // } else {
-        //     var json = {
-        //         "name": data.field.name,
-        //         "num": data.field.num,
-        //         "show_name": data.field.show_name,
-        //         "validity": data.field.validity,
-        //         "discount": data.field.discount,
-        //         "type": data.field.type,
-        //         "state": state,
-        //         "good_ids": arr,
-        //     };
-        // }
-        // var data = JSON.stringify(json);
-        // console.log(data);
+        var data = JSON.stringify(data.field);
+        console.log(data);
         // var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
         // $.ajax({
         //     type: "POST",
