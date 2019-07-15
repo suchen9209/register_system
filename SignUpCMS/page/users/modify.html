@@ -82,16 +82,15 @@ layui.use(['form', 'layedit', 'laydate'], function() {
             success: function(res) {
                 console.log(res);
                 var html = '';
-                // 判断优惠劵类型
-                // var datatype = $(".item3").attr("type");
-                // html = '<option value=""></option>';
+                // 判断赛事类型
+                var datatype = $(".item4").attr("type");
+                html = '<option value=""></option>';
                 for (var i = 0; i < res.length; i++) {
-                    if (i == 0) {
-                        html += "<option value=" + res[i].id + ">" + res[i].name + "</option>";
-                    } else {
+                    if (res[i].id == datatype) {
                         html += "<option selected=''  value=" + res[i].id + ">" + res[i].name + "</option>";
+                    } else {
+                        html += "<option value=" + res[i].id + ">" + res[i].name + "</option>";
                     }
-                    $(".item4").show();
                 };
                 $(".cc").html(html);
                 form.render();
