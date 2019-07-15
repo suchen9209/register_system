@@ -10,7 +10,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
 
     var tableIns = table.render({
         elem: '#newsList',
-        url: 'http://apply.imbatv.cn/tool/user',
+        url: '/tool/user',
         limit: 15,
         limits: [15, 30, 45, 60],
         page: true,
@@ -32,154 +32,59 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             $(".layui-table-box").find("[data-field='id']").css("display", "none");
         }
     });
-    // 搜索
-    var $ = layui.$,
-        active = {
-            reload: function() {
-                var searchVal = $(".searchVal").val();
-                if (isPhoneNo(searchVal)) {
-                    username = '';
-                    phone = searchVal;
-                    name = '';
-                    idcard = '';
-                } else {
-                    username = searchVal;
-                    phone = '';
-                    name = '';
-                    idcard = '';
+    //修改用户列表信息
+    function modify(edit){
+        var index = layui.layer.open({
+            title : "修改用户列表信息",
+            type : 2,
+            content : "modify.html",
+            success : function(layero, index){
+                var body = layui.layer.getChildFrame('body', index);
+                if(edit){
+                    body.find(".item1 input").val(edit.name);
+                    body.find(".item2 input").val(edit.username);
+                    body.find(".item3 input").val(edit.weight);
+                    body.find(".item4").attr("type",edit.type);
                 }
-                table.reload('newsList', {
-                    url: 'https://pay.imbatv.cn/api/user/get_user_list',
-                    where: {
-                        username: username,
-                        phone: phone,
-                        name: name,
-                        idcard: idcard
-                    },
-                    page: {
-                        curr: 1 //重新从第 1 页开始
-                    }
-                });
+                setTimeout(function(){
+                    layui.layer.tips('点击此处返回商品列表', '.layui-layer-setwin .layui-layer-close', {
+                        tips: 3
+                    });
+                },2000)
             }
-        };
-
-    $('.search_btn').on('click', function() {
-        exportApiDemo();
-    });
-    // 验证手机号
-    function isPhoneNo(phone) {
-        var pattern = /^1[34578]\d{9}$/;
-        return pattern.test(phone);
+        })
+        layui.layer.full(index);
+        //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+        // $(window).on("resize",function(){
+        //     layui.layer.full(index);
+        // })
     }
-    // 导出数据
-    function exportApiDemo() {
-        $.ajax({
-            url: "http://apply.imbatv.cn//tool/applicant?tid=3&state=-1&limit=2000",
-            type: "GET",
-            dataType: 'json',
-            success(res) {
-                var data = res.data;
-                // 重点！！！如果后端给的数据顺序和映射关系不对，请执行梳理函数后导出
-                data = excel.filterExportData(data, [
-                    'name', 'nickname', 'qq', 'phone', 'email', 'game_id','idcard', 'extra_filed1', 'extra_filed2'
-                ]);
-                // 重点2！！！一般都需要加一个表头，表头的键名顺序需要与最终导出的数据一致
-                data.unshift({ name: "姓名", nickname: "昵称", qq: 'qq', phone: '手机', email: '邮箱', game_id: '游戏ID',idcard: '身份证号', extra_filed1: '段位截图',extra_filed2: '分组' });
-
-                var timestart = Date.now();
-                excel.exportExcel(data, '导出接口数据.xlsx', 'xlsx');
-            },
-            error() {
-                layer.alert('获取数据失败，请检查是否部署在本地服务器环境下');
-            }
-        });
-    }
+    $(window).one("resize",function(){
+        $(".commondityAdd_btn").click(function(){
+            var index = layui.layer.open({
+                title : "增加优惠劵",
+                type : 2,
+                content : "commondityAdd.html",
+                success : function(layero, index){
+                    setTimeout(function(){
+                        layui.layer.tips('返回', '.layui-layer-setwin .layui-layer-close', {
+                            tips: 3
+                        });
+                    },2000)
+                }
+            })          
+            layui.layer.full(index);
+        })
+    }).resize();
     //列表操作
     table.on('tool(newsList)', function(obj) {
         var layEvent = obj.event,
             data = obj.data;
-
-        var userid = obj.data.id;
-        var username = obj.data.username;
-        var name = data.name;
-        var phone = data.phone;
-        var idcard = data.idcard;
-        console.log(userid);
-        if (layEvent === 'adopt') { //上机
-            $.ajax({
-                url: "http://apply.imbatv.cn//tool/applicant/update/" + userid,
-                type: "POST",
-                data: {
-                    state: 10
-                },
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    if (data.code == 200) {
-                        layer.msg(data.message, { time: 1000 }, function() {
-                            //回调
-                            window.location.reload();
-                        })
-                    } else {
-                        layer.msg(data.message);
-                    }
-
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-            // 未通过
-        } else if (layEvent === 'no-pass') {
-            $.ajax({
-                url: "http://apply.imbatv.cn//tool/applicant/update/" + userid,
-                type: "POST",
-                data: {
-                    state: 2
-                },
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    if (data.code == 200) {
-                        layer.msg(data.message, { time: 1000 }, function() {
-                            //回调
-                            window.location.reload();
-                        })
-                    } else {
-                        layer.msg(data.message);
-                    }
-
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-            // 替补
-        }else if (layEvent === 'Substitute') {
-            $.ajax({
-                url: "http://apply.imbatv.cn//tool/applicant/update/" + userid,
-                type: "POST",
-                data: {
-                    state: 5
-                },
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    if (data.code == 200) {
-                        layer.msg(data.message, { time: 1000 }, function() {
-                            //回调
-                            window.location.reload();
-                        })
-                    } else {
-                        layer.msg(data.message);
-                    }
-
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-        }
+        var list = data.detail;
+        var order_id = obj.data.id;
+        if (layEvent === 'modify') { //修改
+            modify(data);
+        } 
     });
 
 })
