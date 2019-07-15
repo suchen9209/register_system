@@ -20,8 +20,8 @@ class Tournament extends Api_Controller {
         $count = $this->tournament->get_num($option);
 
         foreach ($list as $key => $value) {
-            $list[$key]['starttime'] = date('Y-m-d H时',$value['starttime']);
-            $list[$key]['endtime'] = date('Y-m-d H时',$value['endtime']);
+            $list[$key]['starttime'] = date('Y-m-d H:i:s',$value['starttime']);
+            $list[$key]['endtime'] = date('Y-m-d H:i:s',$value['endtime']);
         }
 
         $return_arr = $this->getLayuiList(0,'赛事列表',$count,$list);
