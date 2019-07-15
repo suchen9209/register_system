@@ -179,5 +179,10 @@ class Init extends Api_Controller {
         $this->response($mails);  
     }
 
+    public function tour_list(){
+        $tour_list = $this->tournament->get_list(0,15);
+        $this->response($tour_list); 
+    }
+
 
 }
