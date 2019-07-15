@@ -82,53 +82,20 @@ layui.use(['form', 'layedit', 'laydate'], function() {
             success: function(res) {
                 console.log(res);
                 var html = '';
-                var html1 = '';
-                var data = res.data;
                 // 判断优惠劵类型
-                var datatype = $(".item3").attr("type");
-                html = '<option value=""></option>';
-                for (var i = 0; i < data.coupon_type.length; i++) {
-                    if (datatype == 1) {
-                        if (i == 0) {
-                            html += "<option selected='' value=" + data.coupon_type[i].id + ">" + data.coupon_type[i].name + "</option>";
-                        } else {
-                            html += "<option value=" + data.coupon_type[i].id + ">" + data.coupon_type[i].name + "</option>";
-                        }
-                        $(".item4").hide();
+                // var datatype = $(".item3").attr("type");
+                // html = '<option value=""></option>';
+                for (var i = 0; i < res.length; i++) {
+                    if (i == 0) {
+                        html += "<option value=" + data[i].id + ">" + data[i].name + "</option>";
                     } else {
-                        if (i == 0) {
-                            html += "<option value=" + data.coupon_type[i].id + ">" + data.coupon_type[i].name + "</option>";
-                        } else {
-                            html += "<option selected=''  value=" + data.coupon_type[i].id + ">" + data.coupon_type[i].name + "</option>";
-                        }
-                        $(".item4").show();
+                        html += "<option selected=''  value=" + data[i].id + ">" + data[i].name + "</option>";
                     }
+                    $(".item4").show();
                 };
-                // 饮料名称
-                var good_ids = $(".item4").attr("good_ids");
-                if(good_ids != 0){
-                    var s = good_ids.split(',');
-                    for (var j = 0; j < data.drink_list.length; j++) {
-                        html1 += "<input type='checkbox'  name='" + data.drink_list[j].id + "' title='" + data.drink_list[j].name + "' value='" + data.drink_list[j].name + "'>";
-                    }
-                }else{
-                    var s = good_ids.split(',');
-                    for (var j = 0; j < data.drink_list.length; j++) {
-                        html1 += "<input type='checkbox'  name='" + data.drink_list[j].id + "' title='" + data.drink_list[j].name + "' value='" + data.drink_list[j].name + "'>";
-                    }
-                     $(".item4").hide();
-                }
                 $(".cc").html(html);
                 $(".dd").html(html1);
-                if(good_ids != 0){
-                for (var i = 0; i < s.length; i++) {
-                    $('.item4 input').each(function() {
-                        if ($(this).attr("name") == s[i]) {
-                            $(this).attr("checked", "");
-                        }
-                    });
-                }
-                }
+                
 
                 form.render();
                 form.on("select", function(data) {
