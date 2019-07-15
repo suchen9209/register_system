@@ -71,17 +71,6 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     $ = layui.jquery;
 
     function fuck() {
-        var html_checkbox = '';
-        var checkbox = $(".item8 input").val();
-        console.log(checkbox);
-        if (checkbox == 0) {
-            console.log("关闭");
-            html_checkbox += '<input type="checkbox"  value="0" name="state" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">';
-        } else {
-            console.log("开启");
-            html_checkbox += '<input type="checkbox"  value="1" checked="" name="state" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">';
-        }
-        $(".item8 .spc").html(html_checkbox);
         $.ajax({
             type: "GET",
             catch: true,
