@@ -27,7 +27,7 @@ class User extends Api_Controller {
             $num = $this->input->get_post('limit') ? $this->input->get_post('limit') : 20;
 
             $offset = ($page - 1)*$num;      
-            $option =  array();
+            $option =  array('state'=>1);
 
             $list = $this->users->get_list($offset,$num,$option);
             $count = $this->users->get_num($option);
@@ -63,7 +63,7 @@ class User extends Api_Controller {
             $data['password'] = password_md5($data['password']);
         }
         if($data && $id > 0){
-            if($this->goods->update($id,$data)){
+            if($this->users->update($id,$data)){
                 $this->response($this->getResponseData(parent::HTTP_OK, '更改成功'), parent::HTTP_OK);
             }else{
                 $this->response($this->getResponseData(parent::HTTP_OK, '更改失败'), parent::HTTP_OK);
