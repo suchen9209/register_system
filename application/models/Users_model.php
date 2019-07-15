@@ -15,11 +15,12 @@ class Users_model extends CI_Model {
     }
 
     public function get_list($offset,$num,$parm=array()){
-        $this->db->select('*');
+        $this->db->select('users.*,t.name');
         $this->db->limit($num,$offset);
         foreach ($parm as $key => $value) {
             $this->db->where($key,$value);
         }
+        $this->db->join('tournament as t','t.id = users.tid','LEFT');
         $this->db->from($this->table_name);
         $this->db->order_by('id','DESC');
         $query = $this->db->get();
