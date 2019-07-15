@@ -17,13 +17,13 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         //,…… //其他参数
         cols: [
             [
-                { field: 'id', title: 'ID', align: 'center', width: 50 },
-                { field: 'name', title: '姓名', width: 150, align: "center" },
+                { field: 'id', title: 'ID', align: 'center'},
+                { field: 'name', title: '姓名', align: "center" },
                 { field: 'username', title: '用户名', align: 'center' },
                 { field: 'weight', title: '权限', align: 'center' },
                 { field: 'createtime', title: '创建时间', align: 'center' },
                 { field: 'tournament', title: '赛事', align: 'center' },
-                { title: '操作', width: 270, templet: '#newsListBar', fixed: "right", align: "center" }
+                { title: '操作',  templet: '#newsListBar', fixed: "right", align: "center" }
             ]
         ],
         done: function(res, curr, count) {
