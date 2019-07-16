@@ -13,15 +13,15 @@
   <!-- 显示状态 -->
   <div class="layui-form" >
     
-<!-- 
-  <div class="layui-form-item">
+
+  <div class="layui-form-item spc">
     <label class="layui-form-label">显示状态</label>
     <div class="layui-input-block">
       <input type="checkbox" name="like[write]" title="通过" checked="">
       <input type="checkbox" name="like[read]" title="不通过" >
       <input type="checkbox" name="like[game]" title="替补">
     </div>
-  </div>  -->
+  </div> 
   </div>
 <table class="layui-hide" id="test" lay-filter="test"></table>
 <script type="text/html" id="switchTpl">
@@ -47,7 +47,7 @@ layui.use('table', function(){
         laydate = layui.laydate,
         laytpl = layui.laytpl,
         table = layui.table; 
-  var data_id = $("#test").attr("data_id");
+  var data_id = $(".spc").attr("data_id");
   console.log(data_id);
   table.render({ 
     elem: '#test'

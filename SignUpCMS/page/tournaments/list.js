@@ -75,7 +75,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){
-                    body.find("#test").attr("data-id",edit.id);
+                    body.find(".spc").attr("data-id",edit.id);
                 }
                 setTimeout(function(){
                     layui.layer.tips('点击此处返回赛事列表', '.layui-layer-setwin .layui-layer-close', {
