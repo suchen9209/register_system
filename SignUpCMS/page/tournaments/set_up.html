@@ -51,7 +51,22 @@ layui.use('table', function(){
  $(function () {
       //从父层获取值，json是父层的全局js变量。eval是将该string类型的json串变为标准的json串
       var parent_json = eval('('+parent.json+')');  
-      data_id = parent_json.id;  
+      data_id = parent_json.id;
+      $.ajax({
+          type: "GET",
+          catch: true,
+          dataType: "json",
+          url: 'http://apply.imbatv.cn/tool/tournament/state_setting/'+data_id,
+          error: function(request) {
+              console.log(request);
+          },
+          success: function(res) {
+              console.log(res);
+             for(var i in res){
+              alert(res[i])
+             }
+          },
+      });  
       table.render({ 
           elem: '#test'
           ,cellMinWidth: 80
@@ -69,21 +84,7 @@ layui.use('table', function(){
         }); 
   });
 
- $.ajax({
-          type: "GET",
-          catch: true,
-          dataType: "json",
-          url: 'http://apply.imbatv.cn/tool/tournament/state_setting/'+data_id,
-          error: function(request) {
-              console.log(request);
-          },
-          success: function(res) {
-              console.log(res);
-             for(var i in res){
-              alert(arr[i])
-             }
-          },
-      });
+ 
   
 
 
