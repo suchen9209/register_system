@@ -46,7 +46,7 @@ class Tournament extends Api_Controller {
                 $tmp_item['show'] = 'ID';
                 $save_arr[]=$tmp_item;
                 $tmp_item = array();
-                $tmp_item['field'] = 'name,phone,qq,extra_filed1';
+                $tmp_item['field'] = 'name';
                 $tmp_item['show'] = '姓名';
                 $save_arr[]=$tmp_item;
 
