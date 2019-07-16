@@ -38,19 +38,20 @@ class Tournament extends Api_Controller {
         $data['endtime'] = strtotime($data['endtime']);
         
         if($data){
-            if($this->tournament->insert($data)){
-
+            $tid = $this->tournament->insert($data);
+            if($tid > 0){
                 $save_arr = array();
                 $tmp_item = array();
                 $tmp_item['field'] = 'id';
                 $tmp_item['show'] = 'ID';
                 $save_arr[]=$tmp_item;
                 $tmp_item = array();
-                $tmp_item['field'] = 'name,phone,qq,extra_filed1';
+                $tmp_item['field'] = 'name';
                 $tmp_item['show'] = '姓名';
                 $save_arr[]=$tmp_item;
 
                 $data2 = array(
+                    'tid'   => $tid,
                     'item_list' => 'id,name,phone,qq,email',
                     'show_dict' => json_encode($save_arr)
                 );
