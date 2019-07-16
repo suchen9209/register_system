@@ -242,7 +242,10 @@ class Tournament extends Api_Controller {
                     $tmp_arr[$item]['type'] = 'text';   
                 }                
             }
-            $data['show_dict'] = json_encode($tmp_arr);
+            foreach ($tmp_arr as $key => $value) {
+                $final_arr []=$value;
+            }
+            $data['show_dict'] = json_encode($final_arr);
 
 
             if($this->tournament_item->update($id,$data)){
