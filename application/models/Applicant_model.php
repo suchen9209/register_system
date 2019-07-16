@@ -37,6 +37,11 @@ class Applicant_model extends CI_Model {
         $query = $this->db->get();
         return $query->num_rows() > 0 ? $query->row() : false;
     }
+
+    public function get_col(){
+        $query = $this->db->query('SHOW COLUMNS FROM `applicant`');
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
     
 }
 ?>

@@ -115,7 +115,9 @@ class Init extends Api_Controller {
             'extra_filed1'    =>  '备用字段1',
             'extra_filed2'    =>  '备用字段2',
             'extra_filed3'    =>  '备用字段3',
-            'extra_filed4'    =>  '备用字段4'
+            'extra_filed4'    =>  '备用字段4',
+            'dealtime'  =>  '审核时间'
+
         );
 /*
         width不写则默认宽度
