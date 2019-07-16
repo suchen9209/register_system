@@ -14,12 +14,14 @@
   <div class="layui-form" >
     
 
-  <div class="layui-form-item spc">
+  <div class="layui-form-item spc" style="margin-top: 15px;">
     <label class="layui-form-label">显示状态</label>
     <div class="layui-input-block">
-      <input type="checkbox" name="like[write]" title="通过" checked="" lay-filter="zt">
-      <input type="checkbox" name="like[read]" title="不通过" >
-      <input type="checkbox" name="like[game]" title="替补">
+      <input type="checkbox" name="like[one]" title="全部" checked="" lay-filter="zt1">
+      <input type="checkbox" name="like[two]" title="未审核" checked="" lay-filter="zt2">
+      <input type="checkbox" name="like[three]" title="通过" checked="" lay-filter="zt3">
+      <input type="checkbox" name="like[four]" title="不通过" lay-filter="zt4">
+      <input type="checkbox" name="like[five]" title="替补" lay-filter="zt5">
     </div>
   </div> 
   </div>
@@ -67,8 +69,22 @@ layui.use('table', function(){
         }); 
   });
 
- 
+ $.ajax({
+          type: "GET",
+          catch: true,
+          dataType: "json",
+          url: 'http://apply.imbatv.cn/tool/tournament/state_setting/'+data_id,
+          error: function(request) {
+              console.log(request);
+          },
+          success: function(res) {
+              console.log(res);
+              console.log(typeof res);
+          },
+      });
   
+
+
   //监听图片属性操作
   form.on('switch(sexDemo)', function(obj){
      var value = obj.value; //得到修改后的值
