@@ -50,7 +50,8 @@ layui.use('table', function(){
  $(function () {
         //从父层获取值，json是父层的全局js变量。eval是将该string类型的json串变为标准的json串
         var parent_json = eval('('+parent.json+')');
-        console.log(parent_json);        
+        console.log(parent_json);    
+        var data_id = parent_json.id;  
 });
 
   table.render({ 
