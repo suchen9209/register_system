@@ -62,8 +62,10 @@ layui.use('table', function(){
           },
           success: function(res) {
               console.log(res);
-             for(var i in res){
+             var arr = res.split(',');
+             for(var i in arr){
               alert(res[i])
+              console.log(arr[i]);
              }
           },
       });  
