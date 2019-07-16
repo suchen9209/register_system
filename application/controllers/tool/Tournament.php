@@ -235,7 +235,7 @@ class Tournament extends Api_Controller {
                 }else{
                     unset($tmp_arr[$item]['show']);
                 }
-            }else if($position == 3){
+            }else if($position == 2){
                 if($value == true){
                     $tmp_arr[$item]['type'] = 'image';   
                 }else{
