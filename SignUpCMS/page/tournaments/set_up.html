@@ -11,7 +11,7 @@
 </head>
 <body>
  
-<table class="layui-hide" id="test"></table>
+<table class="layui-hide" id="test" lay-filter="test"></table>
 <script type="text/html" id="switchTpl">
   <!-- 这里的 checked 的状态只是演示 -->
   <input type="checkbox" name="sex" value="{{d.id}}" lay-skin="switch" lay-text="是|否" lay-filter="sexDemo" {{ d.id == 1 ? 'checked' : '' }}>
