@@ -25,12 +25,10 @@
   </div>
 <table class="layui-hide" id="test" lay-filter="test"></table>
 <script type="text/html" id="switchTpl">
-  <!-- 这里的 checked 的状态只是演示 -->
   <input type="checkbox" name="sex" value="{{d.is_image}}" lay-skin="switch" lay-text="是|否" lay-filter="sexDemo" {{ d.is_image == 1 ? 'checked' : '' }}>
 </script>
 <script type="text/html" id="checkboxTpl">
-  <!-- 这里的 checked 的状态只是演示 -->
-  <input type="checkbox" name="lock" value="{{d.is_show}}" title="显示" lay-filter="lockDemo" {{ d.is_show == 1 ? 'checked' : '' }}>
+  <input type="checkbox" name="lock" value="{{d.column_name}}" title="显示" lay-filter="lockDemo" {{ d.is_show == 1 ? 'checked' : '' }}>
 </script>
 
               
@@ -79,12 +77,12 @@ layui.use('table', function(){
   
   //监听显示操作
   form.on('checkbox(lockDemo)', function(obj){
-    console.log(obj); 
-    layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
+    // console.log(obj); 
+    // layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
     table.reload('idTest', {
       url: 'http://apply.imbatv.cn/tool/tournament/update_tour_item_list/'+data_id
       ,where: { //设定异步数据接口的额外参数，任意设
-        item_name: 'xxx'
+        item_name: this.value
       }
       ,page: {
         curr: 1 //重新从第 1 页开始
