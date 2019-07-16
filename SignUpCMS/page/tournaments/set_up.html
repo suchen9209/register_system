@@ -32,17 +32,18 @@ layui.use('table', function(){
     ,cellMinWidth: 80
     ,cols: [[
       {field:'lock', title:'是否显示', width:110, templet: '#checkboxTpl', unresize: true,align: 'center' },
+      {field:'default_name', title:'默认名称', width:100, align: 'center' },
       {field:'field_name', title:'字段名', width:100, align: 'center' },
       {field:'id', title:'ID', width:100, align: 'center' }
-      ,{field:'name', title:'用户名', templet: '#usernameTpl',align: 'center' }
-      ,{field:'nickname', title:'城市',align: 'center' }
-      ,{field:'wealth', title: '财富', minWidth:120, sort: true,align: 'center' }
+      ,{field:'name', title:'别名', templet: '#usernameTpl',align: 'center' }
+      ,{field:'nickname', title:'类型',align: 'center' }
     ]]
     ,data: [{
 
             "id":10000,
             "username":"user-0",
-            "field_name":"ID",
+            "default_name":"ID",
+            "field_name":"id",
             "sex":"女",
             "nickname":"城市-0",
             "sign":"签名-0",
@@ -54,6 +55,7 @@ layui.use('table', function(){
         },
         {
             "id":10001,
+            "default_name":"姓名",
             "field_name":"tid",
             "username":"user-1",
             "sex":"男",
@@ -67,6 +69,7 @@ layui.use('table', function(){
         },
         {
             "id":10002,
+            "default_name":"昵称",
             "field_name":"name",
             "username":"user-2",
             "sex":"女",
@@ -80,6 +83,7 @@ layui.use('table', function(){
         },
         {
             "id":10003,
+            "default_name":"年龄",
             "field_name":"nickname",
             "username":"user-3",
             "sex":"女",
@@ -93,6 +97,7 @@ layui.use('table', function(){
         },
         {
             "id":10004,
+            "default_name":"QQ",
             "field_name":"age",
             "username":"user-4",
             "sex":"男",
@@ -107,6 +112,7 @@ layui.use('table', function(){
         {
             "id":10005,
             "username":"user-5",
+            "default_name":"手机号码",
             "field_name":"qq",
             "sex":"女",
             "nickname":"城市-5",
@@ -120,6 +126,7 @@ layui.use('table', function(){
         {
             "id":10006,
             "username":"user-6",
+            "default_name":"邮箱",
             "field_name":"phone",
             "sex":"女",
             "nickname":"城市-6",
@@ -133,6 +140,7 @@ layui.use('table', function(){
         {
             "id":10007,
             "username":"user-7",
+            "default_name":"头像",
             "field_name":"email",
             "sex":"男",
             "nickname":"城市-7",
@@ -146,6 +154,7 @@ layui.use('table', function(){
         {
             "id":10008,
             "username":"user-8",
+            "default_name":"身份证",
             "field_name":"avator",
             "sex":"男",
             "nickname":"城市-8",
@@ -159,6 +168,7 @@ layui.use('table', function(){
         {
             "id":10009,
             "username":"user-9",
+            "default_name":"游戏ID",
             "field_name":"createtime",
             "sex":"女",
             "nickname":"城市-9",
