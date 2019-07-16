@@ -36,8 +36,8 @@ layui.use('table', function(){
     ,cellMinWidth: 80
     ,cols: [[
       {field:'lock', title:'是否显示',templet: '#checkboxTpl', unresize: true,align: 'center' },
-      {field:'default_name', title:'默认名称', align: 'center',  edit: 'text'},
-      {field:'field_name', title:'字段名', align: 'center', edit: 'text' },
+      {field:'default_name', title:'默认名称', align: 'center'},
+      {field:'field_name', title:'字段名', align: 'center'},
       {field:'name', title:'别名',  align: 'center', edit: 'text' }
       ,{field:'sex', title:'图片属性', align: 'center', templet: '#switchTpl', unresize: true}
     ]]
@@ -419,6 +419,8 @@ layui.use('table', function(){
             "extra_filed3":57,
             "extra_filed4":57,
         }],
+    page: true,
+    limit: 20
   });
   
   //监听性别操作
