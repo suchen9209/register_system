@@ -49,38 +49,47 @@ layui.use('table', function(){
         table = layui.table; 
         data_id ='';
  $(function () {
-        //从父层获取值，json是父层的全局js变量。eval是将该string类型的json串变为标准的json串
-        var parent_json = eval('('+parent.json+')');
-        console.log(parent_json);    
-        data_id = parent_json.id;  
-        console.log(data_id); 
-         table.render({ 
-    elem: '#test'
-    ,cellMinWidth: 80
-    ,url:'http://apply.imbatv.cn/tool/tournament/setting/'+data_id
-    ,cols: [[
-      {field:'lock', title:'是否显示',templet: '#checkboxTpl', unresize: true,align: 'center' },
-      {field:'default_show_name', title:'默认名称', align: 'center'},
-      {field:'column_name', title:'字段名', align: 'center'},
-      {field:'show_name', title:'别名',  align: 'center', edit: 'text' }
-      ,{field:'img', title:'图片属性', align: 'center', templet: '#switchTpl', unresize: true}
-    ]]
-    ,
-    page: true,
-    limit: 20
-  }); 
-});
+      //从父层获取值，json是父层的全局js变量。eval是将该string类型的json串变为标准的json串
+      var parent_json = eval('('+parent.json+')');  
+      data_id = parent_json.id;  
+      table.render({ 
+          elem: '#test'
+          ,cellMinWidth: 80
+          ,url:'http://apply.imbatv.cn/tool/tournament/setting/'+data_id
+          ,cols: [[
+            {field:'lock', title:'是否显示',templet: '#checkboxTpl', unresize: true,align: 'center' },
+            {field:'default_show_name', title:'默认名称', align: 'center'},
+            {field:'column_name', title:'字段名', align: 'center'},
+            {field:'show_name', title:'别名',  align: 'center', edit: 'text' }
+            ,{field:'img', title:'图片属性', align: 'center', templet: '#switchTpl', unresize: true}
+          ]]
+          ,
+          page: true,
+          limit: 20
+        }); 
+  });
 
  
   
-  //监听性别操作
+  //监听图片属性操作
   form.on('switch(sexDemo)', function(obj){
     layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
+
   });
   
-  //监听锁定操作
+  //监听显示操作
   form.on('checkbox(lockDemo)', function(obj){
+    console.log(obj); 
     layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
+    table.reload('idTest', {
+      url: 'http://apply.imbatv.cn/tool/tournament/update_tour_item_list/'+data_id
+      where: { //设定异步数据接口的额外参数，任意设
+        item_name: 'xxx'
+      }
+      ,page: {
+        curr: 1 //重新从第 1 页开始
+      }
+    }); //只重载数据
   });
 
 
