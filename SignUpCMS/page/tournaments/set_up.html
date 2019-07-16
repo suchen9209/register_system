@@ -14,7 +14,7 @@
 <table class="layui-hide" id="test"></table>
 <script type="text/html" id="switchTpl">
   <!-- 这里的 checked 的状态只是演示 -->
-  <input type="checkbox" name="sex" value="{{d.id}}" lay-skin="switch" lay-text="是|否" lay-filter="sexDemo" {{ d.id == 10003 ? 'checked' : '' }}>
+  <input type="checkbox" name="sex" value="{{d.id}}" lay-skin="switch" lay-text="是|否" lay-filter="sexDemo" {{ d.id == 1 ? 'checked' : '' }}>
 </script>
 <script type="text/html" id="checkboxTpl">
   <!-- 这里的 checked 的状态只是演示 -->
@@ -39,7 +39,7 @@ layui.use('table', function(){
       {field:'default_name', title:'默认名称', align: 'center'},
       {field:'field_name', title:'字段名', align: 'center'},
       {field:'name', title:'别名',  align: 'center', edit: 'text' }
-      ,{field:'sex', title:'图片属性', align: 'center', templet: '#switchTpl', unresize: true}
+      ,{field:'img', title:'图片属性', align: 'center', templet: '#switchTpl', unresize: true}
     ]]
     ,data: [{
 
