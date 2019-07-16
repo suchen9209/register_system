@@ -236,10 +236,10 @@ class Tournament extends Api_Controller {
                     unset($tmp_arr[$item]['show']);
                 }
             }else if($position == 2){
-                if($value == true){
+                if($value == 'true'){
                     $tmp_arr[$item]['type'] = 'image';   
                 }else{
-                    $tmp_arr[$item]['type'] = 'text';   
+                    unset($tmp_arr[$item]['type']); 
                 }                
             }
             foreach ($tmp_arr as $k2 => $v2) {
