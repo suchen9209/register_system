@@ -25,7 +25,7 @@
   </div>
 <table class="layui-hide" id="test" lay-filter="test"></table>
 <script type="text/html" id="switchTpl">
-  <input type="checkbox" name="sex" value="{{d.is_image}}" lay-skin="switch" lay-text="是|否" lay-filter="sexDemo" {{ d.is_image == 1 ? 'checked' : '' }}>
+  <input type="checkbox" name="{{d.column_name}}" value="{{d.is_image}}" lay-skin="switch" lay-text="是|否" lay-filter="sexDemo" {{ d.is_image == 1 ? 'checked' : '' }}>
 </script>
 <script type="text/html" id="checkboxTpl">
   <input type="checkbox" name="lock" value="{{d.column_name}}" title="显示" lay-filter="lockDemo" {{ d.is_show == 1 ? 'checked' : '' }}>
@@ -71,19 +71,15 @@ layui.use('table', function(){
   
   //监听图片属性操作
   form.on('switch(sexDemo)', function(obj){
-     var value = obj.value //得到修改后的值
-    ,data = obj.data //得到所在行所有键值
-    ,field = obj.field; //得到字段
-    console.log(field);
-   console.log(data); 
-   console.log(obj); 
+     var value = obj.value, //得到修改后的值
    console.log(obj.elem.checked); 
+   console.log(obj.elem.name); 
     $.ajax({
           type: "POST",
           catch: true,
           dataType: "json",
           url: 'http://apply.imbatv.cn/tool/tournament/update_tour_show_dict/'+data_id,
-          data: { item: value,position:2,value:obj.elem.checked },
+          data: { item: obj.elem.name,position:2,value:obj.elem.checked },
           error: function(request) {
               console.log(request);
           },
