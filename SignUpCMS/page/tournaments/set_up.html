@@ -98,7 +98,20 @@ layui.use('table', function(){
     var value = obj.value //得到修改后的值
     ,data = obj.data //得到所在行所有键值
     ,field = obj.field; //得到字段
-    layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
+   console.log(field);
+    // $.ajax({
+    //       type: "POST",
+    //       catch: true,
+    //       dataType: "json",
+    //       url: 'http://apply.imbatv.cn/tool/tournament/update_tour_show_dict/'+data_id,
+    //       data: { item: this.value,position:,value:'' },
+    //       error: function(request) {
+    //           console.log(request);
+    //       },
+    //       success: function(res) {
+    //           console.log(res);
+    //       },
+    //   });
   });
 });
 </script>
