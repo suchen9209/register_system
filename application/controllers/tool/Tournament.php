@@ -168,12 +168,6 @@ class Tournament extends Api_Controller {
                 }else{
                     unset($tmp_arr[$item]['show']);
                 }
-            }else if($position == 2){
-                if(isset($value)){
-                    $tmp_arr[$item]['width'] = $value;   
-                }else{
-                    unset($tmp_arr[$item]['width']);
-                }
             }else if($position == 3){
                 if($value == true){
                     $tmp_arr[$item]['type'] = 'image';   
@@ -181,6 +175,8 @@ class Tournament extends Api_Controller {
                     $tmp_arr[$item]['type'] = 'text';   
                 }                
             }
+            $data['show_dict'] = json_encode($tmp_arr);
+
 
             if($this->tournament_item->update($id,$data)){
                 $this->response($this->getResponseData(parent::HTTP_OK, '更改成功'), parent::HTTP_OK);
