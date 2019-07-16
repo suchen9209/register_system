@@ -62,6 +62,39 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         //     layui.layer.full(index);
         // })
     }
+
+
+
+      //修赛事列表信息
+    function set_up(edit){
+        console.log(edit);
+        var index = layui.layer.open({
+            title : "修改赛事列表信息",
+            type : 2,
+            content : "set_up.html",
+            success : function(layero, index){
+                var body = layui.layer.getChildFrame('body', index);
+                if(edit){
+                    body.find(".item1 input").val(edit.name);
+                    // body.find(".item2 input").val(edit.now_num);
+                    body.find(".item3 input").val(edit.need_num);
+                    body.find(".item4 input").val(edit.starttime);
+                    body.find(".item5 input").val(edit.endtime);
+                    body.find(".item6").attr("data-id",edit.id);
+                }
+                setTimeout(function(){
+                    layui.layer.tips('点击此处返回赛事列表', '.layui-layer-setwin .layui-layer-close', {
+                        tips: 3
+                    });
+                },2000)
+            }
+        })
+        layui.layer.full(index);
+        //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
+        // $(window).on("resize",function(){
+        //     layui.layer.full(index);
+        // })
+    }
     $(window).one("resize",function(){
         $(".commondityAdd_btn").click(function(){
             var index = layui.layer.open({
@@ -87,7 +120,9 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         var order_id = obj.data.id;
         if (layEvent === 'modify') { //修改
             modify(data);
-        } 
+        }else if(layEvent === 'set_up') {
+            set_up(data);
+        }
     });
 
 })
