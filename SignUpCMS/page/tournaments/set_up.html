@@ -79,7 +79,7 @@ layui.use('table', function(){
   form.on('checkbox(lockDemo)', function(obj){
     // console.log(obj); 
     // layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
-    table.reload('idTest', {
+    table.reload('test', {
       url: 'http://apply.imbatv.cn/tool/tournament/update_tour_item_list/'+data_id
       ,where: { //设定异步数据接口的额外参数，任意设
         item_name: this.value
