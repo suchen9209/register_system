@@ -163,9 +163,17 @@ class Tournament extends Api_Controller {
                 $tmp_arr[$item]['field'] = $item;
             }
             if($position == 1){
-                $tmp_arr[$item]['show'] = $value;
+                if(isset($value)){
+                    $tmp_arr[$item]['show'] = $value;   
+                }else{
+                    unset($tmp_arr[$item]['show']);
+                }
             }else if($position == 2){
-                $tmp_arr[$item]['width'] = $value;
+                if(isset($value)){
+                    $tmp_arr[$item]['width'] = $value;   
+                }else{
+                    unset($tmp_arr[$item]['width']);
+                }
             }else if($position == 3){
                 if($value == true){
                     $tmp_arr[$item]['type'] = 'image';   
