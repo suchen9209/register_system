@@ -42,11 +42,12 @@
 layui.use('table', function(){
   var table = layui.table
   ,form = layui.form;
-  
+  var data_id = $("#test").attr("data_id");
+  console.log(data_id);
   table.render({ 
     elem: '#test'
     ,cellMinWidth: 80
-    ,url:'http://apply.imbatv.cn/tool/tournament/setting/1'
+    ,url:'http://apply.imbatv.cn/tool/tournament/setting/'+data_id
     ,cols: [[
       {field:'lock', title:'是否显示',templet: '#checkboxTpl', unresize: true,align: 'center' },
       {field:'default_show_name', title:'默认名称', align: 'center'},

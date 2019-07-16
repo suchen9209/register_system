@@ -75,12 +75,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){
-                    body.find(".item1 input").val(edit.name);
-                    // body.find(".item2 input").val(edit.now_num);
-                    body.find(".item3 input").val(edit.need_num);
-                    body.find(".item4 input").val(edit.starttime);
-                    body.find(".item5 input").val(edit.endtime);
-                    body.find(".item6").attr("data-id",edit.id);
+                    body.find("#test").attr("data-id",edit.id);
                 }
                 setTimeout(function(){
                     layui.layer.tips('点击此处返回赛事列表', '.layui-layer-setwin .layui-layer-close', {
