@@ -16,7 +16,7 @@
 
   <div class="layui-form-item spc">
     <label class="layui-form-label">显示状态</label>
-    <div class="layui-input-block">
+    <div class="layui-input-block" lay-filter="zt">
       <input type="checkbox" name="like[write]" title="通过" checked="">
       <input type="checkbox" name="like[read]" title="不通过" >
       <input type="checkbox" name="like[game]" title="替补">
@@ -92,6 +92,10 @@ layui.use('table', function(){
   });
   
   //监听显示操作
+  form.on('checkbox(zt)', function(obj){
+     console.log(obj);
+  });
+
   form.on('checkbox(lockDemo)', function(obj){
      $.ajax({
             type: "POST",
@@ -107,8 +111,6 @@ layui.use('table', function(){
             },
         });
   });
-
-
     //监听单元格编辑
   table.on('edit(test)', function(obj){
     var value = obj.value //得到修改后的值
