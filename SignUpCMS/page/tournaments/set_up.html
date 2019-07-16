@@ -64,7 +64,17 @@ layui.use('table', function(){
               console.log(res);
              var arr = res.split(',');
              for(var i in arr){
-              console.log(arr[i]);
+               if (arr[i] == 0) {
+                    console.log("未审核1");
+                }else if(arr[i] == -1){
+                  console.log("未审核2");
+                }else if(arr[i] == 2){
+                  console.log("未审核3");
+                }else if(arr[i] == 5){
+                  console.log("未审核4");
+                }else if(arr[i] == 10){
+                  console.log("未审核5");
+                }
              }
           },
       });  
