@@ -17,6 +17,29 @@ class Tournament_mail_model extends CI_Model {
         return $query->num_rows() > 0 ? $query->result_array() : false;
     }
 
+    public function get_list($offset,$num,$parm=array()){
+        $this->db->select('tournament_mail.*,t.name as tournament');
+        $this->db->limit($num,$offset);
+        foreach ($parm as $key => $value) {
+            $this->db->where($key,$value);
+        }
+        $this->db->join('tournament as t','t.id = tournament_mail.tid','LEFT');
+        $this->db->from($this->table_name);
+        $this->db->order_by('id','DESC');
+        $query = $this->db->get();
+        return $query->num_rows() > 0 ? $query->result_array() : false;
+    }
+
+    public function get_num($parm=array()){
+        $this->db->select('count(*) num');
+        foreach ($parm as $key => $value) {
+            $this->db->where($key,$value);
+        }
+        $this->db->from($this->table_name);
+        $query = $this->db->get();
+        return $query->row()->num;
+    }
+
     
 }
 ?>

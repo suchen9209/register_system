@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Tournament extends Api_Controller {
     public function __construct(){
         parent::__construct();
+        $this->load->model('applicant_model','applicant');
         $this->load->model('tournament_model','tournament');
         $this->load->model('tournament_item_model','tournament_item');
         $this->load->model('tournament_mail_model','tournament_mail');
@@ -79,12 +80,77 @@ class Tournament extends Api_Controller {
         }
     }
 
+    public function state_setting($id=0){
+       if($id>0){ 
+            $tournament_info = $this->tournament->get_info($id);
+            $this->response($tournament_info->show_state);  
+        }else{
+            $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '不能传空值'), parent::HTTP_OK);
+        }
+    }
+
     public function setting($id=0){
+        $local_dict_show_name = array(
+            'id' => 'ID',
+            'name'    =>  '姓名',
+            'nickname'    =>  '昵称',
+            'age'    =>  '年龄',
+            'qq'    =>  'QQ',
+            'phone'    =>  '手机号码',
+            'email'    =>  '邮箱',
+            'avator'    =>  '头像',
+            'idcard'    =>  '身份证',
+            'game_id'   =>  '游戏ID',
+            'group' =>  '组名',
+            'group_order'   =>  '组内编号',
+            'createtime'    =>  '创建时间',
+            'extra_filed1'    =>  '备用字段1',
+            'extra_filed2'    =>  '备用字段2',
+            'extra_filed3'    =>  '备用字段3',
+            'extra_filed4'    =>  '备用字段4',
+            'dealtime'  =>  '审核时间'
+
+        );
         if($id>0){
-            $return_data['tournament'] = $this->tournament->get_info($id);
-            $return_data['tournament_item'] = $this->tournament_item->get_info($id);
-            $return_data['tournament_item']->show_dict=json_decode($return_data['tournament_item']->show_dict);
-            $this->response($this->getResponseData(parent::HTTP_OK, '赛事详细配置信息',$return_data), parent::HTTP_OK);
+            $not_show_arr = array('id','tid','state');
+            $count = 0;
+            $columns = $this->applicant->get_col();
+            $data = array();
+
+            $tournament_item = $this->tournament_item->get_info($id);
+            $item_list = explode(',', $tournament_item->item_list);
+            $show_dict=json_decode($tournament_item->show_dict,true);
+            $show_dict_arr = array();
+            foreach ($show_dict as $key => $value) {
+                $show_dict_arr[$value['field']] = $value;
+            }
+
+            foreach ($columns as $key => $value) {
+                if(!in_array($value['Field'], $not_show_arr)){
+                    $count ++;
+                    $tmp = array();
+                    $tmp['column_name'] = $value['Field'];
+                    $tmp['default_show_name'] = $local_dict_show_name[$value['Field']];
+                    if(isset($show_dict_arr[$value['Field']])){
+                        if(isset($show_dict_arr[$value['Field']]['show'])){
+                            $tmp['show_name'] = $show_dict_arr[$value['Field']]['show'];
+                        }
+                        if(isset($show_dict_arr[$value['Field']]['type']) && $show_dict_arr[$value['Field']]['type'] == 'image'){
+                            $tmp['is_image'] = 1;
+                        }
+                    }
+                    if(in_array($value['Field'], $item_list)){
+                        $tmp['is_show'] = 1;
+                    }
+                    if(!isset($tmp['show_name'])) $tmp['show_name'] = '';
+                    if(!isset($tmp['is_image'])) $tmp['is_image'] = 0;
+                    if(!isset($tmp['is_show'])) $tmp['is_show'] = 0;
+                    $data[]= $tmp;
+                }
+            }
+            
+            $return_arr = $this->getLayuiList(0,'配置',$count,$data);
+            $this->response($return_arr);  
         }else{
             $this->response($this->getResponseData(parent::HTTP_BAD_REQUEST, '不能传空值'), parent::HTTP_OK);
         }
@@ -163,9 +229,11 @@ class Tournament extends Api_Controller {
                 $tmp_arr[$item]['field'] = $item;
             }
             if($position == 1){
-                $tmp_arr[$item]['show'] = $value;
-            }else if($position == 2){
-                $tmp_arr[$item]['width'] = $value;
+                if(isset($value)){
+                    $tmp_arr[$item]['show'] = $value;   
+                }else{
+                    unset($tmp_arr[$item]['show']);
+                }
             }else if($position == 3){
                 if($value == true){
                     $tmp_arr[$item]['type'] = 'image';   
@@ -173,6 +241,8 @@ class Tournament extends Api_Controller {
                     $tmp_arr[$item]['type'] = 'text';   
                 }                
             }
+            $data['show_dict'] = json_encode($tmp_arr);
+
 
             if($this->tournament_item->update($id,$data)){
                 $this->response($this->getResponseData(parent::HTTP_OK, '更改成功'), parent::HTTP_OK);
