@@ -69,7 +69,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
     function set_up(edit){
         console.log(edit);
         var index = layui.layer.open({
-            title : "修改赛事列表信息",
+            title : "修改赛事",
             type : 2,
             content : "set_up.html",
             success : function(layero, index){
