@@ -68,15 +68,16 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
       //修赛事列表信息
     function set_up(edit){
         console.log(edit);
+        json = JSON.stringify(edit);
         var index = layui.layer.open({
             title : "修改赛事",
             type : 2,
-            content : "set_up.html",
+            content : "set_up.html?tid="+edit.id,
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
-                if(edit){
-                    body.find(".spc").attr("data-id",edit.id);
-                }
+                // if(edit){
+                //     body.find(".spc").attr("data-id",edit.id);
+                // }
                 setTimeout(function(){
                     layui.layer.tips('点击此处返回赛事列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
