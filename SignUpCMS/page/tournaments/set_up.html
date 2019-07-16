@@ -77,17 +77,19 @@ layui.use('table', function(){
   
   //监听显示操作
   form.on('checkbox(lockDemo)', function(obj){
-    // console.log(obj); 
-    // layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
-    table.reload('test', {
-      url: 'http://apply.imbatv.cn/tool/tournament/update_tour_item_list/'+data_id
-      ,where: { //设定异步数据接口的额外参数，任意设
-        item_name: this.value
-      }
-      ,page: {
-        curr: 1 //重新从第 1 页开始
-      }
-    }); //只重载数据
+     $.ajax({
+            type: "POST",
+            catch: true,
+            dataType: "json",
+            url: 'http://apply.imbatv.cn/tool/tournament/update_tour_item_list/'+data_id,
+            data: { item_name: this.value },
+            error: function(request) {
+                console.log(request);
+            },
+            success: function(res) {
+                console.log(res);
+            },
+        });
   });
 
 
