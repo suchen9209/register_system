@@ -222,15 +222,15 @@ class Tournament extends Api_Controller {
             $show_dict_arr = json_decode($show_dict,true);
 
             $tmp_arr = $show_dict_arr;
-            foreach ($show_dict_arr as $key => $value) {
-                $tmp_arr[$value['field']] = $value;
+            foreach ($show_dict_arr as $k => $v) {
+                $tmp_arr[$v['field']] = $v;
             }
 
             if(!isset($tmp_arr[$item])){
                 $tmp_arr[$item]['field'] = $item;
             }
             if($position == 1){
-                if(isset($value)){
+                if(isset($value) && $value != ''){
                     $tmp_arr[$item]['show'] = $value;   
                 }else{
                     unset($tmp_arr[$item]['show']);
@@ -242,8 +242,8 @@ class Tournament extends Api_Controller {
                     $tmp_arr[$item]['type'] = 'text';   
                 }                
             }
-            foreach ($tmp_arr as $key => $value) {
-                $final_arr []=$value;
+            foreach ($tmp_arr as $k2 => $v2) {
+                $final_arr []=$v2;
             }
             $data['show_dict'] = json_encode($final_arr);
 
