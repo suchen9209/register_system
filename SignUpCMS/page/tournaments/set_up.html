@@ -14,12 +14,14 @@
   <div class="layui-form" >
     
 
-  <div class="layui-form-item spc">
+  <div class="layui-form-item spc" style="margin-top: 15px;">
     <label class="layui-form-label">显示状态</label>
     <div class="layui-input-block">
-      <input type="checkbox" name="like[write]" title="通过" checked="">
-      <input type="checkbox" name="like[read]" title="不通过" >
-      <input type="checkbox" name="like[game]" title="替补">
+      <input type="checkbox" name="like[one]" title="全部" checked="" lay-filter="zt1">
+      <input type="checkbox" name="like[two]" title="未审核" checked="" lay-filter="zt2">
+      <input type="checkbox" name="like[three]" title="通过" checked="" lay-filter="zt3">
+      <input type="checkbox" name="like[four]" title="不通过" lay-filter="zt4">
+      <input type="checkbox" name="like[five]" title="替补" lay-filter="zt5">
     </div>
   </div> 
   </div>
@@ -49,7 +51,22 @@ layui.use('table', function(){
  $(function () {
       //从父层获取值，json是父层的全局js变量。eval是将该string类型的json串变为标准的json串
       var parent_json = eval('('+parent.json+')');  
-      data_id = parent_json.id;  
+      data_id = parent_json.id;
+      $.ajax({
+          type: "GET",
+          catch: true,
+          dataType: "json",
+          url: 'http://apply.imbatv.cn/tool/tournament/state_setting/'+data_id,
+          error: function(request) {
+              console.log(request);
+          },
+          success: function(res) {
+              console.log(res);
+             for(var i in res){
+              alert(res[i])
+             }
+          },
+      });  
       table.render({ 
           elem: '#test'
           ,cellMinWidth: 80
@@ -69,6 +86,8 @@ layui.use('table', function(){
 
  
   
+
+
   //监听图片属性操作
   form.on('switch(sexDemo)', function(obj){
      var value = obj.value; //得到修改后的值
@@ -92,6 +111,10 @@ layui.use('table', function(){
   });
   
   //监听显示操作
+  form.on('checkbox(zt)', function(obj){
+     console.log(obj);
+  });
+
   form.on('checkbox(lockDemo)', function(obj){
      $.ajax({
             type: "POST",
@@ -107,8 +130,6 @@ layui.use('table', function(){
             },
         });
   });
-
-
     //监听单元格编辑
   table.on('edit(test)', function(obj){
     var value = obj.value //得到修改后的值
