@@ -54,9 +54,7 @@ layui.use('table', function(){
         console.log(parent_json);    
         data_id = parent_json.id;  
         console.log(data_id); 
-});
-
-  table.render({ 
+         table.render({ 
     elem: '#test'
     ,cellMinWidth: 80
     ,url:'http://apply.imbatv.cn/tool/tournament/setting/'+data_id
@@ -71,6 +69,9 @@ layui.use('table', function(){
     page: true,
     limit: 20
   }); 
+});
+
+ 
   
   //监听性别操作
   form.on('switch(sexDemo)', function(obj){
