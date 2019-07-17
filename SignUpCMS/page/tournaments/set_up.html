@@ -57,6 +57,8 @@ layui.use('table', function(){
           success: function(res) {
               console.log(res);
              var arr = res.split(',');
+             console.log(arr);
+             console.log(typeof arr);
              for(var i in arr){
                if (arr[i] === 0) {
                     console.log("未审核1");
