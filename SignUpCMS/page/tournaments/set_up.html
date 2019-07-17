@@ -66,7 +66,8 @@ layui.use('table', function(){
              for(var i in arr){
                if (arr[i] == 0) {
                     console.log("未审核1");
-                    $(".ckeck0").attr("checked","checked");
+                  $('.check0').attr("checked", true); //注意这里使用的是attr()
+                  layui.form.render(); //重新渲染显示效果
                 }else if(arr[i] == -1){
                   console.log("未审核2");
                    $(".ckeck1").attr("checked","checked");
