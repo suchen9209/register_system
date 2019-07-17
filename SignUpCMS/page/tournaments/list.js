@@ -53,7 +53,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                     layui.layer.tips('点击此处返回赛事列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
-                },2000)
+                },1000)
             }
         })
         layui.layer.full(index);
@@ -62,10 +62,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         //     layui.layer.full(index);
         // })
     }
-
-
-
-      //修赛事列表信息
+    //修赛事列表信息
     function set_up(edit){
         console.log(edit);
         json = JSON.stringify(edit);
@@ -82,7 +79,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
                     layui.layer.tips('点击此处返回赛事列表', '.layui-layer-setwin .layui-layer-close', {
                         tips: 3
                     });
-                },2000)
+                },1000)
             }
         })
         layui.layer.full(index);
@@ -91,23 +88,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         //     layui.layer.full(index);
         // })
     }
-    $(window).one("resize",function(){
-        $(".commondityAdd_btn").click(function(){
-            var index = layui.layer.open({
-                title : "增加优惠劵",
-                type : 2,
-                content : "commondityAdd.html",
-                success : function(layero, index){
-                    setTimeout(function(){
-                        layui.layer.tips('返回', '.layui-layer-setwin .layui-layer-close', {
-                            tips: 3
-                        });
-                    },2000)
-                }
-            })          
-            layui.layer.full(index);
-        })
-    }).resize();
     //列表操作
     table.on('tool(newsList)', function(obj) {
         var layEvent = obj.event,
@@ -116,7 +96,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         var order_id = obj.data.id;
         if (layEvent === 'modify') { //修改
             modify(data);
-        }else if(layEvent === 'set_up') {
+        }else if(layEvent === 'set_up') {//设置
             set_up(data);
         }
     });
