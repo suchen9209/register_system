@@ -2,18 +2,16 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>layui</title>
+  <title>Imba报名系统</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+  <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
   <!-- 显示状态 -->
   <div class="layui-form" >
-    
-
   <div class="layui-form-item spc" style="margin-top: 15px;">
     <label class="layui-form-label">显示状态</label>
     <div class="layui-input-block">
@@ -31,12 +29,8 @@
 </script>
 <script type="text/html" id="checkboxTpl">
   <input type="checkbox" name="lock" value="{{d.column_name}}" title="显示" lay-filter="lockDemo" {{ d.is_show == 1 ? 'checked' : '' }}>
-</script>
-
-              
-          
+</script>    
 <script type="text/javascript" src="../../layui/layui.all.js"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
  
 <script>
 layui.use('table', function(){
@@ -48,7 +42,7 @@ layui.use('table', function(){
         laytpl = layui.laytpl,
         table = layui.table; 
         data_id ='';
- $(function () {
+ $(function () { 
       //从父层获取值，json是父层的全局js变量。eval是将该string类型的json串变为标准的json串
       var parent_json = eval('('+parent.json+')');  
       data_id = parent_json.id;
@@ -100,11 +94,6 @@ layui.use('table', function(){
           limit: 20
         }); 
   });
-
- 
-  
-
-
   //监听图片属性操作
   form.on('switch(sexDemo)', function(obj){
      var value = obj.value; //得到修改后的值
