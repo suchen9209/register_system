@@ -4,45 +4,27 @@ layui.use(['form','layer','jquery'],function(){
         $ = layui.jquery;
      $(document).keyup(function(){
         if(event.keyCode==13){
-            var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-        $.ajax({
-            type: "POST",                  //提交方式
-            dataType: "json",              //预期服务器返回的数据类型
-            url: "/tool/login",          //目标url
-            data: {
-                username: username,
-                password: password
-            }, 
-            success: function (result) {
-                console.log(result);       //打印服务端返回的数据(调试用)
-                console.log($('#form').serialize());       //打印服务端返回的数据(调试用)
-                if (result.status == "fail") {
-                    layer.alert(result.detail);
-                }else{
-                     window.location.href = "/SignUpCMS/index.html";
-                };
-            },
-            error : function(result) {
-                alert("error异常！");
-            }
-        });
+          login();
         }
     });
-     $("#login").click(function(){
+     // 点击登录
+    $("#login").click(function(){
+       login();
+    })
+     function login(){
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
         $.ajax({
-            type: "POST",                  //提交方式
-            dataType: "json",              //预期服务器返回的数据类型
-            url: "/tool/login",          //目标url
+            type: "POST",
+            dataType: "json",  
+            url: "/tool/login",          
             data: {
                 username: username,
                 password: password
             }, 
             success: function (result) {
-                console.log(result);       //打印服务端返回的数据(调试用)
-                console.log($('#form').serialize());       //打印服务端返回的数据(调试用)
+                console.log(result); 
+                console.log($('#form').serialize());
                 if (result.status == "fail") {
                     layer.alert(result.detail);
                 }else{
@@ -53,7 +35,7 @@ layui.use(['form','layer','jquery'],function(){
                 alert("error异常！");
             }
         });
-    })
+     }
     //表单输入效果
     $(".loginBody .input-item").click(function(e){
         e.stopPropagation();
