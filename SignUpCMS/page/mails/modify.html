@@ -121,8 +121,10 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         console.log(data);
         var id = $(".item6").attr("data-id");
         var data = data.field;
-        data.content = JSON.stringify(layedit.getContent(index));
+        data.content = layedit.getContent(1);
         console.log(data);
+        delete data.file;
+        console.log(data); 
         var res = JSON.stringify(data);
         console.log(res);
         var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
@@ -155,7 +157,7 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     setTimeout(function() { form.render(); }, 500);
      //自定义工具栏
   layedit.build('LAY_demo2', {
-    tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
+    tool: ['link', 'unlink', '|', 'left', 'center', 'right']
     ,height: 100
   })
 });
