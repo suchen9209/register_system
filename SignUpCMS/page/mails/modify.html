@@ -112,8 +112,9 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     form.on('submit(demo1)', function(data) {
         console.log(data);
         var id = $(".item6").attr("data-id");
+         data.content = layedit.getContent(index);
         var data = JSON.stringify(data.field);
-        data.content = layedit.getContent(index);
+       
         console.log(data);
         // console.log(layedit.getContent(index));
         // var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
