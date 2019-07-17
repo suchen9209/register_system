@@ -42,11 +42,11 @@
             <label class="layui-form-label">审核状态</label>
             <div class="layui-input-block"> 
                 <select name="applicant_state" lay-filter="aihao">
-                    <option value=""></option>
-                    <option value="0" selected="">未审核</option>
-                    <option value="2">不通过</option>
-                    <option value="5">替补</option>
-                    <option value="10">通过</option>
+                    <option class="check0" value=""></option>
+                    <option class="check1" value="0">未审核</option>
+                    <option class="check2" value="2">不通过</option>
+                    <option class="check3" value="5">替补</option>
+                    <option class="check4" value="10">通过</option>
                 </select>
             </div>
         </div>
@@ -77,6 +77,19 @@ layui.use(['form', 'layedit', 'laydate'], function() {
   console.log(parent_json); 
   console.log(parent_json.content); 
   $("#LAY_demo1").html(parent_json.content);
+  if(parent_json.applicant_state == "0"){
+    $('.check0').attr("checked", true); 
+    layui.form.render(); //重新渲染显示效果
+  }else if(parent_json.applicant_state == "2"){
+     $('.check1').attr("checked", true); 
+    layui.form.render(); //重新渲染显示效果
+  }else if(parent_json.applicant_state == "5"){
+     $('.check2').attr("checked", true); 
+    layui.form.render(); //重新渲染显示效果
+  }else if(parent_json.applicant_state == "10"){
+     $('.check3').attr("checked", true); 
+    layui.form.render(); //重新渲染显示效果
+  }
    var index = layedit.build('LAY_demo1'); 
     function sec() {
         $.ajax({
