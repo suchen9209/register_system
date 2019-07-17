@@ -32,6 +32,7 @@ class Mail extends Api_Controller {
         $data_json = $this->input->post_get('data');
 /*        $data_json = '{"name":"百事可乐","username":"asdafsd","password":"123456","weight":"50","tid":1}';*/
         $data = json_decode($data_json,true);
+        unset($data['file']);
         
         if($data){
             if($this->tournament_mail->insert($data)){
@@ -47,6 +48,8 @@ class Mail extends Api_Controller {
     public function update($id=0){
         $data_json = $this->input->post_get('data');
         $data = json_decode($data_json,true);
+        unset($data['file']);
+
         if($data && $id > 0){
             if($this->tournament_mail->update($id,$data)){
                 $this->response($this->getResponseData(parent::HTTP_OK, '更改成功'), parent::HTTP_OK);
