@@ -28,7 +28,7 @@
         <div class="layui-form-item item1" style="margin-top: 40px;">
             <label class="layui-form-label">标题</label>
             <div class="layui-input-block">
-                <input type="text" name="name" lay-verify="desc" autocomplete="off" placeholder="姓名" class="layui-input">
+                <input type="text" name="title" lay-verify="desc" autocomplete="off" placeholder="标题" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item item2" type="1">
@@ -41,7 +41,7 @@
         <div class="layui-form-item item3" type="1">
             <label class="layui-form-label">审核状态</label>
             <div class="layui-input-block"> 
-                <select name="interest" lay-filter="aihao">
+                <select name="applicant_state" lay-filter="aihao">
                     <option value=""></option>
                     <option value="0" selected="">未审核</option>
                     <option value="2">不通过</option>
@@ -113,6 +113,7 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         console.log(data);
         var id = $(".item6").attr("data-id");
         var data = JSON.stringify(data.field);
+        data.push("content",layedit.getContent(index));
         console.log(data);
         // console.log(layedit.getContent(index));
         // var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
