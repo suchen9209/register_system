@@ -94,9 +94,7 @@ layui.use('table', function(){
   });
   //监听图片属性操作
   form.on('switch(sexDemo)', function(obj){
-     var value = obj.value; //得到修改后的值
-   console.log(obj.elem.checked); 
-   console.log(obj.elem.name); 
+    var value = obj.value; //得到修改后的值
     $.ajax({
           type: "POST",
           catch: true,
@@ -132,23 +130,18 @@ layui.use('table', function(){
   
   //监听显示操作
   form.on('checkbox(zt0)', function(obj){
-     console.log(obj.elem.name);
      ckeck(obj.elem.name);
   });
   form.on('checkbox(zt1)', function(obj){
-     console.log(obj.elem.name);
      ckeck(obj.elem.name);
   });
   form.on('checkbox(zt2)', function(obj){
-     console.log(obj.elem.name);
      ckeck(obj.elem.name);
   });
   form.on('checkbox(zt3)', function(obj){
-     console.log(obj.elem.name);
      ckeck(obj.elem.name);
   });
   form.on('checkbox(zt4)', function(obj){
-     console.log(obj.elem.name);
      ckeck(obj.elem.name);
   });
   form.on('checkbox(lockDemo)', function(obj){
