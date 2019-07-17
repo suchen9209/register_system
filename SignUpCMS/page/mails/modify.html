@@ -123,6 +123,8 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         var data = data.field;
         data.content = layedit.getContent(1);
         console.log(data);
+        delete data.file;
+        console.log(data); 
         var res = JSON.stringify(data);
         console.log(res);
         var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
