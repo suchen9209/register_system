@@ -31,21 +31,20 @@
                 <input type="text" name="title" lay-verify="desc" autocomplete="off" placeholder="标题" class="layui-input">
             </div>
         </div>
-     <!--    <div class="layui-form-item item2" type="1">
+        <div class="layui-form-item item2" type="1">
             <label class="layui-form-label">赛事类型</label>
             <div class="layui-input-block"> 
                 <select name="tid" lay-filter="type" class='cc' type="select">
                 </select>
             </div>
-        </div> -->
+        </div>
         <div class="layui-form-item item3" type="1">
             <label class="layui-form-label">显示状态</label>
             <div class="layui-input-block">
-              <input type="radio" class="check0" name="sex" title="全部"  lay-filter="zt0">
-              <input type="radio" class="check1" name="sex" title="未审核"  lay-filter="zt1">
-              <input type="radio" class="check2" name="sex" title="通过"  lay-filter="zt2">
-              <input type="radio" class="check3" name="sex" title="不通过" lay-filter="zt3">
-              <input type="radio" class="check4" name="sex" title="替补" lay-filter="zt4">
+              <input type="radio" class="check0" name="zt" title="未审核" ral="0" lay-filter="zt1">
+              <input type="radio" class="check1" name="zt" title="通过"  ral="2" lay-filter="zt2">
+              <input type="radio" class="check2" name="zt" title="不通过" ral="5"  lay-filter="zt3">
+              <input type="radio" class="check3" name="zt" title="替补" ral="0" lay-filter="zt4">
             </div>
         </div>
         <label class="layui-form-label" style="float: left;">邮件内容</label> 
@@ -88,33 +87,33 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     layui.form.render(); //重新渲染显示效果
   }
    var index = layedit.build('LAY_demo1'); 
-    // function sec() {
-    //     $.ajax({
-    //         type: "GET",
-    //         catch: true,
-    //         dataType: "jsonp",
-    //         url: "/tool/init/tour_list",
-    //         error: function(request) {
-    //             console.log(request);
-    //         },
-    //         success: function(res) {
-    //             console.log(res);
-    //             var html = '';
-    //             // 判断赛事类型
-    //             var datatype = $(".item2").attr("type");
-    //             html = '<option value=""></option>';
-    //             for (var i = 0; i < res.length; i++) {
-    //                 if (res[i].id == datatype) {
-    //                     html += "<option selected=''  value=" + res[i].id + ">" + res[i].name + "</option>";
-    //                 } else {
-    //                     html += "<option value=" + res[i].id + ">" + res[i].name + "</option>";
-    //                 }
-    //             };
-    //             $(".cc").html(html);
-    //             form.render();
-    //         },
-    //     });
-    // }
+    function sec() {
+        $.ajax({
+            type: "GET",
+            catch: true,
+            dataType: "jsonp",
+            url: "/tool/init/tour_list",
+            error: function(request) {
+                console.log(request);
+            },
+            success: function(res) {
+                console.log(res);
+                var html = '';
+                // 判断赛事类型
+                var datatype = $(".item2").attr("type");
+                html = '<option value=""></option>';
+                for (var i = 0; i < res.length; i++) {
+                    if (res[i].id == datatype) {
+                        html += "<option selected=''  value=" + res[i].id + ">" + res[i].name + "</option>";
+                    } else {
+                        html += "<option value=" + res[i].id + ">" + res[i].name + "</option>";
+                    }
+                };
+                $(".cc").html(html);
+                form.render();
+            },
+        });
+    }
 
     //创建一个编辑器
     var editIndex = layedit.build('LAY_demo_editor');
@@ -127,30 +126,30 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         data.content = layedit.getContent(index);
         var res = JSON.stringify(data);
         console.log(layedit.getContent(index));
-        var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
-        $.ajax({
-            type: "POST",
-            catch: true,
-            data: {
-                data: res,
-            },
-            dataType: "json",
-            url: "/tool/mail/update/"+id,
-            success: function(res) {
-                console.log(res);
-                setTimeout(function() {
-                    top.layer.close(index);
-                    top.layer.msg(res.message);
-                    layer.closeAll("iframe");
-                    //刷新父页面
-                    parent.location.reload();
-                }, 2000);
-                return false;
-            },
-            error: function(request) {
-                console.log(request);
-            },
-        });
+        // var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
+        // $.ajax({
+        //     type: "POST",
+        //     catch: true,
+        //     data: {
+        //         data: res,
+        //     },
+        //     dataType: "json",
+        //     url: "/tool/mail/update/"+id,
+        //     success: function(res) {
+        //         console.log(res);
+        //         setTimeout(function() {
+        //             top.layer.close(index);
+        //             top.layer.msg(res.message);
+        //             layer.closeAll("iframe");
+        //             //刷新父页面
+        //             parent.location.reload();
+        //         }, 2000);
+        //         return false;
+        //     },
+        //     error: function(request) {
+        //         console.log(request);
+        //     },
+        // });
     });
     //以下两种方式都行：
     // setTimeout(function() { sec(); }, 500);
