@@ -79,7 +79,7 @@ layui.use('table', function(){
       table.render({ 
           elem: '#test'
           ,cellMinWidth: 80
-          ,url:'http://apply.imbatv.cn/tool/tournament/setting/'+data_id
+          ,url:'../../../tool/tournament/setting/'+data_id
           ,cols: [[
             {field:'lock', title:'是否显示',templet: '#checkboxTpl', unresize: true,align: 'center' },
             {field:'default_show_name', title:'默认名称', align: 'center'},
@@ -99,7 +99,7 @@ layui.use('table', function(){
           type: "POST",
           catch: true,
           dataType: "json",
-          url: 'http://apply.imbatv.cn/tool/tournament/update_tour_show_dict/'+data_id,
+          url: '../../../tool/tournament/update_tour_show_dict/'+data_id,
           data: { item: obj.elem.name,position:2,value:obj.elem.checked },
           error: function(request) {
               console.log(request);
@@ -117,7 +117,7 @@ layui.use('table', function(){
             type: "POST",
             catch: true,
             dataType: "json",
-            url: 'http://apply.imbatv.cn/tool/tournament/update_tour_show_state/'+data_id,
+            url: '../../../tool/tournament/update_tour_show_state/'+data_id,
             data: { state: item },
             error: function(request) {
                 console.log(request);
@@ -149,7 +149,7 @@ layui.use('table', function(){
             type: "POST",
             catch: true,
             dataType: "json",
-            url: 'http://apply.imbatv.cn/tool/tournament/update_tour_item_list/'+data_id,
+            url: '../../../tool/tournament/update_tour_item_list/'+data_id,
             data: { item_name: this.value },
             error: function(request) {
                 console.log(request);
@@ -170,7 +170,7 @@ layui.use('table', function(){
           type: "POST",
           catch: true,
           dataType: "json",
-          url: 'http://apply.imbatv.cn/tool/tournament/update_tour_show_dict/'+data_id,
+          url: '../../../tool/tournament/update_tour_show_dict/'+data_id,
           data: { item: data.column_name ,position:1,value:value},
           error: function(request) {
               console.log(request);
