@@ -121,7 +121,7 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         console.log(data);
         var id = $(".item6").attr("data-id");
         var data = data.field;
-        data.content = 1;
+        data.content = JSON.stringify(layedit.getContent(index));
         console.log(data);
         var res = JSON.stringify(data);
         console.log(res);
