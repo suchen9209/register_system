@@ -26,7 +26,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl', 'excel','jquery'], fun
         done: function(res, curr, count) {
             console.log(res);
             $(".layui-table-box").find("[data-field='state']").css("display", "none");
-            $(".layui-table-box").find("[data-field='id']").css("display", "none");
         }
     });
     //修改用户列表信息
