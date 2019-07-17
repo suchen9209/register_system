@@ -104,12 +104,16 @@ layui.use(['form', 'layedit', 'laydate'], function() {
                 $(".cc").html(html);
                   if(parent_json.applicant_state == "0"){
                     $('.check0').attr("checked", true); 
+                     form.render();
                   }else if(parent_json.applicant_state == "2"){
                      $('.check1').attr("checked", true); 
+                      form.render();
                   }else if(parent_json.applicant_state == "5"){
                      $('.check2').attr("checked", true); 
+                      form.render();
                   }else if(parent_json.applicant_state == "10"){
                      $('.check3').attr("checked", true); 
+                      form.render();
                   }
                 form.render();
             },
