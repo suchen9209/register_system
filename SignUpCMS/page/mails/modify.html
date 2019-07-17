@@ -39,15 +39,13 @@
             </div>
         </div> -->
         <div class="layui-form-item item3" type="1">
-            <label class="layui-form-label">审核状态</label>
-            <div class="layui-input-block"> 
-                <select name="applicant_state" lay-filter="zt" type="select">
-                    <option value=""></option>
-                    <option class="check0" value="0">未审核</option>
-                    <option class="check1" value="2">不通过</option>
-                    <option class="check2" value="5">替补</option>
-                    <option class="check3" value="10">通过</option>
-                </select>
+            <label class="layui-form-label">显示状态</label>
+            <div class="layui-input-block">
+              <input type="checkbox" class="check0" name="0" title="全部"  lay-filter="zt0">
+              <input type="checkbox" class="check1" name="-1" title="未审核"  lay-filter="zt1">
+              <input type="checkbox" class="check2" name="2" title="通过"  lay-filter="zt2">
+              <input type="checkbox" class="check3" name="5" title="不通过" lay-filter="zt3">
+              <input type="checkbox" class="check4" name="10" title="替补" lay-filter="zt4">
             </div>
         </div>
         <label class="layui-form-label" style="float: left;">邮件内容</label> 
@@ -78,16 +76,16 @@ layui.use(['form', 'layedit', 'laydate'], function() {
   $("#LAY_demo1").html(parent_json.content);
   if(parent_json.applicant_state == "0"){
     $('.check0').attr("checked", true); 
-    layui.form.render('select'); //重新渲染显示效果
+    layui.form.render(); //重新渲染显示效果
   }else if(parent_json.applicant_state == "2"){
      $('.check1').attr("checked", true); 
-    layui.form.render('select'); //重新渲染显示效果
+    layui.form.render(); //重新渲染显示效果
   }else if(parent_json.applicant_state == "5"){
      $('.check2').attr("checked", true); 
-    layui.form.render('select'); //重新渲染显示效果
+    layui.form.render(); //重新渲染显示效果
   }else if(parent_json.applicant_state == "10"){
      $('.check3').attr("checked", true); 
-    layui.form.render('select'); //重新渲染显示效果
+    layui.form.render(); //重新渲染显示效果
   }
    var index = layedit.build('LAY_demo1'); 
     // function sec() {
