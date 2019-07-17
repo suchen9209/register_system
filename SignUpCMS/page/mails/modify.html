@@ -102,30 +102,31 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         var id = $(".item6").attr("data-id");
         var data = JSON.stringify(data.field);
         console.log(data);
-        var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
-        $.ajax({
-            type: "POST",
-            catch: true,
-            data: {
-                data: data,
-            },
-            dataType: "json",
-            url: "/tool/user/update/"+id,
-            success: function(res) {
-                console.log(res);
-                setTimeout(function() {
-                    top.layer.close(index);
-                    top.layer.msg(res.message);
-                    layer.closeAll("iframe");
-                    //刷新父页面
-                    parent.location.reload();
-                }, 2000);
-                return false;
-            },
-            error: function(request) {
-                console.log(request);
-            },
-        });
+        console.log(layedit.getContent(index));
+        // var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
+        // $.ajax({
+        //     type: "POST",
+        //     catch: true,
+        //     data: {
+        //         data: data,
+        //     },
+        //     dataType: "json",
+        //     url: "/tool/user/update/"+id,
+        //     success: function(res) {
+        //         console.log(res);
+        //         setTimeout(function() {
+        //             top.layer.close(index);
+        //             top.layer.msg(res.message);
+        //             layer.closeAll("iframe");
+        //             //刷新父页面
+        //             parent.location.reload();
+        //         }, 2000);
+        //         return false;
+        //     },
+        //     error: function(request) {
+        //         console.log(request);
+        //     },
+        // });
     });
     //以下两种方式都行：
     setTimeout(function() { fuck(); }, 500);
