@@ -62,7 +62,7 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     //构建一个默认的编辑器
   var index = layedit.build('LAY_demo1');
   var parent_json = eval('('+parent.json+')'); 
-  console.log(parent_json); 
+  console.log(parent_json.content); 
     function fuck() {
         $.ajax({
             type: "GET",
