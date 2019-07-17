@@ -74,10 +74,11 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     //构建一个默认的编辑器
  
   var parent_json = eval('('+parent.json+')'); 
+  console.log(parent_json); 
   console.log(parent_json.content); 
   $("#LAY_demo1").html(parent_json.content);
    var index = layedit.build('LAY_demo1'); 
-    function fuck() {
+    function sec() {
         $.ajax({
             type: "GET",
             catch: true,
@@ -113,40 +114,36 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         console.log(data);
         var id = $(".item6").attr("data-id");
         var data = data.field;
-        console.log(data);
         data.content = layedit.getContent(index);
-         console.log(data);
-        var data1 = JSON.stringify(data);
-       // data.content1 = layedit.getContent(index);
-        console.log(data1);
-        // console.log(layedit.getContent(index));
-        // var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
-        // $.ajax({
-        //     type: "POST",
-        //     catch: true,
-        //     data: {
-        //         data: data,
-        //     },
-        //     dataType: "json",
-        //     url: "/tool/mail/update/"+id,
-        //     success: function(res) {
-        //         console.log(res);
-        //         setTimeout(function() {
-        //             top.layer.close(index);
-        //             top.layer.msg(res.message);
-        //             layer.closeAll("iframe");
-        //             //刷新父页面
-        //             parent.location.reload();
-        //         }, 2000);
-        //         return false;
-        //     },
-        //     error: function(request) {
-        //         console.log(request);
-        //     },
-        // });
+        var res = JSON.stringify(data);
+        console.log(layedit.getContent(index));
+        var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
+        $.ajax({
+            type: "POST",
+            catch: true,
+            data: {
+                data: res,
+            },
+            dataType: "json",
+            url: "/tool/mail/update/"+id,
+            success: function(res) {
+                console.log(res);
+                setTimeout(function() {
+                    top.layer.close(index);
+                    top.layer.msg(res.message);
+                    layer.closeAll("iframe");
+                    //刷新父页面
+                    parent.location.reload();
+                }, 2000);
+                return false;
+            },
+            error: function(request) {
+                console.log(request);
+            },
+        });
     });
     //以下两种方式都行：
-    setTimeout(function() { fuck(); }, 500);
+    setTimeout(function() { sec(); }, 500);
     setTimeout(function() { form.render(); }, 500);
      //自定义工具栏
   layedit.build('LAY_demo2', {
