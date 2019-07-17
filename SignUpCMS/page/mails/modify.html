@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>修改用户信息</title>
+    <title>修改邮件</title>
     <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="../../css/public.css" media="all" />
     <!-- <script type="text/javascript" src="https://pay.imbatv.cn/style/js/jquery-3.3.1.js"></script> -->
@@ -22,35 +22,16 @@
 <body>
     <div action='' method="" class="layui-form">
         <div class="layui-form-item item1" style="margin-top: 40px;">
-            <label class="layui-form-label">姓名</label>
+            <label class="layui-form-label">标题</label>
             <div class="layui-input-block">
                 <input type="text" name="name" lay-verify="desc" autocomplete="off" placeholder="姓名" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item item2">
-            <label class="layui-form-label">用户名</label>
-            <div class="layui-input-block">
-                <input type="text" name="username" lay-verify="desc" autocomplete="off" placeholder="用户名" class="layui-input">
-            </div>
-        </div>
-         <div class="layui-form-item item3">
-            <label class="layui-form-label">权限</label>
-            <div class="layui-input-block">
-                <input type="text" name="weight" lay-verify="number" autocomplete="off" placeholder="权限" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item item4" type="1">
+        <div class="layui-form-item item2" type="1">
             <label class="layui-form-label">赛事类型</label>
             <div class="layui-input-block">
                 <select name="tid" lay-filter="type" class='cc' type="select">
                 </select>
-            </div>
-        </div>
-       
-        <div class="layui-form-item item5">
-            <label class="layui-form-label">密码</label>
-            <div class="layui-input-block">
-                <input type="password" name="password" lay-verify="pass" autocomplete="off" placeholder="密码" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item item6">
@@ -82,7 +63,7 @@ layui.use(['form', 'layedit', 'laydate'], function() {
                 console.log(res);
                 var html = '';
                 // 判断赛事类型
-                var datatype = $(".item4").attr("type");
+                var datatype = $(".item2").attr("type");
                 html = '<option value=""></option>';
                 for (var i = 0; i < res.length; i++) {
                     if (res[i].id == datatype) {
