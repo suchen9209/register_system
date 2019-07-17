@@ -133,7 +133,7 @@ layui.use('table', function(){
             catch: true,
             dataType: "json",
             url: 'http://apply.imbatv.cn/tool/tournament/update_tour_show_state/'+data_id,
-            data: { item: item },
+            data: { state: item },
             error: function(request) {
                 console.log(request);
             },
