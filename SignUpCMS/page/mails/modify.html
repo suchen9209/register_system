@@ -70,8 +70,6 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     //构建一个默认的编辑器
  
   var parent_json = eval('('+parent.json+')'); 
-  console.log(parent_json); 
-  console.log(parent_json.content); 
   $("#LAY_demo1").html(parent_json.content);
   if(parent_json.applicant_state == "0"){
     $('.check0').attr("checked", true); 
@@ -124,32 +122,33 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         var id = $(".item6").attr("data-id");
         var data = data.field;
         data.content = layedit.getContent(index);
+        console.log(data);
         var res = JSON.stringify(data);
         console.log(res);
-        var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
-        $.ajax({
-            type: "POST",
-            catch: true,
-            data: {
-                data: res,
-            },
-            dataType: "json",
-            url: "/tool/mail/update/"+id,
-            success: function(res) {
-                console.log(res);
-                setTimeout(function() {
-                    top.layer.close(index);
-                    top.layer.msg(res.message);
-                    layer.closeAll("iframe");
-                    //刷新父页面
-                    parent.location.reload();
-                }, 2000);
-                return false;
-            },
-            error: function(request) {
-                console.log(request);
-            },
-        });
+        // var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
+        // $.ajax({
+        //     type: "POST",
+        //     catch: true,
+        //     data: {
+        //         data: res,
+        //     },
+        //     dataType: "json",
+        //     url: "/tool/mail/update/"+id,
+        //     success: function(res) {
+        //         console.log(res);
+        //         setTimeout(function() {
+        //             top.layer.close(index);
+        //             top.layer.msg(res.message);
+        //             layer.closeAll("iframe");
+        //             //刷新父页面
+        //             parent.location.reload();
+        //         }, 2000);
+        //         return false;
+        //     },
+        //     error: function(request) {
+        //         console.log(request);
+        //     },
+        // });
     });
     //以下两种方式都行：
     setTimeout(function() { sec(); }, 500);
