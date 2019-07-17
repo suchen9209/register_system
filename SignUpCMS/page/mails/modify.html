@@ -112,10 +112,13 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     form.on('submit(demo1)', function(data) {
         console.log(data);
         var id = $(".item6").attr("data-id");
-         data.content1 = layedit.getContent(index);
-        var data = JSON.stringify(data.field);
-       data.content1 = layedit.getContent(index);
+        var data = data.field;
         console.log(data);
+        data.content = layedit.getContent(index);
+         console.log(data);
+        var data1 = JSON.stringify(data);
+       // data.content1 = layedit.getContent(index);
+        console.log(data1);
         // console.log(layedit.getContent(index));
         // var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
         // $.ajax({
