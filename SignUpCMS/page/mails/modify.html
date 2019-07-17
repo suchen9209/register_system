@@ -34,6 +34,9 @@
                 </select>
             </div>
         </div>
+        <textarea class="layui-textarea" id="LAY_demo1" style="display: none">  
+  把编辑器的初始内容放在这textarea即可
+</textarea>
         <div class="layui-form-item item6">
             <div class="layui-input-block">
                 <button class="layui-btn btn1" lay-submit="" lay-filter="demo1">立即提交</button>
@@ -49,7 +52,8 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         layedit = layui.layedit,
         laydate = layui.laydate;
     $ = layui.jquery;
-
+    //构建一个默认的编辑器
+  var index = layedit.build('LAY_demo1'
     function fuck() {
         $.ajax({
             type: "GET",
@@ -115,7 +119,11 @@ layui.use(['form', 'layedit', 'laydate'], function() {
     //以下两种方式都行：
     setTimeout(function() { fuck(); }, 500);
     setTimeout(function() { form.render(); }, 500);
-
+     //自定义工具栏
+  layedit.build('LAY_demo2', {
+    tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
+    ,height: 100
+  })
 });
 </script>
 
