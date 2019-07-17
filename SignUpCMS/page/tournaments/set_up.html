@@ -61,7 +61,7 @@ layui.use('table', function(){
              console.log(typeof arr);
              for(var i in arr){
               console.log(arr[i]);
-               if (arr[i] == 0) {
+               if (arr[i] == '0') {
                     console.log("未审核1"); 
                   $('.check0').attr("checked", true); 
                   layui.form.render(); //重新渲染显示效果
