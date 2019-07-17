@@ -63,6 +63,7 @@ layui.use(['form', 'layedit', 'laydate'], function() {
   var index = layedit.build('LAY_demo1');
   var parent_json = eval('('+parent.json+')'); 
   console.log(parent_json.content); 
+  $("#LAY_demo1").html(parent_json.content);
     function fuck() {
         $.ajax({
             type: "GET",
