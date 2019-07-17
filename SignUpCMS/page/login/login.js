@@ -2,12 +2,10 @@ layui.use(['form','layer','jquery'],function(){
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : top.layer
         $ = layui.jquery;
-
-     $("#login").click(function(){
-        var username = document.getElementById("username").value;
+     $(document).keyup(function(){
+        if(event.keyCode==13){
+            var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
-         console.log(username);
-         console.log(password);
         $.ajax({
             type: "POST",                  //提交方式
             dataType: "json",              //预期服务器返回的数据类型
@@ -15,10 +13,33 @@ layui.use(['form','layer','jquery'],function(){
             data: {
                 username: username,
                 password: password
-            }, //提交的数据
-            //  xhrFields: {
-            //     withCredentials: true
-            // },
+            }, 
+            success: function (result) {
+                console.log(result);       //打印服务端返回的数据(调试用)
+                console.log($('#form').serialize());       //打印服务端返回的数据(调试用)
+                if (result.status == "fail") {
+                    layer.alert(result.detail);
+                }else{
+                     window.location.href = "/SignUpCMS/index.html";
+                };
+            },
+            error : function(result) {
+                alert("error异常！");
+            }
+        });
+        }
+    });
+     $("#login").click(function(){
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        $.ajax({
+            type: "POST",                  //提交方式
+            dataType: "json",              //预期服务器返回的数据类型
+            url: "/tool/login",          //目标url
+            data: {
+                username: username,
+                password: password
+            }, 
             success: function (result) {
                 console.log(result);       //打印服务端返回的数据(调试用)
                 console.log($('#form').serialize());       //打印服务端返回的数据(调试用)
