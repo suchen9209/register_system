@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>增加用户</title>
+    <title>增加邮件</title>
     <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="../../css/public.css" media="all" />
     <!-- <script type="text/javascript" src="https://pay.imbatv.cn/style/js/jquery-3.3.1.js"></script> -->
@@ -17,41 +17,40 @@
     width: 600px;
     margin-left: 142px;
 }
+.layui-layedit{
+    margin-left: 142px;
+    width: 600px; 
+}
 </style>
 
 <body>
     <div action='' method="" class="layui-form">
         <div class="layui-form-item item1" style="margin-top: 40px;">
-            <label class="layui-form-label">姓名</label>
+            <label class="layui-form-label">标题</label>
             <div class="layui-input-block">
-                <input type="text" name="name" lay-verify="desc" autocomplete="off" placeholder="姓名" class="layui-input">
+                <input type="text" name="title" lay-verify="desc" autocomplete="off" placeholder="标题" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item item2">
-            <label class="layui-form-label">用户名</label>
-            <div class="layui-input-block">
-                <input type="text" name="username" lay-verify="desc" autocomplete="off" placeholder="用户名" class="layui-input">
-            </div>
-        </div>
-         <div class="layui-form-item item3">
-            <label class="layui-form-label">权限</label>
-            <div class="layui-input-block">
-                <input type="text" name="weight" lay-verify="number" autocomplete="off" placeholder="权限" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item item4" type="1">
+        <div class="layui-form-item item2" type="1">
             <label class="layui-form-label">赛事类型</label>
-            <div class="layui-input-block">
+            <div class="layui-input-block"> 
                 <select name="tid" lay-filter="type" class='cc' type="select">
                 </select>
             </div>
         </div>
-       
-        <div class="layui-form-item item5">
-            <label class="layui-form-label">密码</label>
+        <div class="layui-form-item item3" type="1">
+            <label class="layui-form-label">显示状态</label>
             <div class="layui-input-block">
-                <input type="password" name="password" lay-verify="desc" autocomplete="off" placeholder="密码" class="layui-input">
+              <input type="radio" class="check0" name="applicant_state" title="未审核" value="0" lay-filter="zt1">
+              <input type="radio" class="check1" name="applicant_state" title="通过"  value="2" lay-filter="zt2">
+              <input type="radio" class="check2" name="applicant_state" title="不通过" value="5"  lay-filter="zt3">
+              <input type="radio" class="check3" name="applicant_state" title="替补" value="10" lay-filter="zt4">
             </div>
+        </div>
+        <div class="layui-form-label" style="float: left;width:300px;padding-left: 31px;">邮件内容 <i style="font-weight: bold;font-style: normal;color: red;font-size: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;提示：{name}代表玩家姓名</i></div> 
+        <div class="layui-form-item item3" type="1">
+            <textarea class="layui-textarea" id="LAY_demo1" style="display: none">  
+            </textarea>
         </div>
         <div class="layui-form-item item6">
             <div class="layui-input-block">
@@ -68,8 +67,25 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         layedit = layui.layedit,
         laydate = layui.laydate;
     $ = layui.jquery;
-
-    function fuck() {
+    //构建一个默认的编辑器
+ 
+  var parent_json = eval('('+parent.json+')'); 
+  // $("#LAY_demo1").html(parent_json.content);
+  // if(parent_json.applicant_state == "0"){
+  //   $('.check0').attr("checked", true); 
+  //   layui.form.render(); //重新渲染显示效果
+  // }else if(parent_json.applicant_state == "2"){
+  //    $('.check1').attr("checked", true); 
+  //   layui.form.render(); //重新渲染显示效果
+  // }else if(parent_json.applicant_state == "5"){
+  //    $('.check2').attr("checked", true); 
+  //   layui.form.render(); //重新渲染显示效果
+  // }else if(parent_json.applicant_state == "10"){
+  //    $('.check3').attr("checked", true); 
+  //   layui.form.render(); //重新渲染显示效果
+  // }
+   var index = layedit.build('LAY_demo1'); 
+    function sec() {
         $.ajax({
             type: "GET",
             catch: true,
@@ -82,9 +98,10 @@ layui.use(['form', 'layedit', 'laydate'], function() {
                 console.log(res);
                 var html = '';
                 // 判断赛事类型
+                var datatype = $(".item2").attr("type");
                 html = '<option value=""></option>';
                 for (var i = 0; i < res.length; i++) {
-                    if (i == 0) {
+                    if (res[i].id == datatype) {
                         html += "<option selected=''  value=" + res[i].id + ">" + res[i].name + "</option>";
                     } else {
                         html += "<option value=" + res[i].id + ">" + res[i].name + "</option>";
@@ -98,31 +115,27 @@ layui.use(['form', 'layedit', 'laydate'], function() {
 
     //创建一个编辑器
     var editIndex = layedit.build('LAY_demo_editor');
-    //自定义验证规则
-      form.verify({
-        desc: function(value){
-          if(value.length < 1){
-            return '不能为空';
-          }
-        }
-        ,content: function(value){
-          layedit.sync(editIndex);
-        }
-      });
+
     //监听提交
     form.on('submit(demo1)', function(data) {
         console.log(data);
-        var data = JSON.stringify(data.field);
+        var id = $(".item6").attr("data-id");
+        var data = data.field;
+        data.content = layedit.getContent(1);
         console.log(data);
+        delete data.file;
+        console.log(data); 
+        var res = JSON.stringify(data);
+        console.log(res);
         var index = top.layer.msg('数据提交中，请稍候', { icon: 16, time: false, shade: 0.8 });
         $.ajax({
             type: "POST",
             catch: true,
             data: {
-                data: data,
+                data: res,
             },
             dataType: "json",
-            url: "/tool/user/insert",
+            url: "/tool/mail/insert/",
             success: function(res) {
                 console.log(res);
                 setTimeout(function() {
@@ -140,9 +153,13 @@ layui.use(['form', 'layedit', 'laydate'], function() {
         });
     });
     //以下两种方式都行：
-    setTimeout(function() { fuck(); }, 500);
+    setTimeout(function() { sec(); }, 500);
     setTimeout(function() { form.render(); }, 500);
-
+     //自定义工具栏
+  layedit.build('LAY_demo2', {
+    tool: ['link', 'unlink', '|', 'left', 'center', 'right']
+    ,height: 100
+  })
 });
 </script>
 
