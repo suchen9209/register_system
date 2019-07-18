@@ -51,6 +51,9 @@ class Init extends Api_Controller {
             if(in_array('0', $state_show_arr)){
                 $menu['children'][]=array('title'=>'未审核列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=0','spread'=>true);   
             } 
+            if(in_array('2', $state_show_arr)){
+                $menu['children'][]=array('title'=>'不通过','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=2','spread'=>true);   
+            } 
             if(in_array('10', $state_show_arr)){
                 $menu['children'][]=array('title'=>'通过列表','icon'=>"&#xe61c;",'href'=>'page/main/all.html?state=10','spread'=>true);   
             }      
