@@ -221,7 +221,7 @@ class Tournament extends Api_Controller {
             $show_dict = $tournament_item->show_dict;
             $show_dict_arr = json_decode($show_dict,true);
 
-            $tmp_arr = $show_dict_arr;
+            $tmp_arr = array();
             foreach ($show_dict_arr as $k => $v) {
                 $tmp_arr[$v['field']] = $v;
             }
