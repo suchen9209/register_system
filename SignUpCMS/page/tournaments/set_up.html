@@ -58,19 +58,19 @@ layui.use('table', function(){
              var arr = res.split(',');
              for(var i in arr){
                if (arr[i] == '0') {
-                  $('.check0').attr("checked", true); 
+                  $('.check1').attr("checked", true); 
                   layui.form.render(); //重新渲染显示效果
                 }else if(arr[i] == "-1"){
-                  $('.check1').attr("checked", true);
+                  $('.check0').attr("checked", true);
                   layui.form.render(); //重新渲染显示效果
                 }else if(arr[i] == "2"){
-                  $('.check2').attr("checked", true);
-                  layui.form.render(); //重新渲染显示效果
-                }else if(arr[i] == "5"){
                   $('.check3').attr("checked", true);
                   layui.form.render(); //重新渲染显示效果
-                }else if(arr[i] == "10"){ 
+                }else if(arr[i] == "5"){
                   $('.check4').attr("checked", true);
+                  layui.form.render(); //重新渲染显示效果
+                }else if(arr[i] == "10"){ 
+                  $('.check2').attr("checked", true);
                   layui.form.render(); //重新渲染显示效果
                 }
              }
