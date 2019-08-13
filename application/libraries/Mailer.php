@@ -24,10 +24,10 @@ class Mailer {
         $this->mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
         $this->mail->Host       = "smtp.exmail.qq.com";      // sets GMAIL as the SMTP server
         $this->mail->Port       = 465;                   // set the SMTP port for the GMAIL server
-        $this->mail->Username   = "suchen@imbatv.cn";// GMAIL username
-        $this->mail->Password   = "Su_4309209";       // GMAIL password
-        $this->mail->AddReplyTo('suchen@imbatv.cn', 'i-league');
-        $this->mail->SetFrom('suchen@imbatv.cn', 'i-league');
+        $this->mail->Username   = "";// GMAIL username
+        $this->mail->Password   = "";       // GMAIL password
+        $this->mail->AddReplyTo('', '');
+        $this->mail->SetFrom('', '');
     }
  
     public function sendmail($to, $to_name, $subject, $body){
