@@ -4,16 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Applicant extends Api_Controller {
 
     public function __construct(){
-        parent::__construct();
+        parent::__construct('none_rest');
         $this->load->model('applicant_model','applicant');
         $this->load->model('tournament_model','tournament');
         $this->load->model('function/email_div_model','email_div');
     }
 
-        public function test(){
-        $this->email_div->sendMail();
-        echo 1;
-    }
     
     public function insert(){
         header('Access-Control-Allow-Origin:*');
