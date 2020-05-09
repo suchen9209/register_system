@@ -61,28 +61,6 @@ class Applicant extends Api_Controller {
                     if($this->applicant->insert($data)){
 
                         $this->tournament->add_one_applicant($tid);
-                        if($tid == 2){
-                            $this->load->library('mailer');
-
-                            $to = $data['email'];
-                            $to_name = $data['name'];
-                            $subject = 'IMBA自走棋公开赛报名结果';
-                            $body = '<!DOCTYPE html>
-                                <html>
-                                <head>
-                                 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-                                <title>报名通过</title>
-                                </head>
-                                <body>
-                                <P>亲爱的玩家，您好！</P>
-                                <P>　　感谢您的报名，您已成功获得本次《一起来电竞》线下赛第一赛季的参赛资格，随机分组后会通知您前往指定的海选赛场进行海选小组赛，预祝您有好的表现！</P>
-                                </body>
-                                </html>';
-                            $msg = $this->mailer->sendmail($to, $to_name, $subject, $body);   
-                        }
-
-
 
 
                         $this->response($this->getResponseData(parent::HTTP_OK, '报名成功'), parent::HTTP_OK);
