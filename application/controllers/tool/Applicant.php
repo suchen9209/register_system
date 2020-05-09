@@ -96,6 +96,11 @@ class Applicant extends Api_Controller {
                             $this->fail_mail->insert(array('applicant_id'=>$applicant_info->id,'tid'=>$applicant_info->tid,'tournament_mail_id'=>$mail_id,'state'=>$state,'detail'=>$msg));                        
                         }
                     }
+                    if($applicant_info->tid == 11){
+                        $this->load->helper('send_sms');
+                        //$this->load->library('mailer');
+                        sendTemplateSMS($applicant_info->phone, ["abc","60分钟"], "112552");
+                    }
                 }else{
                     $applicant_info = $this->applicant->get_info($value);
                     $update_err_arr []= $applicant_info->name;
