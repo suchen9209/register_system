@@ -61,6 +61,11 @@ class Applicant extends Api_Controller {
                     if($this->applicant->insert($data)){
 
                         $this->tournament->add_one_applicant($tid);
+                        if($tid == 11){
+                            $this->load->helper('send_sms');
+                            //$this->load->library('mailer');
+                            sendTemplateSMS($data['phone'], [$data['name'],$tournament_info->name], "593813");
+                        }
 
 
                         $this->response($this->getResponseData(parent::HTTP_OK, '报名成功'), parent::HTTP_OK);
