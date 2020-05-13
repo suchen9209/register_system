@@ -100,11 +100,11 @@ class Applicant extends Api_Controller {
                         $this->load->helper('send_sms');
                         //$this->load->library('mailer');
                         if($state == 10){
-                            sendTemplateSMS($applicant_info->phone, [$applicant_info->name,"多多自走棋春季公开赛"], "593813");
+                            sendTemplateSMS($applicant_info->phone, [$applicant_info->name], "593875");
                         }else if($state == 5){
-                            sendTemplateSMS($applicant_info->phone, [], "239440");
+                            sendTemplateSMS($applicant_info->phone, [$applicant_info->name], "593881");
                         }else if($state == 2){
-                            sendTemplateSMS($applicant_info->phone, [$applicant_info->name,"多多自走棋春季公开赛"], "593813");
+                            sendTemplateSMS($applicant_info->phone, [$applicant_info->name], "593883");
                         }
                         
                     }

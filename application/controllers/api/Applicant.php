@@ -64,7 +64,7 @@ class Applicant extends Api_Controller {
                         if($tid == 11){
                             $this->load->helper('send_sms');
                             //$this->load->library('mailer');
-                            sendTemplateSMS($data['phone'], [$data['name'],$tournament_info->name], "593813");
+                            sendTemplateSMS($data['phone'], [$data['name']], "593869");
                         }
 
 
